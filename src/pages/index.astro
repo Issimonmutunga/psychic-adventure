@@ -1,881 +1,688 @@
----
-const contact = {
-  name: "Simon Mutunga Mavindu",
-  title: "GIS Analyst | Geospatial Engineer | Climate & Risk Intelligence",
-  location: "Nairobi, Kenya",
-  email: "besimonmutunga@gmail.com",
-  phone: "+254 706 085240",
-  github: "https://github.com/Issimonmutunga",
-  maps: "https://www.google.com/maps?q=-1.204353,36.871902",
-};
-
-const highlights = [
-  "3+ years in GIS, spatial data analysis, climate risk modelling, and remote sensing",
-  "100,000+ spatial records reviewed and validated in ArcGIS Pro geodatabases",
-  "Built risk intelligence systems covering deterministic logic, probabilistic logic, NLP, and geocoding",
-  "Experience across ArcGIS Pro, QGIS, Python, SQL, FastAPI, GeoPandas, H3, and remote sensing workflows",
-];
-
-const experience = [
-  {
-    role: "Geospatial Analyst",
-    company: "Rozvi Group",
-    period: "June 2025 – Present",
-    type: "Volunteer",
-    points: [
-      "Lead spatial data and risk intelligence workstreams supporting climate risk assessment, parametric insurance, and geospatial platform engineering.",
-      "Designed and built 3 production systems: climate risk logic engine, NLP recommendation module, and geocoding/location resolution system.",
-      "Developed spatial data pipelines processing outputs from 7 climate models into consistent analysis-ready formats.",
-      "Led methodology development for 2 parametric insurance products, including trigger logic, spatial thresholds, and index design.",
-      "Prepared spatial datasets across 8 environmental and risk mapping workstreams.",
-    ],
-  },
-  {
-    role: "GIS Analyst — Quality Assurance",
-    company: "Kenya Power and Lighting Company",
-    period: "May 2023 – February 2025",
-    type: "Full-time",
-    points: [
-      "Reviewed and validated over 100,000 spatial records in ArcGIS Pro geodatabases.",
-      "Corrected topology errors, misaligned geometries, and attribute inconsistencies across national infrastructure layers.",
-      "Coordinated with field teams to reconcile geodatabase records with real-world observations.",
-      "Maintained structured GIS geodatabases used by 4 operational teams.",
-      "Produced maps and spatial outputs for infrastructure planning and compliance reporting.",
-    ],
-  },
-  {
-    role: "Survey / GIS Attaché",
-    company: "Nairobi City Water and Sewerage Company",
-    period: "July 2022 – September 2022",
-    type: "Attachment",
-    points: [
-      "Supported sewer pipeline leveling, manhole layout surveys, and wastewater infrastructure mapping.",
-      "Contributed spatial data for approximately 5 km of wastewater infrastructure across 3 project zones.",
-      "Conducted topographic surveys using total station equipment.",
-      "Maintained ArcGIS Desktop records for over 150 infrastructure assets.",
-      "Produced 6 maps and spatial deliverables for engineering and maintenance planning.",
-    ],
-  },
-];
-
-const projects = [
-  {
-    title: "Sarateal — Agricultural Market Intelligence Platform",
-    stack: "Python, FastAPI, React, Vercel, Render, Open Data",
-    link: "https://github.com/Issimonmutunga/sarateal",
-    description:
-      "An open-source, API-first agricultural market intelligence system connecting farmer supply, buyer demand, WFP Kenya food prices, tenders, weather-risk signals, and geocoded market workflows across Kenyan counties.",
-  },
-  {
-    title: "Flood Susceptibility Mapping — Kenya",
-    stack: "QGIS, Weighted Overlay, GIS Workflow Documentation",
-    link: "https://github.com/Issimonmutunga/floodske",
-    description:
-      "A flood susceptibility mapping workflow covering data preparation, spatial modelling, weighted overlay analysis, map design, and full technical documentation from raw GIS inputs to final flood map outputs.",
-  },
-  {
-    title: "Flood Susceptibility Mapping Using H3 Spatial Index — Nairobi",
-    stack: "H3, Spatial Indexing, Risk Scoring, Knowledge Graph Concepts",
-    link: "https://github.com/Issimonmutunga",
-    description:
-      "Applied H3 Resolution 12 spatial indexing to aggregate terrain, drainage, and environmental risk factors into near-building-level hexagonal units for granular flood susceptibility scoring.",
-  },
-  {
-    title: "Crop Suitability Analysis for Duma Wheat — Makueni County",
-    stack: "ArcGIS Desktop, AHP, MCDM, Weighted Overlay",
-    link: "https://github.com/Issimonmutunga/AHP-Project",
-    description:
-      "Conducted crop suitability analysis using soil, rainfall, temperature, elevation, and land-use datasets. Produced 7 thematic maps and validated AHP weights using pairwise comparison and consistency checks.",
-  },
-  {
-    title: "Climate Risk Modelling & Risk Intelligence",
-    stack: "Python, Climate Models, H3, Remote Sensing, Risk Logic",
-    link: "https://github.com/Issimonmutunga",
-    description:
-      "Built hazard-aware workflows for drought, flood, heat, rainfall, cyclone, and water-security risk using open datasets, spatial indexing, probabilistic logic, and Python-based processing.",
-  },
-];
-
-const skillGroups = [
-  {
-    title: "GIS Software",
-    skills: ["ArcGIS Pro", "ArcGIS Enterprise", "ArcGIS Desktop", "ArcGIS Field Maps", "QGIS"],
-  },
-  {
-    title: "Programming & Data",
-    skills: ["Python", "ArcPy", "GeoPandas", "Shapely", "FastAPI", "SQL", "Microsoft Excel"],
-  },
-  {
-    title: "Spatial Analysis",
-    skills: [
-      "Geodatabase management",
-      "Coordinate systems",
-      "Georeferencing",
-      "Spatial joins",
-      "Overlay analysis",
-      "Topology",
-      "Raster analysis",
-      "Land cover classification",
-    ],
-  },
-  {
-    title: "Climate & Risk",
-    skills: [
-      "Climate model processing",
-      "Deterministic risk logic",
-      "Probabilistic risk logic",
-      "Parametric insurance triggers",
-      "Spatial risk indexing",
-      "H3 spatial indexing",
-      "Weather signal integration",
-    ],
-  },
-  {
-    title: "Data Engineering",
-    skills: [
-      "Spatial ETL",
-      "Data pipelines",
-      "Geocoding systems",
-      "API-first backend development",
-      "NLP integration",
-      "Data quality assurance",
-    ],
-  },
-  {
-    title: "Cartography & Reporting",
-    skills: [
-      "Thematic mapping",
-      "Map production",
-      "Technical reporting",
-      "Product documentation",
-      "Stakeholder presentations",
-    ],
-  },
-];
-
-const certifications = [
-  "Spatial Data Science: The New Frontier in Analytics — Esri Training MOOC, October 2023",
-  "AI Augmented Professional Development Skills in the Digital Age — ALX Africa, December 2024",
-  "Graduate Member — Geospatial Information Management Surveyors Chapter, Institution of Surveyors of Kenya, May 2025",
-];
-
-const education = [
-  "Bachelor of Science in Geospatial Engineering — University of Nairobi, Second Class Honors Upper Division, 2018 – 2023",
-  "Kenya Certificate of Secondary Education — Maseno School, Mean Grade A-, 2014 – 2017",
-];
----
-
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{contact.name} | Geospatial Engineer</title>
-    <meta
-      name="description"
-      content="Portfolio of Simon Mutunga Mavindu, a GIS Analyst and Geospatial Engineer working across spatial data analysis, climate risk intelligence, Python automation, and remote sensing."
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Zen+Kaku+Gothic+New:wght@400;700&display=swap" rel="stylesheet" />
-  </head>
-
-  <body>
-
-    <!-- Contact Bar -->
-    <div class="contact-bar">
-      <div class="wrap">
-        <div class="contact-pill">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.15 3.18 2 2 0 0 1 3.12 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 5.61 5.61l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
-          <a href={`tel:${contact.phone.replaceAll(" ", "")}`}>{contact.phone}</a>
-        </div>
-        <div class="contact-pill">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          <a href={`mailto:${contact.email}`}>{contact.email}</a>
-        </div>
-        <div class="contact-pill">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-          <a href={contact.github} target="_blank" rel="noreferrer">GitHub</a>
-        </div>
-      </div>
-    </div>
-
-    <main>
-
-      <!-- Hero -->
-      <section class="hero">
-        <p class="eyebrow">{contact.title}</p>
-        <h1>Simon Mutunga<br /><em>Mavindu</em></h1>
-        <p class="intro-text">
-          Building practical spatial data systems, climate risk models, and geospatial platforms —
-          from geodatabase QA at national infrastructure scale to parametric insurance triggers
-          and API-first agricultural intelligence.
-        </p>
-        <div class="cta-row">
-          <a href="#projects" class="btn btn-primary">View projects</a>
-          <a href={`mailto:${contact.email}`} class="btn btn-ghost">Send email</a>
-          <a href={contact.github} target="_blank" rel="noreferrer" class="btn btn-ghost">GitHub</a>
-        </div>
-      </section>
-
-      <hr class="rule" />
-
-      <!-- Highlights -->
-      <section class="section-slim">
-        <div class="highlights">
-          {highlights.map((item) => (
-            <div class="highlight-item">
-              <p>{item}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <hr class="rule" />
-
-      <!-- Projects -->
-      <section id="projects">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow">Selected work</p>
-            <h2>Projects</h2>
-          </div>
-          <div class="section-line"></div>
-        </div>
-        <div class="project-grid">
-          {projects.map((project) => (
-            <div class="card">
-              <p class="project-tag">{project.stack}</p>
-              <h3>{project.title}</h3>
-              <p class="card-body">{project.description}</p>
-              <a href={project.link} target="_blank" rel="noreferrer" class="project-link">
-                View project →
-              </a>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <hr class="rule" />
-
-      <!-- Experience -->
-      <section>
-        <div class="section-head">
-          <div>
-            <p class="eyebrow">Professional background</p>
-            <h2>Experience</h2>
-          </div>
-          <div class="section-line"></div>
-        </div>
-        <div class="exp-grid">
-          {experience.map((job) => (
-            <div class="card">
-              <p class="exp-meta">
-                {job.period}
-                <span class="exp-type">{job.type}</span>
-              </p>
-              <h3>{job.role}</h3>
-              <h4>{job.company}</h4>
-              <ul>
-                {job.points.map((point) => <li>{point}</li>)}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <hr class="rule" />
-
-      <!-- Skills -->
-      <section>
-        <div class="section-head">
-          <div>
-            <p class="eyebrow">Technical toolkit</p>
-            <h2>Skills</h2>
-          </div>
-          <div class="section-line"></div>
-        </div>
-        <div class="skills-grid">
-          {skillGroups.map((group) => (
-            <div class="card">
-              <h3>{group.title}</h3>
-              <div class="chips">
-                {group.skills.map((skill) => <span class="chip">{skill}</span>)}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <hr class="rule" />
-
-      <!-- Certifications -->
-      <section>
-        <div class="section-head">
-          <div>
-            <p class="eyebrow">Credentials</p>
-            <h2>Certifications</h2>
-          </div>
-          <div class="section-line"></div>
-        </div>
-        <div class="list-items">
-          {certifications.map((item) => <div class="list-item">{item}</div>)}
-        </div>
-      </section>
-
-      <!-- Education -->
-      <section class="section-tight">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow">Education</p>
-            <h2>Academic background</h2>
-          </div>
-          <div class="section-line"></div>
-        </div>
-        <div class="list-items">
-          {education.map((item) => <div class="list-item">{item}</div>)}
-        </div>
-      </section>
-
-      <hr class="rule" />
-
-      <!-- Contact -->
-      <section class="contact-section">
-        <p class="eyebrow">Contact</p>
-        <h2>Let's build useful spatial systems.</h2>
-        <div class="contact-grid">
-          <div>
-            <a href={`mailto:${contact.email}`} class="contact-detail">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-              <div class="contact-detail-inner">
-                <span class="contact-label">Email</span>
-                <span class="contact-value">{contact.email}</span>
-              </div>
-            </a>
-            <a href={`tel:${contact.phone.replaceAll(" ", "")}`} class="contact-detail">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.15 3.18 2 2 0 0 1 3.12 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 5.61 5.61l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
-              <div class="contact-detail-inner">
-                <span class="contact-label">Phone</span>
-                <span class="contact-value">{contact.phone}</span>
-              </div>
-            </a>
-            <a href={contact.github} target="_blank" rel="noreferrer" class="contact-detail">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-              <div class="contact-detail-inner">
-                <span class="contact-label">GitHub</span>
-                <span class="contact-value">Issimonmutunga</span>
-              </div>
-            </a>
-            <a href={contact.maps} target="_blank" rel="noreferrer" class="contact-detail">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              <div class="contact-detail-inner">
-                <span class="contact-label">Location</span>
-                <span class="contact-value">{contact.location}</span>
-              </div>
-            </a>
-          </div>
-          <div class="contact-quote">
-            <p>
-              "Available for GIS, climate risk, spatial data engineering, remote sensing, and Python automation work."
-            </p>
-          </div>
-        </div>
-      </section>
-
-    </main>
-
-    <div class="footer-mark">
-      {contact.name} &nbsp;·&nbsp; {contact.location} &nbsp;·&nbsp; Geospatial Engineer
-    </div>
-
-  </body>
-</html>
-
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Simon Mutunga Mavindu — Geospatial Engineer</title>
+<meta name="description" content="Simon Mutunga Mavindu, Geospatial Engineer in Nairobi, Kenya — climate risk, spatial analysis, remote sensing, and geospatial platform engineering." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --bg:       #0d1520;
-    --surface:  #111d2e;
-    --surface2: #152236;
-    --border:   rgba(100,160,240,0.13);
-    --text:     #cdd8ee;
-    --muted:    #8ba4cc;
-    --dim:      #4d6488;
-    --navy:     #1a4a8a;
-    --blue:     #2d6fcf;
-    --sky:      #5b9cf6;
-    --ice:      #a8c8f8;
-    --steel:    #6ea3d8;
-  }
-
   html { scroll-behavior: smooth; }
 
+  :root {
+    --font-display: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
+    --radius-lg: 26px;
+    --radius-md: 18px;
+    --radius-sm: 12px;
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* ---- DARK THEME (default) ---- */
+  html[data-theme="dark"] {
+    --bg-a: #17100b;
+    --bg-b: #2b1b12;
+    --bg-c: #5c3a22;
+    --bg-d: #c89455;
+    --surface: rgba(255, 246, 234, 0.06);
+    --surface-strong: rgba(255, 246, 234, 0.11);
+    --border: rgba(244, 221, 190, 0.14);
+    --border-strong: rgba(244, 221, 190, 0.28);
+    --text: #fff7ed;
+    --muted: #d6bfa8;
+    --dim: #a7876c;
+    --accent: #d9a563;
+    --accent-2: #9b5c2c;
+    --shadow: 0 20px 60px rgba(24, 12, 5, 0.5);
+  }
+
+  /* ---- LIGHT THEME ---- */
+  html[data-theme="light"] {
+    --bg-a: #fbf4ea;
+    --bg-b: #ead8c3;
+    --bg-c: #c69b72;
+    --bg-d: #8a542f;
+    --surface: rgba(255, 252, 247, 0.62);
+    --surface-strong: rgba(255, 252, 247, 0.86);
+    --border: rgba(83, 48, 25, 0.13);
+    --border-strong: rgba(83, 48, 25, 0.24);
+    --text: #2d1a0e;
+    --muted: #70513a;
+    --dim: #9a7457;
+    --accent: #885126;
+    --accent-2: #b6753f;
+    --shadow: 0 20px 50px rgba(75, 42, 20, 0.16);
+  }
+
   body {
-    font-family: 'Zen Kaku Gothic New', sans-serif;
-    background: var(--bg);
+    font-family: var(--font-display);
+    background:
+      radial-gradient(ellipse 60% 50% at 12% 8%, color-mix(in srgb, var(--bg-d) 35%, transparent) 0%, transparent 60%),
+      radial-gradient(ellipse 70% 60% at 90% 15%, color-mix(in srgb, var(--bg-c) 55%, transparent) 0%, transparent 55%),
+      radial-gradient(ellipse 80% 70% at 50% 100%, color-mix(in srgb, var(--bg-c) 30%, transparent) 0%, transparent 60%),
+      linear-gradient(180deg, var(--bg-a) 0%, var(--bg-b) 100%);
+    background-attachment: fixed;
     color: var(--text);
-    font-weight: 700;
-    line-height: 1.8;
-    background-image:
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E"),
-      radial-gradient(ellipse 80% 60% at 15% 10%, rgba(45,111,207,0.16) 0%, transparent 60%),
-      radial-gradient(ellipse 55% 45% at 88% 82%, rgba(91,156,246,0.07) 0%, transparent 55%);
-    background-color: var(--bg);
     min-height: 100vh;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    transition: color 0.3s var(--ease);
   }
 
-  /* ─── LAYOUT ─────────────────────────────────────── */
-  .wrap { width: min(1060px, 90%); margin: 0 auto; }
+  a { color: inherit; text-decoration: none; }
+  ul { list-style: none; }
 
-  main { width: min(1060px, 90%); margin: 0 auto; }
+  .wrap { width: min(1080px, 90%); margin: 0 auto; }
 
-  section { padding: 5rem 0; }
-  .section-slim { padding: 3rem 0; }
-  .section-tight { padding-top: 0; }
+  section { padding: clamp(3rem, 8vw, 6.5rem) 0; }
 
-  /* ─── RULE ───────────────────────────────────────── */
-  .rule {
-    border: none;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--blue), transparent);
-    opacity: 0.3;
-    margin: 0 calc((100vw - min(1060px, 90%)) / 2 * -1);
+  /* ---- VIEW TRANSITION (theme wipe) ---- */
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+  }
+  ::view-transition-old(root) { z-index: 1; }
+  ::view-transition-new(root) { z-index: 2; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
   }
 
-  /* ─── TYPOGRAPHY ─────────────────────────────────── */
-  .eyebrow {
-    font-family: 'Zen Kaku Gothic New', sans-serif;
-    font-size: 0.7rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--sky);
-    font-weight: 700;
-    margin-bottom: 0.6rem;
-  }
-
-  h1 {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 700;
-    font-size: clamp(3rem, 7vw, 6rem);
-    line-height: 1.05;
-    color: var(--ice);
-    letter-spacing: -0.01em;
-  }
-
-  h1 em {
-    font-style: italic;
-    color: var(--sky);
-  }
-
-  h2 {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 600;
-    font-size: clamp(2rem, 4vw, 3.2rem);
-    color: var(--ice);
-    line-height: 1.1;
-    margin-bottom: 2rem;
-  }
-
-  h3 {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 700;
-    font-size: 1.45rem;
-    color: var(--text);
-    margin-bottom: 0.25rem;
-  }
-
-  h4 {
-    font-size: 0.75rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--sky);
-    margin-bottom: 0.9rem;
-    font-weight: 700;
-  }
-
-  p { color: var(--muted); font-size: 0.95rem; font-weight: 400; }
-
-  a { color: var(--ice); text-decoration: none; }
-  a:hover { color: var(--sky); }
-
-  /* ─── CONTACT BAR ────────────────────────────────── */
-  .contact-bar {
+  /* ---- NAV ---- */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    padding: 1rem 0;
+    backdrop-filter: blur(24px) saturate(160%);
+    -webkit-backdrop-filter: blur(24px) saturate(160%);
+    background: color-mix(in srgb, var(--bg-a) 55%, transparent);
     border-bottom: 1px solid var(--border);
-    padding: 0.7rem 0;
   }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+  .nav-name { font-weight: 800; font-size: 0.95rem; letter-spacing: -0.01em; }
+  .nav-links { display: flex; align-items: center; gap: 1.6rem; }
+  .nav-links a {
+    font-size: 0.82rem; font-weight: 600; color: var(--muted);
+    transition: color 0.2s var(--ease);
+  }
+  .nav-links a:hover { color: var(--text); }
 
-  .contact-bar .wrap {
-    display: flex;
+  /* ---- THEME TOGGLE (segmented) ---- */
+  .theme-toggle {
+    display: inline-flex;
     align-items: center;
-    gap: 2rem;
-    flex-wrap: wrap;
-    justify-content: flex-end;
+    gap: 2px;
+    padding: 4px;
+    border-radius: 999px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    position: relative;
+  }
+  .theme-toggle button {
+    position: relative;
+    z-index: 2;
+    width: 30px; height: 30px;
+    display: grid; place-items: center;
+    border: none; background: transparent; cursor: pointer;
+    border-radius: 999px;
+    color: var(--dim);
+    transition: color 0.25s var(--ease), transform 0.15s var(--ease);
+  }
+  .theme-toggle button svg { width: 15px; height: 15px; }
+  .theme-toggle button:active { transform: scale(0.85); }
+  .theme-toggle button[aria-pressed="true"] { color: var(--bg-a); }
+  html[data-theme="light"] .theme-toggle button[aria-pressed="true"] { color: #fff; }
+  .theme-toggle .indicator {
+    position: absolute;
+    top: 4px; left: 4px;
+    width: 30px; height: 30px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    transition: transform 0.35s var(--ease);
+    z-index: 1;
   }
 
-  .contact-pill {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.78rem;
-    letter-spacing: 0.06em;
-    color: var(--muted);
-    font-weight: 700;
-  }
-
-  .contact-pill svg { opacity: 0.6; flex-shrink: 0; }
-
-  .contact-pill a {
-    color: var(--ice);
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.2s, color 0.2s;
-  }
-
-  .contact-pill a:hover {
-    border-bottom-color: var(--sky);
-    color: var(--sky);
-  }
-
-  /* ─── HERO ───────────────────────────────────────── */
+  /* ---- HERO ---- */
   .hero {
-    min-height: 86vh;
+    min-height: 88vh;
     display: grid;
     align-content: center;
     gap: 1.6rem;
-    padding: 6rem 0 4rem;
-    position: relative;
+    padding-top: 3rem;
   }
-
-  .hero::before {
-    content: '';
-    position: absolute;
-    right: -4rem;
-    top: 10%;
-    width: 360px;
-    height: 360px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(45,111,207,0.1) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .intro-text {
-    max-width: 640px;
-    font-size: 1.05rem;
-    line-height: 1.9;
-    color: var(--muted);
-    font-weight: 400;
-  }
-
-  .cta-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin-top: 0.5rem;
-  }
-
-  .btn {
-    display: inline-block;
-    padding: 0.65rem 1.5rem;
-    border-radius: 2px;
-    font-size: 0.73rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    font-family: 'Zen Kaku Gothic New', sans-serif;
-    font-weight: 700;
-    transition: all 0.2s;
-    cursor: pointer;
-  }
-
-  .btn-primary {
-    background: var(--blue);
-    color: #ddeeff;
-    border: 1px solid var(--blue);
-  }
-
-  .btn-primary:hover {
-    background: var(--sky);
-    border-color: var(--sky);
-    color: var(--bg);
-  }
-
-  .btn-ghost {
-    background: transparent;
-    color: var(--muted);
-    border: 1px solid var(--border);
-  }
-
-  .btn-ghost:hover {
-    border-color: var(--sky);
-    color: var(--ice);
-  }
-
-  /* ─── HIGHLIGHTS ─────────────────────────────────── */
-  .highlights {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    overflow: hidden;
-  }
-
-  .highlight-item {
+  .geotag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: fit-content;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.04em;
+    color: var(--accent);
     background: var(--surface);
-    padding: 1.4rem 1.2rem;
+    border: 1px solid var(--border);
+    padding: 0.4rem 0.8rem;
+    border-radius: 999px;
   }
+  .geotag::before { content: '●'; font-size: 0.55rem; }
 
-  .highlight-item::before {
-    content: '◆';
-    display: block;
-    color: var(--blue);
-    font-size: 0.6rem;
-    margin-bottom: 0.6rem;
-    opacity: 0.8;
+  h1.name {
+    font-weight: 900;
+    font-size: clamp(3.2rem, 9vw, 7.2rem);
+    line-height: 0.95;
+    letter-spacing: -0.035em;
+    background: linear-gradient(120deg, var(--text) 30%, var(--accent-2) 70%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
+  .role-line {
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    font-weight: 600;
+    color: var(--muted);
+  }
+  .role-line span { color: var(--accent); }
 
-  .highlight-item p {
-    font-size: 0.85rem;
-    line-height: 1.65;
+  .lede {
+    max-width: 620px;
+    font-size: 1.02rem;
     color: var(--muted);
     font-weight: 400;
   }
 
-  /* ─── SECTION HEAD ───────────────────────────────── */
-  .section-head {
-    display: flex;
-    align-items: flex-end;
-    gap: 2rem;
-    margin-bottom: 2.5rem;
+  .cta-row { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-top: 0.4rem; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.85rem 1.5rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: transform 0.15s var(--ease), box-shadow 0.25s var(--ease);
+  }
+  .btn:active { transform: scale(0.96); }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    color: var(--bg-a);
+    box-shadow: 0 8px 30px color-mix(in srgb, var(--accent) 35%, transparent);
+  }
+  html[data-theme="light"] .btn-primary { color: #fff; }
+  .btn-primary:hover { box-shadow: 0 12px 36px color-mix(in srgb, var(--accent) 50%, transparent); }
+  .btn-ghost {
+    background: var(--surface);
+    border-color: var(--border);
+    color: var(--text);
+  }
+  .btn-ghost:hover { border-color: var(--border-strong); }
+
+  /* ---- SECTION HEAD ---- */
+  .section-head { margin-bottom: 2.2rem; }
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+  }
+  h2 {
+    font-weight: 800;
+    font-size: clamp(1.9rem, 4.5vw, 3rem);
+    letter-spacing: -0.02em;
   }
 
-  .section-head h2 { margin-bottom: 0; }
-
-  .section-line {
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(90deg, var(--border), transparent);
-    margin-bottom: 0.4rem;
+  /* ---- PROFILE ---- */
+  .profile-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: clamp(1.6rem, 4vw, 2.6rem);
+    box-shadow: var(--shadow);
   }
+  .profile-card p { color: var(--muted); font-size: 1.05rem; }
 
-  /* ─── CARDS ──────────────────────────────────────── */
+  /* ---- GLASS CARD BASE ---- */
   .card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 1.6rem;
-    position: relative;
-    transition: border-color 0.25s;
+    border-radius: var(--radius-md);
+    padding: 1.7rem;
+    transition: border-color 0.25s var(--ease), transform 0.25s var(--ease), background 0.25s var(--ease);
   }
+  .card:hover { border-color: var(--border-strong); transform: translateY(-3px); background: var(--surface-strong); }
 
-  .card:hover { border-color: rgba(91,156,246,0.35); }
-
-  .card::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, var(--blue), var(--ice), transparent);
-    opacity: 0;
-    transition: opacity 0.25s;
-    border-radius: 4px 4px 0 0;
-  }
-
-  .card:hover::after { opacity: 0.5; }
-
-  /* ─── PROJECTS ───────────────────────────────────── */
-  .project-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-  }
-
-  .project-tag {
-    font-size: 0.68rem;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
+  /* ---- EXPERIENCE ---- */
+  .exp-list { display: grid; gap: 1.1rem; }
+  .exp-top { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0.6rem; margin-bottom: 0.9rem; }
+  .exp-role { font-weight: 800; font-size: 1.25rem; letter-spacing: -0.01em; }
+  .exp-org { color: var(--accent); font-weight: 600; font-size: 0.92rem; }
+  .exp-period {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
     color: var(--dim);
-    margin-bottom: 0.7rem;
-    font-weight: 700;
+    white-space: nowrap;
+    padding: 0.3rem 0.7rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
   }
+  .exp-list li { color: var(--muted); font-size: 0.93rem; line-height: 1.75; padding-left: 1.1rem; position: relative; margin-bottom: 0.35rem; }
+  .exp-list li::before { content: ''; position: absolute; left: 0; top: 0.65em; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); }
 
-  .card-body {
-    font-size: 0.88rem;
-    margin-top: 0.5rem;
-    font-weight: 400;
-  }
-
+  /* ---- PROJECTS ---- */
+  .project-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.1rem; }
+  .project-title { font-weight: 800; font-size: 1.15rem; margin-bottom: 0.6rem; letter-spacing: -0.01em; }
+  .project-desc { color: var(--muted); font-size: 0.9rem; margin-bottom: 1.1rem; }
   .project-link {
-    display: inline-block;
-    margin-top: 1rem;
-    font-size: 0.72rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--sky);
-    font-weight: 700;
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 1px;
-    transition: border-color 0.2s, color 0.2s;
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-size: 0.78rem; font-weight: 700; color: var(--accent);
   }
+  .project-link svg { width: 13px; height: 13px; transition: transform 0.2s var(--ease); }
+  .project-link:hover svg { transform: translate(2px, -2px); }
 
-  .project-link:hover {
-    border-color: var(--ice);
-    color: var(--ice);
-  }
-
-  /* ─── EXPERIENCE ─────────────────────────────────── */
-  .exp-grid { display: grid; gap: 1rem; }
-
-  .exp-meta {
-    font-size: 0.72rem;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--dim);
-    margin-bottom: 0.5rem;
-    font-weight: 700;
-  }
-
-  .exp-type {
-    display: inline-block;
-    padding: 0.15rem 0.6rem;
-    border: 1px solid var(--border);
-    border-radius: 2px;
-    font-size: 0.65rem;
-    letter-spacing: 0.14em;
-    color: var(--dim);
-    margin-left: 0.5rem;
-  }
-
-  ul { padding-left: 1.2rem; }
-  li {
-    font-size: 0.9rem;
-    color: var(--muted);
-    line-height: 1.75;
-    margin-bottom: 0.3rem;
-    font-weight: 400;
-  }
-  li::marker { color: var(--blue); }
-
-  /* ─── SKILLS ─────────────────────────────────────── */
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-  }
-
-  .chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 1rem;
-  }
-
+  /* ---- SKILLS ---- */
+  .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .skills-grid h3 { font-size: 0.95rem; font-weight: 800; margin-bottom: 0.9rem; }
+  .chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
   .chip {
-    padding: 0.3rem 0.75rem;
-    border: 1px solid var(--border);
-    border-radius: 2px;
+    padding: 0.35rem 0.8rem;
     font-size: 0.78rem;
     color: var(--muted);
-    font-weight: 400;
-    background: var(--surface2);
-    transition: border-color 0.2s, color 0.2s;
-  }
-
-  .chip:hover {
-    border-color: rgba(91,156,246,0.4);
-    color: var(--ice);
-  }
-
-  /* ─── LIST ITEMS ─────────────────────────────────── */
-  .list-items { display: grid; gap: 0.8rem; }
-
-  .list-item {
-    padding: 1rem 1.3rem;
-    background: var(--surface);
-    border-left: 2px solid var(--blue);
-    border-radius: 0 4px 4px 0;
-    font-size: 0.88rem;
-    color: var(--muted);
-    font-weight: 400;
-  }
-
-  /* ─── CONTACT SECTION ────────────────────────────── */
-  .contact-section {
-    padding: 4rem 0 6rem;
-  }
-
-  .contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    align-items: start;
-    margin-top: 2rem;
-  }
-
-  .contact-detail {
-    display: flex;
-    align-items: center;
-    gap: 0.9rem;
-    padding: 1.1rem 1.3rem;
-    background: var(--surface);
+    background: color-mix(in srgb, var(--surface) 60%, transparent);
     border: 1px solid var(--border);
-    border-radius: 4px;
-    margin-bottom: 0.8rem;
-    transition: border-color 0.25s;
-    text-decoration: none;
+    border-radius: 999px;
   }
 
-  .contact-detail:hover { border-color: rgba(91,156,246,0.4); }
-
-  .contact-detail svg { color: var(--sky); flex-shrink: 0; }
-
-  .contact-detail-inner { display: flex; flex-direction: column; }
-
-  .contact-label {
-    font-size: 0.65rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--dim);
-    margin-bottom: 0.15rem;
-    font-weight: 700;
-  }
-
-  .contact-value {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 600;
-    font-size: 1.05rem;
-    color: var(--ice);
-  }
-
-  .contact-quote p {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.3rem;
-    font-weight: 500;
+  /* ---- CERT / EDU ---- */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .list-item {
+    padding: 1rem 1.2rem;
+    background: var(--surface);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    font-size: 0.9rem;
     color: var(--muted);
-    line-height: 2;
-    font-style: italic;
+    margin-bottom: 0.7rem;
   }
+  .list-item strong { color: var(--text); }
 
-  /* ─── FOOTER ─────────────────────────────────────── */
-  .footer-mark {
+  /* ---- CONTACT ---- */
+  .contact-card {
+    background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 18%, var(--surface)), color-mix(in srgb, var(--accent-2) 14%, var(--surface)));
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: clamp(2rem, 6vw, 3.5rem);
+    text-align: center;
+    box-shadow: var(--shadow);
+  }
+  .contact-card h2 { margin-bottom: 0.8rem; }
+  .contact-card p { color: var(--muted); max-width: 480px; margin: 0 auto 1.6rem; }
+  .contact-detail-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.7rem; margin-top: 1.6rem; }
+  .contact-pill {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.82rem; font-weight: 600;
+    padding: 0.6rem 1.1rem;
+    background: var(--surface-strong);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+  }
+  .contact-pill svg { width: 14px; height: 14px; color: var(--accent); }
+
+  footer {
     text-align: center;
     padding: 2rem 0;
-    border-top: 1px solid var(--border);
+    font-family: var(--font-mono);
     font-size: 0.7rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
+    letter-spacing: 0.08em;
     color: var(--dim);
-    font-weight: 700;
   }
 
-  /* ─── RESPONSIVE ─────────────────────────────────── */
+  /* ---- RESPONSIVE ---- */
   @media (max-width: 860px) {
-    .highlights { grid-template-columns: 1fr 1fr; }
-    .project-grid, .skills-grid { grid-template-columns: 1fr; }
-    .contact-grid { grid-template-columns: 1fr; }
-  }
-
-  @media (max-width: 560px) {
-    .highlights { grid-template-columns: 1fr; }
-    .contact-bar .wrap { justify-content: flex-start; gap: 1rem; }
+    .nav-links a:not(.theme-slot) { display: none; }
+    .project-grid, .skills-grid, .two-col { grid-template-columns: 1fr; }
   }
 </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <span class="nav-name">Simon Mutunga Mavindu</span>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+      <div class="theme-toggle" role="group" aria-label="Theme">
+        <div class="indicator" id="toggleIndicator"></div>
+        <button type="button" data-theme-choice="system" aria-pressed="false" aria-label="Match system theme" title="System">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </button>
+        <button type="button" data-theme-choice="light" aria-pressed="false" aria-label="Light theme" title="Light">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </button>
+        <button type="button" data-theme-choice="dark" aria-pressed="false" aria-label="Dark theme" title="Dark">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="geotag">Nairobi, Kenya</div>
+    <h1 class="name">Simon Mutunga<br/>Mavindu</h1>
+    <p class="role-line">Geospatial Engineer — <span>climate risk & spatial intelligence</span></p>
+    <p class="lede">Three-plus years turning spatial and environmental data into maps, models, and decision-support tools — from national infrastructure QA to climate-risk platforms.</p>
+    <div class="cta-row">
+      <a href="#work" class="btn btn-primary">View projects</a>
+      <a href="mailto:besimonmutunga@gmail.com" class="btn btn-ghost">Email me</a>
+      <a href="https://github.com/Issimonmutunga" target="_blank" rel="noreferrer" class="btn btn-ghost">GitHub</a>
+    </div>
+  </section>
+
+  <!-- PROFILE -->
+  <section>
+    <div class="section-head">
+      <p class="eyebrow">Profile</p>
+      <h2>What I do</h2>
+    </div>
+    <div class="profile-card">
+      <p>Geospatial Engineer with over three years of experience supporting climate and environmental initiatives through geospatial analysis, data management, and Python-based workflows. Experienced in analyzing spatial and environmental data, producing maps and analytical reports, and developing decision-support tools for climate risk and sustainable land management. Comfortable working in multidisciplinary teams, managing geographical datasets, and communicating technical findings to a range of audiences.</p>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-head">
+      <p class="eyebrow">Career</p>
+      <h2>Experience</h2>
+    </div>
+    <div class="exp-list">
+
+      <div class="card">
+        <div class="exp-top">
+          <div>
+            <p class="exp-role">Geospatial Engineer <span style="color:var(--dim); font-weight:600;">(Volunteer)</span></p>
+            <p class="exp-org">Rozvi Group</p>
+          </div>
+          <span class="exp-period">JUN 2025 – JUL 2026</span>
+        </div>
+        <ul>
+          <li>Worked as part of a multidisciplinary team supporting climate-risk, sustainability, and environmental initiatives through geospatial analysis, data management, and decision-support systems.</li>
+          <li>Developed Python workflows for collecting, processing, validating, and analyzing climate and environmental datasets, improving efficiency and reproducibility.</li>
+          <li>Produced climate-risk assessments and spatial analyses covering drought, flood, heat, and other environmental risks to support resilience planning.</li>
+          <li>Contributed to climate-risk reporting workflows, including automated report generation using standardized templates aligned with regulatory and sustainability requirements.</li>
+          <li>Prepared technical documentation and visual outputs communicating climate-risk insights to technical and non-technical stakeholders.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="exp-top">
+          <div>
+            <p class="exp-role">GIS Data Analyst — Quality Assurance</p>
+            <p class="exp-org">Kenya Power & Lighting Company (KPLC)</p>
+          </div>
+          <span class="exp-period">MAY 2023 – FEB 2025</span>
+        </div>
+        <ul>
+          <li>Reviewed and validated over 100,000 spatial records, maintaining data quality, accuracy, and consistency across national infrastructure datasets.</li>
+          <li>Conducted data verification, cleaning, and spatial analysis to support operational planning and informed decision-making.</li>
+          <li>Worked closely with field teams to verify information, resolve data quality issues, and improve reliability of spatial records.</li>
+          <li>Produced maps and analytical outputs supporting infrastructure planning and reporting across multiple operational teams.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="exp-top">
+          <div>
+            <p class="exp-role">Survey / GIS Attaché</p>
+            <p class="exp-org">Nairobi City Water & Sewerage Company</p>
+          </div>
+          <span class="exp-period">JUL 2022 – SEP 2022</span>
+        </div>
+        <ul>
+          <li>Supported field surveys, spatial data collection, and quality assurance for urban infrastructure projects.</li>
+          <li>Processed GPS and survey data into GIS databases and assisted in producing maps for engineering planning and maintenance.</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="work">
+    <div class="section-head">
+      <p class="eyebrow">Selected work</p>
+      <h2>Projects</h2>
+    </div>
+    <div class="project-grid">
+
+      <div class="card">
+        <p class="project-title">Zoryn — Climate Risk Intelligence Platform</p>
+        <p class="project-desc">An open climate intelligence platform transforming climate and environmental data into accessible insights, with geospatial drought workflows and interactive maps and timelines.</p>
+        <a href="https://zoryn-9kx.pages.dev/" target="_blank" rel="noreferrer" class="project-link">Live site <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></a>
+      </div>
+
+      <div class="card">
+        <p class="project-title">Sarateal — Agricultural Market Intelligence</p>
+        <p class="project-desc">Integrates agricultural, weather, and geospatial information to support market intelligence, with automated workflows for collecting and validating multi-source data.</p>
+        <a href="https://github.com/Issimonmutunga/sarateal" target="_blank" rel="noreferrer" class="project-link">View on GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></a>
+      </div>
+
+      <div class="card">
+        <p class="project-title">Geoepic Surveys — Consultancy Website</p>
+        <p class="project-desc">Designed and developed the public website for a geospatial consultancy, translating technical concepts into clear content for clients and partners.</p>
+        <a href="https://geoepic.co.ke/" target="_blank" rel="noreferrer" class="project-link">Visit site <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></a>
+      </div>
+
+      <div class="card">
+        <p class="project-title">Kenya Flood Susceptibility Assessment</p>
+        <p class="project-desc">Applied geospatial analysis to identify flood-prone areas using terrain and environmental data, with analytical maps for disaster risk reduction.</p>
+        <a href="https://github.com/Issimonmutunga/floodske" target="_blank" rel="noreferrer" class="project-link">View on GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></a>
+      </div>
+
+      <div class="card">
+        <p class="project-title">Zimbabwe Multi-Hazard Climate Risk Assessment</p>
+        <p class="project-desc">Geospatial workflows assessing drought, flood, heat, and water-related risks, producing reproducible analytical outputs and technical documentation.</p>
+      </div>
+
+      <div class="card">
+        <p class="project-title">Crop Suitability Analysis — Duma Wheat</p>
+        <p class="project-desc">Undergraduate research assessing crop suitability in Makueni County using a multi-criteria decision-making approach across soil, rainfall, temperature, and elevation.</p>
+        <a href="https://github.com/Issimonmutunga/AHP-Project" target="_blank" rel="noreferrer" class="project-link">View on GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section>
+    <div class="section-head">
+      <p class="eyebrow">Toolkit</p>
+      <h2>Skills</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="card">
+        <h3>Programming & Data</h3>
+        <div class="chips">
+          <span class="chip">Python</span><span class="chip">JavaScript</span><span class="chip">HTML/CSS</span><span class="chip">SQL</span><span class="chip">Workflow automation</span>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Web & API</h3>
+        <div class="chips">
+          <span class="chip">React</span><span class="chip">Django</span><span class="chip">REST APIs</span><span class="chip">AWS</span>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Geospatial</h3>
+        <div class="chips">
+          <span class="chip">ArcGIS Pro</span><span class="chip">QGIS</span><span class="chip">Google Earth Engine</span><span class="chip">PostGIS</span><span class="chip">Remote sensing</span>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Climate & Environment</h3>
+        <div class="chips">
+          <span class="chip">Climate risk assessment</span><span class="chip">Environmental monitoring</span><span class="chip">Land suitability</span><span class="chip">Geospatial modelling</span>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Data & Reporting</h3>
+        <div class="chips">
+          <span class="chip">ETL workflows</span><span class="chip">Git/GitHub</span><span class="chip">Technical documentation</span><span class="chip">Map production</span>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Communication</h3>
+        <div class="chips">
+          <span class="chip">Stakeholder engagement</span><span class="chip">Technical writing</span><span class="chip">Presentations</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERT & EDU -->
+  <section>
+    <div class="two-col">
+      <div>
+        <div class="section-head">
+          <p class="eyebrow">Credentials</p>
+          <h2 style="font-size: clamp(1.4rem, 3vw, 1.9rem);">Certifications</h2>
+        </div>
+        <div class="list-item">Graduate Member, Institution of Surveyors of Kenya (ISK)</div>
+        <div class="list-item">Spatial Data Science: The New Frontier in Analytics — <strong>Esri</strong></div>
+        <div class="list-item">AI Career Essentials — <strong>ALX Africa</strong></div>
+      </div>
+      <div>
+        <div class="section-head">
+          <p class="eyebrow">Education</p>
+          <h2 style="font-size: clamp(1.4rem, 3vw, 1.9rem);">Academic background</h2>
+        </div>
+        <div class="list-item"><strong>BSc Geospatial Engineering</strong><br/>University of Nairobi — Second Class Honors, Upper Division</div>
+        <div class="list-item"><strong>KCSE</strong><br/>Maseno School — Grade A-</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-card">
+      <p class="eyebrow" style="justify-content:center; display:flex;">Get in touch</p>
+      <h2>Let's build useful spatial systems.</h2>
+      <p>Open to GIS, climate risk, spatial data engineering, remote sensing, and Python automation work.</p>
+      <div class="contact-detail-row">
+        <a href="mailto:besimonmutunga@gmail.com" class="contact-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          besimonmutunga@gmail.com
+        </a>
+        <a href="tel:+254706085240" class="contact-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.15 3.18 2 2 0 0 1 3.12 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 5.61 5.61l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
+          +254 706 085240
+        </a>
+        <a href="https://github.com/Issimonmutunga" target="_blank" rel="noreferrer" class="contact-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          Issimonmutunga
+        </a>
+        <span class="contact-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Nairobi, Kenya
+        </span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>SIMON MUTUNGA MAVINDU · GEOSPATIAL ENGINEER · NAIROBI, KENYA</footer>
+
+<script>
+  (function () {
+    const root = document.documentElement;
+    const buttons = document.querySelectorAll('.theme-toggle button');
+    const indicator = document.getElementById('toggleIndicator');
+    const media = window.matchMedia('(prefers-color-scheme: dark)');
+    let choice = 'system';
+
+    function resolvedTheme() {
+      return choice === 'system' ? (media.matches ? 'dark' : 'light') : choice;
+    }
+
+    function positionIndicator() {
+      const idx = ['system', 'light', 'dark'].indexOf(choice);
+      indicator.style.transform = 'translateX(' + (idx * 32) + 'px)';
+    }
+
+    function updatePressed() {
+      buttons.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.themeChoice === choice)));
+    }
+
+    function applyTheme(theme) {
+      root.setAttribute('data-theme', theme);
+    }
+
+    function setChoice(newChoice, event) {
+      choice = newChoice;
+      updatePressed();
+      positionIndicator();
+      const theme = resolvedTheme();
+
+      const runSwap = () => applyTheme(theme);
+
+      if (!document.startViewTransition || !event) {
+        runSwap();
+        return;
+      }
+
+      const x = event.clientX;
+      const y = event.clientY;
+      const endRadius = Math.hypot(
+        Math.max(x, window.innerWidth - x),
+        Math.max(y, window.innerHeight - y)
+      );
+
+      const transition = document.startViewTransition(runSwap);
+      transition.ready.then(() => {
+        root.animate(
+          {
+            clipPath: [
+              'circle(0px at ' + x + 'px ' + y + 'px)',
+              'circle(' + endRadius + 'px at ' + x + 'px ' + y + 'px)'
+            ]
+          },
+          {
+            duration: 650,
+            easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
+            pseudoElement: '::view-transition-new(root)'
+          }
+        );
+      });
+    }
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', (e) => setChoice(btn.dataset.themeChoice, e));
+    });
+
+    media.addEventListener('change', () => {
+      if (choice === 'system') applyTheme(resolvedTheme());
+    });
+
+    // init
+    applyTheme(resolvedTheme());
+    updatePressed();
+    positionIndicator();
+  })();
+</script>
+
+</body>
+</html>
