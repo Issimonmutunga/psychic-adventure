@@ -5,8 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>Simon Maps — GIS & Geospatial Services in Kenya</title>
 
-<!-- Theme-aware SimonMapper favicon (updated dynamically in the theme script below) -->
-<link id="favicon" rel="icon" type="image/svg+xml" href="/icon.svg" />
+<link rel="icon" href="/favicon.ico" />
 
 <meta name="description" content="SimonMapper provides GIS, geospatial data engineering, remote sensing, climate and environmental analysis, AI automation, and spatial intelligence services in Kenya." />
 <link rel="canonical" href="https://www.simonmapper.co.ke/" />
@@ -807,34 +806,8 @@
       );
     }
 
-    // Builds the SimonMapper diamond mark as the favicon, with its stroke/fill
-    // flipped to match the resolved theme — so it stays visible against
-    // light or dark browser tabs, in sync with the site's own toggle.
-    function buildFaviconHref(theme) {
-      const color = theme === 'dark' ? '#ffffff' : '#142635';
-      const svg =
-        "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'>" +
-        "<path fill='none' stroke='" + color + "' stroke-width='18' stroke-linejoin='round' d='M128 35 L221 128 L128 221 L35 128 Z'/>" +
-        "<circle fill='" + color + "' cx='128' cy='128' r='25'/>" +
-        "</svg>";
-      return 'data:image/svg+xml,' + encodeURIComponent(svg);
-    }
-
-    function updateFavicon(theme) {
-      let link = document.getElementById('favicon');
-      if (!link) {
-        link = document.createElement('link');
-        link.id = 'favicon';
-        link.rel = 'icon';
-        link.type = 'image/svg+xml';
-        document.head.appendChild(link);
-      }
-      link.href = buildFaviconHref(theme);
-    }
-
     function applyTheme(theme) {
       root.setAttribute('data-theme', theme);
-      updateFavicon(theme);
     }
 
     function setChoice(newChoice, event) {
