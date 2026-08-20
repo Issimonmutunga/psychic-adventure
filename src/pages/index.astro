@@ -3,640 +3,835 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>Simon Mutunga Mavindu — Geospatial Engineer</title>
-<meta name="description" content="Simon Mutunga Mavindu, Geospatial Engineer in Nairobi, Kenya — climate risk, spatial analysis, remote sensing, and geospatial platform engineering." />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
+<title>GIS and Remote Sensing | simonmapper </title>
+
+<!-- Theme-aware SimonMapper favicon (updated dynamically in the theme script below) -->
+<link id="favicon" rel="icon" type="image/svg+xml" href="/icon.svg" />
+
+<meta name="description" content="GIS, remote sensing, geospatial data engineering, climate risk, and spatial analysis services by simonmapper in Nairobi, Kenya." /><link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
 
   :root {
-    --font-display: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
-    --radius-lg: 26px;
-    --radius-md: 18px;
-    --radius-sm: 12px;
+    --font-display: 'Manrope', -apple-system, 'Inter', sans-serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-mono: 'Space Mono', ui-monospace, SFMono-Regular, monospace;
     --ease: cubic-bezier(0.22, 1, 0.36, 1);
   }
 
-  /* ---- DARK THEME (default) ---- */
-  html[data-theme="dark"] {
-    --bg-a: #17100b;
-    --bg-b: #2b1b12;
-    --bg-c: #5c3a22;
-    --bg-d: #c89455;
-    --surface: rgba(255, 246, 234, 0.06);
-    --surface-strong: rgba(255, 246, 234, 0.11);
-    --border: rgba(244, 221, 190, 0.14);
-    --border-strong: rgba(244, 221, 190, 0.28);
-    --text: #fff7ed;
-    --muted: #d6bfa8;
-    --dim: #a7876c;
-    --accent: #d9a563;
-    --accent-2: #9b5c2c;
-    --shadow: 0 20px 60px rgba(24, 12, 5, 0.5);
+  html[data-theme="light"] {
+    --bg0: #faf9f5;
+    --ink0: #0b0b0a;
   }
 
-  /* ---- LIGHT THEME ---- */
-  html[data-theme="light"] {
-    --bg-a: #fbf4ea;
-    --bg-b: #ead8c3;
-    --bg-c: #c69b72;
-    --bg-d: #8a542f;
-    --surface: rgba(255, 252, 247, 0.62);
-    --surface-strong: rgba(255, 252, 247, 0.86);
-    --border: rgba(83, 48, 25, 0.13);
-    --border-strong: rgba(83, 48, 25, 0.24);
-    --text: #2d1a0e;
-    --muted: #70513a;
-    --dim: #9a7457;
-    --accent: #885126;
-    --accent-2: #b6753f;
-    --shadow: 0 20px 50px rgba(75, 42, 20, 0.16);
+  html[data-theme="dark"] {
+    --bg0: #0b0b0a;
+    --ink0: #f5f3ee;
   }
 
   body {
-    font-family: var(--font-display);
-    background:
-      radial-gradient(ellipse 60% 50% at 12% 8%, color-mix(in srgb, var(--bg-d) 35%, transparent) 0%, transparent 60%),
-      radial-gradient(ellipse 70% 60% at 90% 15%, color-mix(in srgb, var(--bg-c) 55%, transparent) 0%, transparent 55%),
-      radial-gradient(ellipse 80% 70% at 50% 100%, color-mix(in srgb, var(--bg-c) 30%, transparent) 0%, transparent 60%),
-      linear-gradient(180deg, var(--bg-a) 0%, var(--bg-b) 100%);
-    background-attachment: fixed;
-    color: var(--text);
+    font-family: var(--font-body);
+    background: var(--bg0);
+    color: var(--ink0);
     min-height: 100vh;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
-    transition: color 0.3s var(--ease);
+    transition: background-color 0.3s var(--ease), color 0.3s var(--ease);
+    position: relative;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    pointer-events: none;
+    opacity: 0.05;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
   a { color: inherit; text-decoration: none; }
   ul { list-style: none; }
+  img { max-width: 100%; display: block; }
 
-  .wrap { width: min(1080px, 90%); margin: 0 auto; }
+  .wrap { width: min(1120px, 90%); margin: 0 auto; }
 
-  section { padding: clamp(3rem, 8vw, 6.5rem) 0; }
+  :focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 4px;
+  }
 
-  /* ---- VIEW TRANSITION (theme wipe) ---- */
   ::view-transition-old(root),
   ::view-transition-new(root) {
     animation: none;
     mix-blend-mode: normal;
   }
+
   ::view-transition-old(root) { z-index: 1; }
   ::view-transition-new(root) { z-index: 2; }
 
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
-    * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+
+    * {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 
-  /* ---- NAV ---- */
   .nav {
     position: sticky;
     top: 0;
     z-index: 50;
-    padding: 1rem 0;
-    backdrop-filter: blur(24px) saturate(160%);
-    -webkit-backdrop-filter: blur(24px) saturate(160%);
-    background: color-mix(in srgb, var(--bg-a) 55%, transparent);
-    border-bottom: 1px solid var(--border);
+    padding: 1.1rem 0;
+    background: color-mix(in srgb, var(--bg0) 88%, transparent);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid color-mix(in srgb, var(--ink0) 16%, transparent);
   }
-  .nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
-  .nav-name { font-weight: 800; font-size: 0.95rem; letter-spacing: -0.01em; }
-  .nav-links { display: flex; align-items: center; gap: 1.6rem; }
-  .nav-links a {
-    font-size: 0.82rem; font-weight: 600; color: var(--muted);
-    transition: color 0.2s var(--ease);
-  }
-  .nav-links a:hover { color: var(--text); }
 
-  /* ---- THEME TOGGLE (segmented) ---- */
+  .nav .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1rem;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .nav-links a {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding-bottom: 3px;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s var(--ease), opacity 0.2s var(--ease);
+    opacity: 0.65;
+  }
+
+  .nav-links a:hover {
+    opacity: 1;
+    border-bottom-color: currentColor;
+  }
+
   .theme-toggle {
     display: inline-flex;
     align-items: center;
-    gap: 2px;
-    padding: 4px;
-    border-radius: 999px;
-    background: var(--surface);
-    border: 1px solid var(--border);
+    gap: 0;
+    border: 1px solid color-mix(in srgb, var(--ink0) 30%, transparent);
     position: relative;
   }
+
   .theme-toggle button {
     position: relative;
     z-index: 2;
-    width: 30px; height: 30px;
-    display: grid; place-items: center;
-    border: none; background: transparent; cursor: pointer;
-    border-radius: 999px;
-    color: var(--dim);
-    transition: color 0.25s var(--ease), transform 0.15s var(--ease);
-  }
-  .theme-toggle button svg { width: 15px; height: 15px; }
-  .theme-toggle button:active { transform: scale(0.85); }
-  .theme-toggle button[aria-pressed="true"] { color: var(--bg-a); }
-  html[data-theme="light"] .theme-toggle button[aria-pressed="true"] { color: #fff; }
-  .theme-toggle .indicator {
-    position: absolute;
-    top: 4px; left: 4px;
-    width: 30px; height: 30px;
-    border-radius: 999px;
-    background: linear-gradient(135deg, var(--accent), var(--accent-2));
-    transition: transform 0.35s var(--ease);
-    z-index: 1;
-  }
-
-  /* ---- HERO ---- */
-  .hero {
-    min-height: 88vh;
+    width: 26px;
+    height: 26px;
     display: grid;
-    align-content: center;
-    gap: 1.6rem;
-    padding-top: 3rem;
-  }
-  .geotag {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    width: fit-content;
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    letter-spacing: 0.04em;
-    color: var(--accent);
-    background: var(--surface);
-    border: 1px solid var(--border);
-    padding: 0.4rem 0.8rem;
-    border-radius: 999px;
-  }
-  .geotag::before { content: '●'; font-size: 0.55rem; }
-
-  h1.name {
-    font-weight: 900;
-    font-size: clamp(3.2rem, 9vw, 7.2rem);
-    line-height: 0.95;
-    letter-spacing: -0.035em;
-    background: linear-gradient(120deg, var(--text) 30%, var(--accent-2) 70%, var(--accent) 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  .role-line {
-    font-size: clamp(1rem, 2vw, 1.3rem);
-    font-weight: 600;
-    color: var(--muted);
-  }
-  .role-line span { color: var(--accent); }
-
-  .lede {
-    max-width: 620px;
-    font-size: 1.02rem;
-    color: var(--muted);
-    font-weight: 400;
-  }
-
-  .cta-row { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-top: 0.4rem; }
-  .btn {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    padding: 0.85rem 1.5rem;
-    border-radius: 999px;
-    font-size: 0.85rem;
-    font-weight: 700;
+    place-items: center;
+    border: none;
+    background: transparent;
     cursor: pointer;
-    border: 1px solid transparent;
-    transition: transform 0.15s var(--ease), box-shadow 0.25s var(--ease);
-  }
-  .btn:active { transform: scale(0.96); }
-  .btn-primary {
-    background: linear-gradient(135deg, var(--accent), var(--accent-2));
-    color: var(--bg-a);
-    box-shadow: 0 8px 30px color-mix(in srgb, var(--accent) 35%, transparent);
-  }
-  html[data-theme="light"] .btn-primary { color: #fff; }
-  .btn-primary:hover { box-shadow: 0 12px 36px color-mix(in srgb, var(--accent) 50%, transparent); }
-  .btn-ghost {
-    background: var(--surface);
-    border-color: var(--border);
-    color: var(--text);
-  }
-  .btn-ghost:hover { border-color: var(--border-strong); }
-
-  /* ---- SECTION HEAD ---- */
-  .section-head { margin-bottom: 2.2rem; }
-  .eyebrow {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--accent);
-    font-weight: 600;
-    margin-bottom: 0.6rem;
-  }
-  h2 {
-    font-weight: 800;
-    font-size: clamp(1.9rem, 4.5vw, 3rem);
-    letter-spacing: -0.02em;
+    color: var(--ink0);
+    opacity: 0.5;
+    transition: opacity 0.2s var(--ease), color 0.25s var(--ease);
   }
 
-  /* ---- PROFILE ---- */
-  .profile-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: clamp(1.6rem, 4vw, 2.6rem);
-    box-shadow: var(--shadow);
+  .theme-toggle button + button {
+    border-left: 1px solid color-mix(in srgb, var(--ink0) 30%, transparent);
   }
-  .profile-card p { color: var(--muted); font-size: 1.05rem; }
 
-  /* ---- GLASS CARD BASE ---- */
-  .card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-md);
-    padding: 1.7rem;
-    transition: border-color 0.25s var(--ease), transform 0.25s var(--ease), background 0.25s var(--ease);
+  .theme-toggle button svg {
+    width: 12px;
+    height: 12px;
   }
-  .card:hover { border-color: var(--border-strong); transform: translateY(-3px); background: var(--surface-strong); }
 
-  /* ---- EXPERIENCE ---- */
-  .exp-list { display: grid; gap: 1.1rem; }
-  .exp-top { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0.6rem; margin-bottom: 0.9rem; }
-  .exp-role { font-weight: 800; font-size: 1.25rem; letter-spacing: -0.01em; }
-  .exp-org { color: var(--accent); font-weight: 600; font-size: 0.92rem; }
-  .exp-period {
+  .theme-toggle button[aria-pressed="true"] {
+    opacity: 1;
+    background: var(--ink0);
+    color: var(--bg0);
+  }
+
+  section[data-polarity] {
+    --local-bg: var(--bg0);
+    --local-ink: var(--ink0);
+    background: var(--local-bg);
+    color: var(--local-ink);
+    position: relative;
+    overflow: hidden;
+  }
+
+  section[data-polarity="invert"] {
+    --local-bg: var(--ink0);
+    --local-ink: var(--bg0);
+  }
+
+  section[data-polarity] .wrap {
+    position: relative;
+    z-index: 2;
+    padding: clamp(3.5rem, 9vw, 7.5rem) 0;
+  }
+
+  .hairline {
+    border-top: 1px solid color-mix(in srgb, var(--local-ink) 22%, transparent);
+  }
+
+  .coord {
     font-family: var(--font-mono);
     font-size: 0.72rem;
-    color: var(--dim);
-    white-space: nowrap;
-    padding: 0.3rem 0.7rem;
-    border: 1px solid var(--border);
-    border-radius: 999px;
+    letter-spacing: 0.08em;
+    color: var(--local-ink);
+    opacity: 0.6;
+    margin-bottom: 1.6rem;
   }
-  .exp-list li { color: var(--muted); font-size: 0.93rem; line-height: 1.75; padding-left: 1.1rem; position: relative; margin-bottom: 0.35rem; }
-  .exp-list li::before { content: ''; position: absolute; left: 0; top: 0.65em; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); }
 
-  /* ---- PROJECTS ---- */
-  .project-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.1rem; }
-  .project-title { font-weight: 800; font-size: 1.15rem; margin-bottom: 0.6rem; letter-spacing: -0.01em; }
-  .project-desc { color: var(--muted); font-size: 0.9rem; margin-bottom: 1.1rem; }
-  .project-link {
-    display: inline-flex; align-items: center; gap: 0.4rem;
-    font-size: 0.78rem; font-weight: 700; color: var(--accent);
+  .hero-mark {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(1.6rem, 3.4vw, 2.6rem);
+    letter-spacing: -0.01em;
+    text-transform: lowercase;
+    margin-bottom: 1.4rem;
   }
-  .project-link svg { width: 13px; height: 13px; transition: transform 0.2s var(--ease); }
-  .project-link:hover svg { transform: translate(2px, -2px); }
 
-  /* ---- SKILLS ---- */
-  .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-  .skills-grid h3 { font-size: 0.95rem; font-weight: 800; margin-bottom: 0.9rem; }
-  .chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-  .chip {
-    padding: 0.35rem 0.8rem;
+  .hero-mark .mark-light {
+    font-weight: 500;
+    opacity: 0.5;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 2.5rem;
+    align-items: end;
+  }
+
+  h1.headline {
+    font-family: var(--font-display);
+    font-style: normal;
+    font-weight: 800;
+    font-size: clamp(2.2rem, 4.8vw, 4.2rem);
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    text-transform: uppercase;
+  }
+
+  .role-line {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    opacity: 0.65;
+    margin-top: 1.4rem;
+  }
+
+  .lede {
+    font-size: 1.02rem;
+    max-width: 34ch;
+    opacity: 0.85;
+    align-self: end;
+  }
+
+  .cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    margin-top: 2.4rem;
+    grid-column: 1 / -1;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.9rem 1.5rem;
+    border: 1.5px solid var(--local-ink);
+    background: transparent;
+    color: var(--local-ink);
+    cursor: pointer;
+    transition: background-color 0.2s var(--ease), color 0.2s var(--ease);
+  }
+
+  .btn:hover {
+    background: var(--local-ink);
+    color: var(--local-bg);
+  }
+
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 2.6rem;
+    flex-wrap: wrap;
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    opacity: 0.55;
+  }
+
+  h2 {
+    font-family: var(--font-display);
+    font-style: normal;
+    font-weight: 800;
+    font-size: clamp(1.9rem, 4.2vw, 3rem);
+    letter-spacing: -0.015em;
+  }
+
+  .points {
+    display: grid;
+  }
+
+  .point {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    align-items: start;
+    gap: 1.5rem;
+    padding: 1.6rem 0;
+    border-top: 1px solid color-mix(in srgb, var(--local-ink) 20%, transparent);
+    transition: padding-left 0.25s var(--ease), opacity 0.2s var(--ease);
+  }
+
+  .points > .point:last-child {
+    border-bottom: 1px solid color-mix(in srgb, var(--local-ink) 20%, transparent);
+  }
+
+  .point:hover {
+    padding-left: 0.8rem;
+  }
+
+  .point-id {
+    font-family: var(--font-mono);
     font-size: 0.78rem;
-    color: var(--muted);
-    background: color-mix(in srgb, var(--surface) 60%, transparent);
-    border: 1px solid var(--border);
-    border-radius: 999px;
+    opacity: 0.55;
+    padding-top: 0.3rem;
   }
 
-  /* ---- CERT / EDU ---- */
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-  .list-item {
-    padding: 1rem 1.2rem;
-    background: var(--surface);
-    border-left: 3px solid var(--accent);
-    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-    font-size: 0.9rem;
-    color: var(--muted);
-    margin-bottom: 0.7rem;
+  .point-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
   }
-  .list-item strong { color: var(--text); }
 
-  /* ---- CONTACT ---- */
-  .contact-card {
-    background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 18%, var(--surface)), color-mix(in srgb, var(--accent-2) 14%, var(--surface)));
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: clamp(2rem, 6vw, 3.5rem);
-    text-align: center;
-    box-shadow: var(--shadow);
+  .point-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.15rem, 2.2vw, 1.6rem);
+    font-weight: 700;
+    letter-spacing: -0.01em;
   }
-  .contact-card h2 { margin-bottom: 0.8rem; }
-  .contact-card p { color: var(--muted); max-width: 480px; margin: 0 auto 1.6rem; }
-  .contact-detail-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.7rem; margin-top: 1.6rem; }
-  .contact-pill {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    font-size: 0.82rem; font-weight: 600;
-    padding: 0.6rem 1.1rem;
-    background: var(--surface-strong);
-    border: 1px solid var(--border);
-    border-radius: 999px;
+
+  .point-desc {
+    font-family: var(--font-body);
+    font-size: 0.92rem;
+    opacity: 0.78;
+    max-width: 52ch;
   }
-  .contact-pill svg { width: 14px; height: 14px; color: var(--accent); }
+
+  .work-list {
+    display: grid;
+    gap: 0;
+  }
+
+  .work-item {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 2rem;
+    padding: 2.2rem 0;
+    border-top: 1px solid color-mix(in srgb, var(--local-ink) 20%, transparent);
+    align-items: start;
+  }
+
+  .work-list > .work-item:last-child {
+    border-bottom: 1px solid color-mix(in srgb, var(--local-ink) 20%, transparent);
+  }
+
+  .work-title {
+    font-family: var(--font-display);
+    font-style: normal;
+    font-weight: 700;
+    font-size: clamp(1.2rem, 2.4vw, 1.6rem);
+    letter-spacing: -0.01em;
+  }
+
+  .work-desc {
+    opacity: 0.82;
+    font-size: 0.94rem;
+    margin-bottom: 0.9rem;
+  }
+
+  .work-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    opacity: 0.75;
+  }
+
+  .work-link:hover {
+    opacity: 1;
+  }
+
+  .work-link svg {
+    width: 11px;
+    height: 11px;
+  }
+
+  .contact-inner {
+    text-align: left;
+    max-width: 620px;
+  }
+
+  .contact-inner h2 {
+    margin-bottom: 1.2rem;
+  }
+
+  .contact-inner p.lede2 {
+    opacity: 0.85;
+    max-width: 42ch;
+    margin-bottom: 2.6rem;
+  }
+
+  .contact-icon-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border: 1.5px solid var(--local-ink);
+    color: var(--local-ink);
+    transition: background-color 0.2s var(--ease), color 0.2s var(--ease);
+  }
+
+  .icon-btn:hover {
+    background: var(--local-ink);
+    color: var(--local-bg);
+  }
+
+  .icon-btn svg {
+    width: 19px;
+    height: 19px;
+  }
+
+  .loc-tag {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.6;
+    margin-left: 0.4rem;
+  }
 
   footer {
     text-align: center;
     padding: 2rem 0;
     font-family: var(--font-mono);
-    font-size: 0.7rem;
-    letter-spacing: 0.08em;
-    color: var(--dim);
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.55;
+    background: var(--bg0);
+    color: var(--ink0);
   }
 
-  /* ---- RESPONSIVE ---- */
-  @media (max-width: 860px) {
-    .nav-links a:not(.theme-slot) { display: none; }
-    .project-grid, .skills-grid, .two-col { grid-template-columns: 1fr; }
+  @media (max-width: 780px) {
+    .point {
+      grid-template-columns: 52px 1fr;
+      gap: 0.9rem;
+      padding: 1.4rem 0;
+    }
+    .point-title {
+      font-size: 1.15rem;
+    }
+    .point-desc {
+      font-size: 0.88rem;
+    }
+    .work-item {
+      grid-template-columns: 1fr;
+      gap: 0.8rem;
+      padding: 1.7rem 0;
+    }
+    .work-title {
+      font-size: 1.25rem;
+    }
+    .work-desc {
+      font-size: 0.9rem;
+    }
+    .contact-inner h2 {
+      font-size: clamp(2rem, 9vw, 3rem);
+    }
+    .contact-icon-row {
+      gap: 0.6rem;
+    }
+    .icon-btn {
+      width: 46px;
+      height: 46px;
+    }
+    .loc-tag {
+      width: 100%;
+      margin-left: 0;
+      margin-top: 0.4rem;
+    }
+  }
+  @media (max-width: 420px) {
+    .wrap {
+      width: min(100% - 1.5rem, 680px);
+    }
+    .nav-links a {
+      display: none;
+    }
+    .nav-links a[href="#contact"] {
+      display: inline-block;
+    }
+    .hero-mark {
+      font-size: 1.55rem;
+    }
+    h1.headline {
+      font-size: 2.25rem;
+    }
+    .point {
+      grid-template-columns: 45px 1fr;
+    }
+    .point-id {
+      font-size: 0.68rem;
+    }
   }
 </style>
 </head>
+
 <body>
 
 <nav class="nav">
   <div class="wrap">
-    <span class="nav-name">Simon Mutunga Mavindu</span>
     <div class="nav-links">
+      <a href="#services">Services</a>
       <a href="#work">Work</a>
-      <a href="#experience">Experience</a>
       <a href="#contact">Contact</a>
+
       <div class="theme-toggle" role="group" aria-label="Theme">
-        <div class="indicator" id="toggleIndicator"></div>
         <button type="button" data-theme-choice="system" aria-pressed="false" aria-label="Match system theme" title="System">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="4" width="20" height="14" rx="1"/>
+            <path d="M8 21h8M12 17v4"/>
+          </svg>
         </button>
+
         <button type="button" data-theme-choice="light" aria-pressed="false" aria-label="Light theme" title="Light">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+          </svg>
         </button>
+
         <button type="button" data-theme-choice="dark" aria-pressed="false" aria-label="Dark theme" title="Dark">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
         </button>
       </div>
     </div>
   </div>
 </nav>
 
-<main class="wrap">
+<main>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="geotag">Nairobi, Kenya</div>
-    <h1 class="name">Simon Mutunga<br/>Mavindu</h1>
-    <p class="role-line">Geospatial Engineer — <span>climate risk & spatial intelligence</span></p>
-    <p class="lede">Three-plus years turning spatial and environmental data into maps, models, and decision-support tools — from national infrastructure QA to climate-risk platforms.</p>
-    <div class="cta-row">
-      <a href="#work" class="btn btn-primary">View projects</a>
-      <a href="mailto:besimonmutunga@gmail.com" class="btn btn-ghost">Email me</a>
-      <a href="https://github.com/Issimonmutunga" target="_blank" rel="noreferrer" class="btn btn-ghost">GitHub</a>
+  <section data-polarity="normal">
+    <div class="wrap">
+
+      <p class="hero-mark">simon<span class="mark-light">mapper</span></p>
+
+      <p class="coord">NAIROBI, KENYA</p>
+
+      <div class="hero-grid">
+        <div>
+          <h1 class="headline">From Satellite<br/>to Decision</h1>
+          <p class="role-line">Spatial Analysis · Remote Sensing · Climate Intelligence</p>
+        </div>
+
+        <p class="lede">
+          I turn geospatial, environmental, and climate data into maps, models, and decision-ready insights — supporting risk assessment, environmental monitoring, land suitability, spatial planning, and data-driven decision making.
+        </p>
+
+        <div class="cta-row">
+          <a href="#contact" class="btn">Request a Service</a>
+          <a href="#services" class="btn">View Services →</a>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- PROFILE -->
-  <section>
-    <div class="section-head">
-      <p class="eyebrow">Profile</p>
-      <h2>What I do</h2>
-    </div>
-    <div class="profile-card">
-      <p>Geospatial Engineer with over three years of experience supporting climate and environmental initiatives through geospatial analysis, data management, and Python-based workflows. Experienced in analyzing spatial and environmental data, producing maps and analytical reports, and developing decision-support tools for climate risk and sustainable land management. Comfortable working in multidisciplinary teams, managing geographical datasets, and communicating technical findings to a range of audiences.</p>
-    </div>
-  </section>
+  <section id="services" data-polarity="invert">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Services</p>
+          <h2>Services</h2>
+        </div>
+      </div>
 
-  <!-- EXPERIENCE -->
-  <section id="experience">
-    <div class="section-head">
-      <p class="eyebrow">Career</p>
-      <h2>Experience</h2>
-    </div>
-    <div class="exp-list">
-
-      <div class="card">
-        <div class="exp-top">
-          <div>
-            <p class="exp-role">Geospatial Engineer <span style="color:var(--dim); font-weight:600;">(Volunteer)</span></p>
-            <p class="exp-org">Rozvi Group</p>
+      <div class="points">
+        <div class="point">
+          <span class="point-id">PT.01</span>
+          <div class="point-body">
+            <span class="point-title">GIS &amp; Spatial Analysis</span>
+            <span class="point-desc">Location analysis, spatial modelling, site assessment, and geographic decision support.</span>
           </div>
-          <span class="exp-period">JUN 2025 – JUL 2026</span>
         </div>
-        <ul>
-          <li>Worked as part of a multidisciplinary team supporting climate-risk, sustainability, and environmental initiatives through geospatial analysis, data management, and decision-support systems.</li>
-          <li>Developed Python workflows for collecting, processing, validating, and analyzing climate and environmental datasets, improving efficiency and reproducibility.</li>
-          <li>Produced climate-risk assessments and spatial analyses covering drought, flood, heat, and other environmental risks to support resilience planning.</li>
-          <li>Contributed to climate-risk reporting workflows, including automated report generation using standardized templates aligned with regulatory and sustainability requirements.</li>
-          <li>Prepared technical documentation and visual outputs communicating climate-risk insights to technical and non-technical stakeholders.</li>
-        </ul>
-      </div>
 
-      <div class="card">
-        <div class="exp-top">
-          <div>
-            <p class="exp-role">GIS Data Analyst — Quality Assurance</p>
-            <p class="exp-org">Kenya Power & Lighting Company (KPLC)</p>
+        <div class="point">
+          <span class="point-id">PT.02</span>
+          <div class="point-body">
+            <span class="point-title">Geospatial Data Engineering</span>
+            <span class="point-desc">Spatial databases, data pipelines, processing systems, and large-scale geospatial workflows.</span>
           </div>
-          <span class="exp-period">MAY 2023 – FEB 2025</span>
         </div>
-        <ul>
-          <li>Reviewed and validated over 100,000 spatial records, maintaining data quality, accuracy, and consistency across national infrastructure datasets.</li>
-          <li>Conducted data verification, cleaning, and spatial analysis to support operational planning and informed decision-making.</li>
-          <li>Worked closely with field teams to verify information, resolve data quality issues, and improve reliability of spatial records.</li>
-          <li>Produced maps and analytical outputs supporting infrastructure planning and reporting across multiple operational teams.</li>
-        </ul>
-      </div>
 
-      <div class="card">
-        <div class="exp-top">
-          <div>
-            <p class="exp-role">Survey / GIS Attaché</p>
-            <p class="exp-org">Nairobi City Water & Sewerage Company</p>
+        <div class="point">
+          <span class="point-id">PT.03</span>
+          <div class="point-body">
+            <span class="point-title">Remote Sensing &amp; Earth Observation</span>
+            <span class="point-desc">Satellite imagery, land-cover mapping, environmental monitoring, and change detection.</span>
           </div>
-          <span class="exp-period">JUL 2022 – SEP 2022</span>
         </div>
-        <ul>
-          <li>Supported field surveys, spatial data collection, and quality assurance for urban infrastructure projects.</li>
-          <li>Processed GPS and survey data into GIS databases and assisted in producing maps for engineering planning and maintenance.</li>
-        </ul>
-      </div>
 
-    </div>
-  </section>
-
-  <!-- PROJECTS -->
-  <section id="work">
-    <div class="section-head">
-      <p class="eyebrow">Selected work</p>
-      <h2>Projects</h2>
-    </div>
-    <div class="project-grid">
-
-      <div class="card">
-        <p class="project-title">Zoryn — Climate Risk Intelligence Platform</p>
-        <p class="project-desc">An open climate intelligence platform transforming climate and environmental data into accessible insights, with geospatial drought workflows and interactive maps and timelines.</p>
-        <a href="https://zoryn-9kx.pages.dev/" target="_blank" rel="noreferrer" class="project-link">Live site <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></a>
-      </div>
-
-      <div class="card">
-        <p class="project-title">Sarateal — Agricultural Market Intelligence</p>
-        <p class="project-desc">Integrates agricultural, weather, and geospatial information to support market intelligence, with automated workflows for collecting and validating multi-source data.</p>
-        <a href="https://github.com/Issimonmutunga/sarateal" target="_blank" rel="noreferrer" class="project-link">View on GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></a>
-      </div>
-
-      <div class="card">
-        <p class="project-title">Geoepic Surveys — Consultancy Website</p>
-        <p class="project-desc">Designed and developed the public website for a geospatial consultancy, translating technical concepts into clear content for clients and partners.</p>
-        <a href="https://geoepic.co.ke/" target="_blank" rel="noreferrer" class="project-link">Visit site <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></a>
-      </div>
-
-      <div class="card">
-        <p class="project-title">Kenya Flood Susceptibility Assessment</p>
-        <p class="project-desc">Applied geospatial analysis to identify flood-prone areas using terrain and environmental data, with analytical maps for disaster risk reduction.</p>
-        <a href="https://github.com/Issimonmutunga/floodske" target="_blank" rel="noreferrer" class="project-link">View on GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></a>
-      </div>
-
-      <div class="card">
-        <p class="project-title">Zimbabwe Multi-Hazard Climate Risk Assessment</p>
-        <p class="project-desc">Geospatial workflows assessing drought, flood, heat, and water-related risks, producing reproducible analytical outputs and technical documentation.</p>
-      </div>
-
-      <div class="card">
-        <p class="project-title">Crop Suitability Analysis — Duma Wheat</p>
-        <p class="project-desc">Undergraduate research assessing crop suitability in Makueni County using a multi-criteria decision-making approach across soil, rainfall, temperature, and elevation.</p>
-        <a href="https://github.com/Issimonmutunga/AHP-Project" target="_blank" rel="noreferrer" class="project-link">View on GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></a>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- SKILLS -->
-  <section>
-    <div class="section-head">
-      <p class="eyebrow">Toolkit</p>
-      <h2>Skills</h2>
-    </div>
-    <div class="skills-grid">
-      <div class="card">
-        <h3>Programming & Data</h3>
-        <div class="chips">
-          <span class="chip">Python</span><span class="chip">JavaScript</span><span class="chip">HTML/CSS</span><span class="chip">SQL</span><span class="chip">Workflow automation</span>
+        <div class="point">
+          <span class="point-id">PT.04</span>
+          <div class="point-body">
+            <span class="point-title">Climate &amp; Environmental Risk</span>
+            <span class="point-desc">Climate modelling, hazard assessment, environmental risk, and resilience analysis.</span>
+          </div>
         </div>
-      </div>
-      <div class="card">
-        <h3>Web & API</h3>
-        <div class="chips">
-          <span class="chip">React</span><span class="chip">Django</span><span class="chip">REST APIs</span><span class="chip">AWS</span>
+
+        <div class="point">
+          <span class="point-id">PT.05</span>
+          <div class="point-body">
+            <span class="point-title">AI &amp; Data Automation</span>
+            <span class="point-desc">Intelligent workflows, Python automation, AI-assisted processing, and custom data tools.</span>
+          </div>
         </div>
-      </div>
-      <div class="card">
-        <h3>Geospatial</h3>
-        <div class="chips">
-          <span class="chip">ArcGIS Pro</span><span class="chip">QGIS</span><span class="chip">Google Earth Engine</span><span class="chip">PostGIS</span><span class="chip">Remote sensing</span>
-        </div>
-      </div>
-      <div class="card">
-        <h3>Climate & Environment</h3>
-        <div class="chips">
-          <span class="chip">Climate risk assessment</span><span class="chip">Environmental monitoring</span><span class="chip">Land suitability</span><span class="chip">Geospatial modelling</span>
-        </div>
-      </div>
-      <div class="card">
-        <h3>Data & Reporting</h3>
-        <div class="chips">
-          <span class="chip">ETL workflows</span><span class="chip">Git/GitHub</span><span class="chip">Technical documentation</span><span class="chip">Map production</span>
-        </div>
-      </div>
-      <div class="card">
-        <h3>Communication</h3>
-        <div class="chips">
-          <span class="chip">Stakeholder engagement</span><span class="chip">Technical writing</span><span class="chip">Presentations</span>
+
+        <div class="point">
+          <span class="point-id">PT.06</span>
+          <div class="point-body">
+            <span class="point-title">Maps &amp; Data Visualization</span>
+            <span class="point-desc">Professional cartography, interactive maps, dashboards, and visual communication.</span>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CERT & EDU -->
-  <section>
-    <div class="two-col">
-      <div>
-        <div class="section-head">
-          <p class="eyebrow">Credentials</p>
-          <h2 style="font-size: clamp(1.4rem, 3vw, 1.9rem);">Certifications</h2>
+  <section id="work" data-polarity="normal">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Work</p>
+          <h2>Selected work</h2>
         </div>
-        <div class="list-item">Graduate Member, Institution of Surveyors of Kenya (ISK)</div>
-        <div class="list-item">Spatial Data Science: The New Frontier in Analytics — <strong>Esri</strong></div>
-        <div class="list-item">AI Career Essentials — <strong>ALX Africa</strong></div>
       </div>
-      <div>
-        <div class="section-head">
-          <p class="eyebrow">Education</p>
-          <h2 style="font-size: clamp(1.4rem, 3vw, 1.9rem);">Academic background</h2>
+
+      <div class="work-list">
+
+        <div class="work-item">
+          <p class="work-title">Zoryn — Climate Risk Intelligence Platform</p>
+          <div>
+            <p class="work-desc">Climate intelligence platform for exploring climate and environmental risk through interactive maps, timelines, and geospatial analysis.</p>
+            <a href="https://zoryn-9kx.pages.dev/" target="_blank" rel="noreferrer" class="work-link">
+              Live site
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M7 17L17 7M7 7h10v10"/>
+              </svg>
+            </a>
+          </div>
         </div>
-        <div class="list-item"><strong>BSc Geospatial Engineering</strong><br/>University of Nairobi — Second Class Honors, Upper Division</div>
-        <div class="list-item"><strong>KCSE</strong><br/>Maseno School — Grade A-</div>
+
+        <div class="work-item">
+          <p class="work-title">Sarateal — Agricultural Market Intelligence</p>
+          <div>
+            <p class="work-desc">Agricultural intelligence platform combining market prices, weather, and geospatial data to support better market and supply-chain decisions.</p>
+            <a href="https://github.com/Issimonmutunga/sarateal" target="_blank" rel="noreferrer" class="work-link">
+              View on GitHub
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M7 17L17 7M7 7h10v10"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="work-item">
+          <p class="work-title">Geoepic Surveys — Website Development</p>
+          <div>
+            <p class="work-desc">Professional website for a geospatial consultancy, presenting surveying, mapping, and geospatial services through a clear digital presence.</p>
+            <a href="https://geoepic.co.ke/" target="_blank" rel="noreferrer" class="work-link">
+              Visit site
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M7 17L17 7M7 7h10v10"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="work-item">
+          <p class="work-title">Kenya Flood Susceptibility Assessment</p>
+          <div>
+            <p class="work-desc">Geospatial flood-risk assessment identifying areas susceptible to flooding through terrain, rainfall, and environmental analysis.</p>
+            <a href="https://github.com/Issimonmutunga/floodske" target="_blank" rel="noreferrer" class="work-link">
+              View on GitHub
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M7 17L17 7M7 7h10v10"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="work-item">
+          <p class="work-title">Multi-Hazard Climate Risk Assessment</p>
+          <div>
+            <p class="work-desc">Multi-hazard climate risk analysis covering drought, flooding, extreme heat, and water security to support climate resilience and risk planning.</p>
+          </div>
+        </div>
+
+        <div class="work-item">
+          <p class="work-title">Crop Suitability Analysis — Duma Wheat</p>
+          <div>
+            <p class="work-desc">Spatial crop suitability assessment evaluating soil, rainfall, temperature, and elevation to identify areas suitable for Duma wheat cultivation.</p>
+            <a href="https://github.com/Issimonmutunga/AHP-Project" target="_blank" rel="noreferrer" class="work-link">
+              View on GitHub
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M7 17L17 7M7 7h10v10"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="contact-card">
-      <p class="eyebrow" style="justify-content:center; display:flex;">Get in touch</p>
-      <h2>Let's build useful spatial systems.</h2>
-      <p>Open to GIS, climate risk, spatial data engineering, remote sensing, and Python automation work.</p>
-      <div class="contact-detail-row">
-        <a href="mailto:besimonmutunga@gmail.com" class="contact-pill">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          besimonmutunga@gmail.com
-        </a>
-        <a href="tel:+254706085240" class="contact-pill">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.15 3.18 2 2 0 0 1 3.12 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 5.61 5.61l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
-          +254 706 085240
-        </a>
-        <a href="https://github.com/Issimonmutunga" target="_blank" rel="noreferrer" class="contact-pill">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-          Issimonmutunga
-        </a>
-        <span class="contact-pill">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          Nairobi, Kenya
-        </span>
+  <section id="contact" data-polarity="invert">
+    <div class="wrap">
+      <div class="contact-inner">
+        <p class="eyebrow">Get in touch</p>
+        <h2>Have a geospatial<br/>project?</h2>
+        <p class="lede2">Open to GIS, climate risk, spatial data engineering, remote sensing, and Python automation work.</p>
+
+        <div class="contact-icon-row">
+          <a href="https://wa.me/254706085240" target="_blank" rel="noreferrer" class="icon-btn" aria-label="Message on WhatsApp" title="WhatsApp">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 1.67c2.19 0 4.25.85 5.79 2.4a8.2 8.2 0 0 1 2.4 5.79c0 4.53-3.69 8.22-8.23 8.22a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.19-.31a8.18 8.18 0 0 1-1.26-4.38c0-4.53 3.69-8.17 8.27-8.17zm-4.5 4.75c-.16 0-.42.06-.64.31-.22.25-.85.83-.85 2.02 0 1.19.87 2.34 1 2.5.12.16 1.7 2.6 4.13 3.64.58.25 1.03.4 1.38.51.58.19 1.11.16 1.53.1.47-.07 1.43-.58 1.63-1.15.2-.56.2-1.04.14-1.15-.06-.1-.22-.16-.47-.28-.25-.13-1.43-.71-1.65-.79-.22-.08-.38-.13-.55.12-.16.25-.63.79-.77.95-.14.16-.28.18-.53.06-.25-.13-1.04-.38-1.98-1.22-.73-.65-1.23-1.46-1.37-1.71-.14-.25-.02-.38.11-.51.11-.11.25-.28.38-.42.12-.14.16-.25.25-.41.08-.16.04-.31-.02-.44-.06-.13-.55-1.36-.76-1.86-.2-.48-.4-.41-.55-.42a10 10 0 0 0-.44-.01z"/>
+            </svg>
+          </a>
+
+          <a href="mailto:besimonmutunga@gmail.com" class="icon-btn" aria-label="Send an email" title="Email">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+          </a>
+
+          <a href="tel:+254706085240" class="icon-btn" aria-label="Call by phone" title="Phone">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.15 3.18 2 2 0 0 1 3.12 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 5.61 5.61l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/>
+            </svg>
+          </a>
+
+          <span class="loc-tag">Nairobi, Kenya</span>
+        </div>
       </div>
     </div>
   </section>
 
 </main>
 
-<footer>SIMON MUTUNGA MAVINDU · GEOSPATIAL ENGINEER · NAIROBI, KENYA</footer>
+<footer>SimonMapper · Geospatial and GIS Services · Kenya</footer>
 
 <script>
   (function () {
     const root = document.documentElement;
     const buttons = document.querySelectorAll('.theme-toggle button');
-    const indicator = document.getElementById('toggleIndicator');
     const media = window.matchMedia('(prefers-color-scheme: dark)');
     let choice = 'system';
 
     function resolvedTheme() {
-      return choice === 'system' ? (media.matches ? 'dark' : 'light') : choice;
-    }
-
-    function positionIndicator() {
-      const idx = ['system', 'light', 'dark'].indexOf(choice);
-      indicator.style.transform = 'translateX(' + (idx * 32) + 'px)';
+      return choice === 'system'
+        ? (media.matches ? 'dark' : 'light')
+        : choice;
     }
 
     function updatePressed() {
-      buttons.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.themeChoice === choice)));
+      buttons.forEach(b =>
+        b.setAttribute(
+          'aria-pressed',
+          String(b.dataset.themeChoice === choice)
+        )
+      );
+    }
+
+    // Builds the SimonMapper diamond mark as the favicon, with its stroke/fill
+    // flipped to match the resolved theme — so it stays visible against
+    // light or dark browser tabs, in sync with the site's own toggle.
+    function buildFaviconHref(theme) {
+      const color = theme === 'dark' ? '#ffffff' : '#142635';
+      const svg =
+        "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'>" +
+        "<path fill='none' stroke='" + color + "' stroke-width='18' stroke-linejoin='round' d='M128 35 L221 128 L128 221 L35 128 Z'/>" +
+        "<circle fill='" + color + "' cx='128' cy='128' r='25'/>" +
+        "</svg>";
+      return 'data:image/svg+xml,' + encodeURIComponent(svg);
+    }
+
+    function updateFavicon(theme) {
+      let link = document.getElementById('favicon');
+      if (!link) {
+        link = document.createElement('link');
+        link.id = 'favicon';
+        link.rel = 'icon';
+        link.type = 'image/svg+xml';
+        document.head.appendChild(link);
+      }
+      link.href = buildFaviconHref(theme);
     }
 
     function applyTheme(theme) {
       root.setAttribute('data-theme', theme);
+      updateFavicon(theme);
     }
 
     function setChoice(newChoice, event) {
       choice = newChoice;
       updatePressed();
-      positionIndicator();
-      const theme = resolvedTheme();
 
+      const theme = resolvedTheme();
       const runSwap = () => applyTheme(theme);
 
       if (!document.startViewTransition || !event) {
@@ -646,12 +841,14 @@
 
       const x = event.clientX;
       const y = event.clientY;
+
       const endRadius = Math.hypot(
         Math.max(x, window.innerWidth - x),
         Math.max(y, window.innerHeight - y)
       );
 
       const transition = document.startViewTransition(runSwap);
+
       transition.ready.then(() => {
         root.animate(
           {
@@ -661,7 +858,7 @@
             ]
           },
           {
-            duration: 650,
+            duration: 600,
             easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
             pseudoElement: '::view-transition-new(root)'
           }
@@ -670,17 +867,19 @@
     }
 
     buttons.forEach(btn => {
-      btn.addEventListener('click', (e) => setChoice(btn.dataset.themeChoice, e));
+      btn.addEventListener('click', e =>
+        setChoice(btn.dataset.themeChoice, e)
+      );
     });
 
     media.addEventListener('change', () => {
-      if (choice === 'system') applyTheme(resolvedTheme());
+      if (choice === 'system') {
+        applyTheme(resolvedTheme());
+      }
     });
 
-    // init
     applyTheme(resolvedTheme());
     updatePressed();
-    positionIndicator();
   })();
 </script>
 
