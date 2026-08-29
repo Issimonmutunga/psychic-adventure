@@ -489,6 +489,18 @@
     height: 19px;
   }
 
+  .icon-btn.icon-whatsapp { color: #25D366; }
+  .icon-btn.icon-whatsapp:hover { color: #25D366; }
+
+  .icon-btn.icon-email { color: #EA4335; }
+  .icon-btn.icon-email:hover { color: #EA4335; }
+
+  .icon-btn.icon-phone { color: #0EA5E9; }
+  .icon-btn.icon-phone:hover { color: #0EA5E9; }
+
+  .icon-btn.icon-linkedin { color: #0A66C2; }
+  .icon-btn.icon-linkedin:hover { color: #0A66C2; }
+
   .loc-tag {
     font-family: var(--font-mono);
     font-size: 0.72rem;
@@ -642,14 +654,13 @@
     <div class="wrap">
       <div class="section-head">
         <div>
-          <p class="eyebrow">Services</p>
           <h2>Services</h2>
         </div>
       </div>
 
       <div class="points">
         <div class="point">
-          <span class="point-id">PT.01</span>
+          <span class="point-id">●</span>
           <div class="point-body">
             <span class="point-title">GIS &amp; Spatial Analysis</span>
             <span class="point-desc">Location analysis, spatial modelling, site assessment, and geographic decision support.</span>
@@ -657,7 +668,7 @@
         </div>
 
         <div class="point">
-          <span class="point-id">PT.02</span>
+          <span class="point-id">●</span>
           <div class="point-body">
             <span class="point-title">Geospatial Data Engineering</span>
             <span class="point-desc">Spatial databases, data pipelines, processing systems, and large-scale geospatial workflows.</span>
@@ -665,7 +676,7 @@
         </div>
 
         <div class="point">
-          <span class="point-id">PT.03</span>
+          <span class="point-id">●</span>
           <div class="point-body">
             <span class="point-title">Remote Sensing &amp; Earth Observation</span>
             <span class="point-desc">Satellite imagery, land-cover mapping, environmental monitoring, and change detection.</span>
@@ -673,7 +684,7 @@
         </div>
 
         <div class="point">
-          <span class="point-id">PT.04</span>
+          <span class="point-id">●</span>
           <div class="point-body">
             <span class="point-title">Climate &amp; Environmental Risk</span>
             <span class="point-desc">Climate modelling, hazard assessment, environmental risk, and resilience analysis.</span>
@@ -681,7 +692,7 @@
         </div>
 
         <div class="point">
-          <span class="point-id">PT.05</span>
+          <span class="point-id">●</span>
           <div class="point-body">
             <span class="point-title">AI &amp; Data Automation</span>
             <span class="point-desc">Intelligent workflows, Python automation, AI-assisted processing, and custom data tools.</span>
@@ -689,10 +700,18 @@
         </div>
 
         <div class="point">
-          <span class="point-id">PT.06</span>
+          <span class="point-id">●</span>
           <div class="point-body">
             <span class="point-title">Maps &amp; Data Visualization</span>
             <span class="point-desc">Professional cartography, interactive maps, dashboards, and visual communication.</span>
+          </div>
+        </div>
+
+        <div class="point">
+          <span class="point-id">●</span>
+          <div class="point-body">
+            <span class="point-title">Web Design &amp; Development</span>
+            <span class="point-desc">Custom websites and web apps, from portfolio and consultancy sites to data-driven tools and dashboards.</span>
           </div>
         </div>
       </div>
@@ -703,12 +722,19 @@
     <div class="wrap">
       <div class="section-head">
         <div>
-          <p class="eyebrow">Work</p>
-          <h2>Selected work</h2>
+          <h2>Work</h2>
         </div>
       </div>
 
       <div class="work-grid">
+
+        <div class="work-card">
+          <div class="work-card-top">
+            <p class="work-title">Climate Risk Assessment</p>
+          </div>
+          <p class="work-tag">Climate Risk Analysis</p>
+          <p class="work-desc">Multi-hazard climate risk analysis covering drought, flooding, extreme heat, and water security to support climate resilience and risk planning.</p>
+        </div>
 
         <a href="https://pangakazi.simonmapper.co.ke/" target="_blank" rel="noreferrer" class="work-card">
           <div class="work-card-top">
@@ -770,14 +796,6 @@
           <span class="work-card-foot">View on GitHub →</span>
         </a>
 
-        <div class="work-card">
-          <div class="work-card-top">
-            <p class="work-title">Multi-Hazard Climate Risk Assessment</p>
-          </div>
-          <p class="work-tag">Climate Risk Analysis</p>
-          <p class="work-desc">Multi-hazard climate risk analysis covering drought, flooding, extreme heat, and water security to support climate resilience and risk planning.</p>
-        </div>
-
         <a href="https://github.com/Issimonmutunga/AHP-Project" target="_blank" rel="noreferrer" class="work-card">
           <div class="work-card-top">
             <p class="work-title">Crop Suitability Analysis</p>
@@ -814,22 +832,34 @@
         <p class="lede2">Available for GIS, remote sensing, spatial data, environmental intelligence, AI automation, and geospatial development projects.</p>
 
         <div class="contact-icon-row">
-          <a href="https://wa.me/254706085240" target="_blank" rel="noreferrer" class="icon-btn" aria-label="Message on WhatsApp" title="WhatsApp">
+          <a href="https://wa.me/254706085240" target="_blank" rel="noreferrer" class="icon-btn icon-whatsapp" aria-label="Message on WhatsApp" title="WhatsApp">
             <svg viewBox="0 0 24 24" fill="currentColor">
               <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 1.67c2.19 0 4.25.85 5.79 2.4a8.2 8.2 0 0 1 2.4 5.79c0 4.53-3.69 8.22-8.23 8.22a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.19-.31a8.18 8.18 0 0 1-1.26-4.38c0-4.53 3.69-8.17 8.27-8.17zm-4.5 4.75c-.16 0-.42.06-.64.31-.22.25-.85.83-.85 2.02 0 1.19.87 2.34 1 2.5.12.16 1.7 2.6 4.13 3.64.58.25 1.03.4 1.38.51.58.19 1.11.16 1.53.1.47-.07 1.43-.58 1.63-1.15.2-.56.2-1.04.14-1.15-.06-.1-.22-.16-.47-.28-.25-.13-1.43-.71-1.65-.79-.22-.08-.38-.13-.55.12-.16.25-.63.79-.77.95-.14.16-.28.18-.53.06-.25-.13-1.04-.38-1.98-1.22-.73-.65-1.23-1.46-1.37-1.71-.14-.25-.02-.38.11-.51.11-.11.25-.28.38-.42.12-.14.16-.25.25-.41.08-.16.04-.31-.02-.44-.06-.13-.55-1.36-.76-1.86-.2-.48-.4-.41-.55-.42a10 10 0 0 0-.44-.01z"/>
             </svg>
           </a>
 
-          <a href="mailto:besimonmutunga@gmail.com" class="icon-btn" aria-label="Send an email" title="Email">
+          <a href="mailto:besimonmutunga@gmail.com" class="icon-btn icon-email" aria-label="Send an email" title="Gmail">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
               <polyline points="22,6 12,13 2,6"/>
             </svg>
           </a>
 
-          <a href="tel:+254706085240" class="icon-btn" aria-label="Call by phone" title="Phone">
+          <a href="tel:+254706085240" class="icon-btn icon-phone" aria-label="Call by phone" title="Phone">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.15 3.18 2 2 0 0 1 3.12 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 5.61 5.61l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/>
+            </svg>
+          </a>
+
+          <a href="https://www.linkedin.com/in/invincible-simon" target="_blank" rel="noreferrer" class="icon-btn icon-linkedin" aria-label="Connect on LinkedIn" title="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.44-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/>
+            </svg>
+          </a>
+
+          <a href="https://github.com/Issimonmutunga" target="_blank" rel="noreferrer" class="icon-btn icon-github" aria-label="View GitHub profile" title="GitHub">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.55 0-.27-.01-1.16-.02-2.11-3.2.7-3.88-1.36-3.88-1.36-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.28-5.23-5.7 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.06 11.06 0 0 1 2.9-.39c.98 0 1.97.13 2.9.39 2.2-1.49 3.17-1.18 3.17-1.18.64 1.59.24 2.76.12 3.05.74.8 1.18 1.83 1.18 3.09 0 4.43-2.69 5.4-5.25 5.69.41.36.78 1.06.78 2.14 0 1.55-.01 2.79-.01 3.17 0 .3.2.66.79.55A10.52 10.52 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"/>
             </svg>
           </a>
 
