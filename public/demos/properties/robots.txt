@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /plot/
+
+Sitemap: https://landsales.besimonmutunga.workers.dev/sitemap.xml

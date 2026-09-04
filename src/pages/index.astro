@@ -3,20 +3,28 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>Simon Maps — GIS & Geospatial Services in Kenya</title>
+<title>Simon Mutunga | GIS, Geospatial & Remote Sensing Services in Kenya</title>
 
 <link rel="icon" href="/favicon.ico" />
 
-<meta name="description" content="Simon provides GIS, geospatial data engineering, remote sensing, climate and environmental analysis, AI automation, and spatial intelligence services in Kenya." />
+<meta name="description" content="Simon Mutunga provides GIS, geospatial data engineering, remote sensing, climate and environmental analysis, web mapping, AI automation, and spatial intelligence services in Kenya." />
+<meta name="author" content="Simon Mutunga" />
+<meta name="robots" content="index, follow" />
 <link rel="canonical" href="https://www.simonmapper.co.ke/" />
-<meta property="og:title" content="Simon Maps — GIS & Geospatial Services in Kenya" />
-<meta property="og:description" content="Simon provides GIS, geospatial data engineering, remote sensing, climate and environmental analysis, AI automation, and spatial intelligence services in Kenya." />
+
+<meta property="og:title" content="Simon Mutunga | GIS, Geospatial & Remote Sensing Services in Kenya" />
+<meta property="og:description" content="Simon Mutunga provides GIS, geospatial data engineering, remote sensing, climate and environmental analysis, web mapping, AI automation, and spatial intelligence services in Kenya." />
+<meta property="og:url" content="https://www.simonmapper.co.ke/" />
+<meta property="og:site_name" content="Simon Maps" />
 <meta property="og:image" content="https://www.simonmapper.co.ke/og-image.png" />
 <meta property="og:type" content="website" />
+
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Simon Maps — GIS & Geospatial Services in Kenya" />
-<meta name="twitter:description" contenSt="Simon provides GIS, geospatial data engineering, remote sensing, climate and environmental analysis, AI automation, and spatial intelligence services in Kenya." />
+<meta name="twitter:title" content="Simon Mutunga | GIS, Geospatial & Remote Sensing Services in Kenya" />
+<meta name="twitter:description" content="Simon Mutunga provides GIS, geospatial data engineering, remote sensing, climate and environmental analysis, web mapping, AI automation, and spatial intelligence services in Kenya." />
+<meta name="twitter:url" content="https://www.simonmapper.co.ke/" />
 <meta name="twitter:image" content="https://www.simonmapper.co.ke/og-image.png" />
+
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
@@ -293,6 +301,13 @@
     letter-spacing: -0.015em;
   }
 
+  .work-intro {
+    margin-top: 0.7rem;
+    max-width: 58ch;
+    font-size: 0.92rem;
+    opacity: 0.65;
+  }
+
   .points {
     display: grid;
   }
@@ -347,26 +362,18 @@
   .work-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1px;
-    background: transparent;
-    border-top: 1px solid color-mix(in srgb, var(--local-ink) 20%, transparent);
+    gap: 0;
   }
 
   .work-card {
     background: var(--local-bg);
     color: var(--local-ink);
-    padding: 2rem 1.7rem;
+    padding: 2.2rem 1.7rem;
     display: flex;
     flex-direction: column;
     gap: 0.85rem;
     min-height: 230px;
-    border-bottom: 1px solid color-mix(in srgb, var(--local-ink) 20%, transparent);
-    border-left: 1px solid color-mix(in srgb, var(--local-ink) 20%, transparent);
     transition: background-color 0.25s var(--ease), color 0.25s var(--ease);
-  }
-
-  .work-card:first-child {
-    border-left: none;
   }
 
   a.work-card {
@@ -535,7 +542,6 @@
     .work-card {
       padding: 1.7rem 1.4rem;
       min-height: 0;
-      border-left: none;
     }
     .work-title {
       font-size: 1.1rem;
@@ -583,6 +589,29 @@
     }
   }
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Simon Mutunga",
+  "url": "https://www.simonmapper.co.ke/",
+  "jobTitle": "Geospatial Engineer",
+  "worksFor": {
+    "@type": "Organization",
+    "name": "Simon Maps"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Nairobi",
+    "addressCountry": "KE"
+  },
+  "sameAs": [
+    "https://www.linkedin.com/in/invincible-simon",
+    "https://github.com/Issimonmutunga"
+  ]
+}
+</script>
 </head>
 
 <body>
@@ -696,7 +725,8 @@
     <div class="wrap">
       <div class="section-head">
         <div>
-          <h2>Work</h2>
+          <h2>Selected Work</h2>
+          <p class="work-intro">Selected GIS, geospatial, climate, mapping, and web applications.</p>
         </div>
       </div>
 
@@ -732,6 +762,18 @@
           <p class="work-tag">Climate Intelligence Tool</p>
           <p class="work-desc">Climate intelligence platform for exploring climate and environmental risk through interactive maps, timelines, and geospatial analysis.</p>
           <span class="work-card-foot">Live site →</span>
+        </a>
+
+        <a href="/demos/properties/" class="work-card">
+          <div class="work-card-top">
+            <p class="work-title">Property Sales</p>
+            <svg class="work-card-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M7 17L17 7M7 7h10v10"/>
+            </svg>
+          </div>
+          <p class="work-tag">Geospatial Web Application</p>
+          <p class="work-desc">Interactive property-sales platform using parcel mapping, property data, availability status, search, and property-level information.</p>
+          <span class="work-card-foot">View live demo →</span>
         </a>
 
         <a href="https://github.com/Issimonmutunga/sarateal" target="_blank" rel="noreferrer" class="work-card">
