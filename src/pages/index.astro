@@ -27,7 +27,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700;1,900&family=Baloo+2:wght@400;500;600;700;800&family=EB+Garamond:wght@400;500;600&display=swap" rel="stylesheet" />
 
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -36,6 +36,7 @@
   :root {
     --font-display: 'Manrope', -apple-system, 'Inter', sans-serif;
     --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-playful: 'Baloo 2', 'Manrope', cursive, sans-serif;
     --ease: cubic-bezier(0.22, 1, 0.36, 1);
   }
 
@@ -223,12 +224,12 @@
   }
 
   h1.headline {
-    font-family: var(--font-display);
+    font-family: var(--font-playful);
     font-style: normal;
     font-weight: 700;
-    font-size: clamp(2rem, 4.2vw, 3.6rem);
-    line-height: 1.18;
-    letter-spacing: -0.01em;
+    font-size: clamp(2.2rem, 4.6vw, 3.9rem);
+    line-height: 1.15;
+    letter-spacing: -0.005em;
     text-transform: none;
   }
 
@@ -379,7 +380,7 @@
 
   .work-card {
     flex: 0 0 380px;
-    height: 320px;
+    height: 360px;
     perspective: 1600px;
     scroll-snap-align: start;
   }
@@ -442,22 +443,53 @@
     opacity: 0.55;
   }
 
-  .card-back-desc {
-    font-family: var(--font-body);
-    font-size: 0.92rem;
-    line-height: 1.65;
-    opacity: 0.85;
+  .card-back-list {
+    list-style: none;
+    counter-reset: card-list;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .card-back-list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .card-back-list li {
+    counter-increment: card-list;
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    font-family: var(--font-playful);
+    font-weight: 500;
+    font-size: 0.88rem;
+    line-height: 1.4;
+    opacity: 0.9;
+  }
+
+  .card-back-list li::before {
+    content: counter(card-list) '.';
+    font-family: var(--font-playful);
+    font-weight: 700;
+    opacity: 0.55;
+    flex-shrink: 0;
   }
 
   .brand-geoepic {
-    font-family: 'Playfair Display', serif;
-    font-weight: 400;
-    font-size: 1.4rem;
+    font-family: 'EB Garamond', serif;
+    font-weight: 500;
+    font-size: 1.55rem;
+    letter-spacing: 0.005em;
   }
 
   .brand-geoepic .accent {
     font-style: normal;
-    font-weight: 400;
+    font-weight: 500;
     color: #5b87b3;
   }
 
@@ -790,7 +822,7 @@
     }
     .work-card {
       flex-basis: 300px;
-      height: 300px;
+      height: 340px;
     }
     .card-face {
       padding: 2rem 1.7rem;
@@ -798,8 +830,8 @@
     .work-title {
       font-size: 1.1rem;
     }
-    .card-back-desc {
-      font-size: 0.88rem;
+    .card-back-list li {
+      font-size: 0.84rem;
     }
     .contact-inner h2 {
       font-size: clamp(2rem, 9vw, 3rem);
@@ -814,10 +846,12 @@
     }
     .footer-bottom {
       flex-direction: column;
-      align-items: flex-start;
+      align-items: center;
+      text-align: center;
     }
     .footer-links {
       gap: 1.1rem;
+      justify-content: center;
     }
     .icon-btn svg {
       width: 22px;
@@ -825,8 +859,8 @@
     }
     .loc-tag {
       width: 100%;
-      margin-left: 0;
-      margin-top: 0.4rem;
+      margin: 0.4rem 0 0;
+      text-align: center;
     }
   }
   @media (max-width: 420px) {
@@ -913,7 +947,7 @@
 
       <div class="hero-grid">
         <div>
-          <h1 class="headline">GIS · Remote Sensing<br/>Web · Mapping</h1>
+          <h1 class="headline">Geospatial &<br/>Software</h1>
         </div>
 
         <p class="lede">
@@ -1020,7 +1054,12 @@
                 </div>
               </div>
               <div class="card-face card-back">
-                <p class="card-back-desc">This analysis layers drought, flood, extreme-heat, and water-security indicators to map where climate hazards overlap most. It draws on historical climate records and terrain data to flag vulnerable zones. The output is designed to guide resilience planning and risk-informed investment decisions.</p>
+                <ol class="card-back-list">
+                  <li>Climate-risk and spatial analysis covering drought, flood, heat, and water-security hazards</li>
+                  <li>Python workflows for collecting, processing, and validating environmental datasets</li>
+                  <li>Structured climate-risk reporting with automated, standards-aligned outputs</li>
+                  <li>Clear technical documentation that communicates risk insights to any audience</li>
+                </ol>
                 <div class="card-actions card-actions-back">
                   <button type="button" class="card-flip-btn" aria-label="Back to details">×</button>
                 </div>
@@ -1043,7 +1082,11 @@
                 </div>
               </div>
               <div class="card-face card-back">
-                <p class="card-back-desc">Pangakazi turns scattered WhatsApp and SMS job requests into clean, timestamped records automatically. It extracts the client, task, and schedule from informal messages so nothing gets lost in a chat thread. The tool is built for freelancers and small crews who manage jobs mostly through messaging apps.</p>
+                <ol class="card-back-list">
+                  <li>Turning informal WhatsApp and SMS messages into clean, timestamped job records</li>
+                  <li>Automatic extraction of client, task, and schedule details from chat threads</li>
+                  <li>Lightweight tools built for freelancers and small crews working over chat apps</li>
+                </ol>
                 <div class="card-actions card-actions-back">
                   <button type="button" class="card-flip-btn" aria-label="Back to details">×</button>
                 </div>
@@ -1066,7 +1109,11 @@
                 </div>
               </div>
               <div class="card-face card-back">
-                <p class="card-back-desc">Zoryn is a climate intelligence platform for exploring hazard and environmental risk across a region. It combines interactive maps, historical timelines, and geospatial layers into one browsing experience. Users can drill into a location to see how climate exposure has shifted over time.</p>
+                <ol class="card-back-list">
+                  <li>Interactive maps and timelines for exploring climate and environmental risk</li>
+                  <li>Geospatial layers that reveal how hazard exposure shifts over time</li>
+                  <li>A browsing experience built for understanding risk at any location</li>
+                </ol>
                 <div class="card-actions card-actions-back">
                   <button type="button" class="card-flip-btn" aria-label="Back to details">×</button>
                 </div>
@@ -1089,7 +1136,11 @@
                 </div>
               </div>
               <div class="card-face card-back">
-                <p class="card-back-desc">This geospatial web app plots available parcels on an interactive map with live availability status. Buyers can search by location, size, and price, then open a parcel to see full property details. It's built to make property discovery visual instead of spreadsheet-based.</p>
+                <ol class="card-back-list">
+                  <li>Interactive parcel mapping with live availability status</li>
+                  <li>Search by location, size, and price across listed properties</li>
+                  <li>Visual, map-first property discovery instead of spreadsheets</li>
+                </ol>
                 <div class="card-actions card-actions-back">
                   <button type="button" class="card-flip-btn" aria-label="Back to details">×</button>
                 </div>
@@ -1101,7 +1152,7 @@
             <div class="card-flip-inner">
               <div class="card-face card-front">
                 <div class="work-card-top">
-                  <p class="work-title"><span style="color:#16a34a">Sara</span>teal</p>
+                  <p class="work-title"><span style="color:#16a34a">Sarateal</span></p>
                 </div>
                 <p class="work-tag">Agricultural Data Platform</p>
                 <div class="card-actions">
@@ -1112,7 +1163,11 @@
                 </div>
               </div>
               <div class="card-face card-back">
-                <p class="card-back-desc">Sarateal brings together market prices, weather forecasts, and geospatial data into one agricultural intelligence dashboard. Farmers and traders can track price trends alongside local weather to time sales and planting better. The platform is aimed at closing the information gap in Kenya's agricultural supply chains.</p>
+                <ol class="card-back-list">
+                  <li>Market prices, weather, and geospatial data combined into one dashboard</li>
+                  <li>Trend tracking to help time sales and planting decisions</li>
+                  <li>Tools aimed at closing the information gap in agricultural supply chains</li>
+                </ol>
                 <div class="card-actions card-actions-back">
                   <button type="button" class="card-flip-btn" aria-label="Back to details">×</button>
                 </div>
@@ -1135,7 +1190,11 @@
                 </div>
               </div>
               <div class="card-face card-back">
-                <p class="card-back-desc">This is the public website for Geoepic Surveys, a geospatial and land-surveying consultancy. It presents their surveying, GIS, and engineering-survey services with a clean, professional layout. The site is built to convert visiting clients into service enquiries.</p>
+                <ol class="card-back-list">
+                  <li>Professional web presence for a geospatial and land-surveying consultancy</li>
+                  <li>Clear presentation of surveying, GIS, and engineering-survey services</li>
+                  <li>Sites built to convert visitors into service enquiries</li>
+                </ol>
                 <div class="card-actions card-actions-back">
                   <button type="button" class="card-flip-btn" aria-label="Back to details">×</button>
                 </div>
@@ -1158,7 +1217,11 @@
                 </div>
               </div>
               <div class="card-face card-back">
-                <p class="card-back-desc">The Kenya Flood Susceptibility Map identifies areas most at risk of flooding using terrain, rainfall, and land-use data. It combines these factors into a single susceptibility index rather than relying on any one variable alone. The output is intended to support disaster preparedness and land-use planning decisions.</p>
+                <ol class="card-back-list">
+                  <li>Flood-risk mapping using terrain, rainfall, and land-use data</li>
+                  <li>A single susceptibility index built from multiple risk factors</li>
+                  <li>Outputs designed to support disaster preparedness and planning</li>
+                </ol>
                 <div class="card-actions card-actions-back">
                   <button type="button" class="card-flip-btn" aria-label="Back to details">×</button>
                 </div>
@@ -1181,7 +1244,11 @@
                 </div>
               </div>
               <div class="card-face card-back">
-                <p class="card-back-desc">This spatial analysis evaluates soil, rainfall, temperature, and elevation to map where Duma wheat can be grown successfully. It uses a multi-criteria weighting method (AHP) to combine these factors into a single suitability score. The result highlights zones best suited for cultivation before any investment is made on the ground.</p>
+                <ol class="card-back-list">
+                  <li>Multi-criteria (AHP) suitability mapping using soil, rainfall, temperature, and elevation</li>
+                  <li>A single suitability score per zone instead of judging factors separately</li>
+                  <li>Insights that de-risk cultivation decisions before investment</li>
+                </ol>
                 <div class="card-actions card-actions-back">
                   <button type="button" class="card-flip-btn" aria-label="Back to details">×</button>
                 </div>
@@ -1204,7 +1271,11 @@
                 </div>
               </div>
               <div class="card-face card-back">
-                <p class="card-back-desc">Sauti Kwa Ukuta is a lived-narratives and resource hub built for young women, gender-diverse people, and students in Kenya. It hosts personal stories alongside harm-reduction and human-rights information in one accessible space. The design centers the voices of the community it serves.</p>
+                <ol class="card-back-list">
+                  <li>A resource hub for lived narratives, harm-reduction, and human-rights information</li>
+                  <li>A safe, accessible space centered on the voices of the community it serves</li>
+                  <li>Design built for young women, gender-diverse people, and students in Kenya</li>
+                </ol>
                 <div class="card-actions card-actions-back">
                   <button type="button" class="card-flip-btn" aria-label="Back to details">×</button>
                 </div>
@@ -1294,7 +1365,7 @@
         </a>
       </div>
 
-      <p class="loc-tag"><span class="footer-mark">simon <span class="mark-light">maps</span></span> · Geospatial and Software · Nairobi, Kenya</p>
+      <p class="loc-tag"><span class="footer-mark">simon <span class="mark-light">maps</span></span> · Geospatial and Software</p>
     </div>
   </div>
 </footer>
