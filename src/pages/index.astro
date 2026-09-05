@@ -27,7 +27,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,700;1,500;1,700;1,900&family=Luckiest+Guy&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet" />
 
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -36,7 +36,6 @@
   :root {
     --font-display: 'Manrope', -apple-system, 'Inter', sans-serif;
     --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    --font-headline: 'Luckiest Guy', 'Manrope', cursive;
     --ease: cubic-bezier(0.22, 1, 0.36, 1);
   }
 
@@ -224,13 +223,13 @@
   }
 
   h1.headline {
-    font-family: var(--font-headline);
+    font-family: var(--font-display);
     font-style: normal;
-    font-weight: 400;
-    font-size: clamp(2.1rem, 4.6vw, 3.8rem);
-    line-height: 1.25;
-    letter-spacing: 0.01em;
-    text-transform: uppercase;
+    font-weight: 700;
+    font-size: clamp(2rem, 4.2vw, 3.6rem);
+    line-height: 1.18;
+    letter-spacing: -0.01em;
+    text-transform: none;
   }
 
   .role-line {
@@ -379,26 +378,41 @@
   .work-grid::-webkit-scrollbar { display: none; }
 
   .work-card {
+    flex: 0 0 380px;
+    height: 320px;
+    perspective: 1600px;
+    scroll-snap-align: start;
+  }
+
+  .card-flip-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s var(--ease);
+    transform-style: preserve-3d;
+  }
+
+  .work-card.flipped .card-flip-inner {
+    transform: rotateY(180deg);
+  }
+
+  .card-face {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
     background: var(--local-bg);
     color: var(--local-ink);
+    box-sizing: border-box;
     padding: 2.8rem 2.4rem;
     display: flex;
     flex-direction: column;
     gap: 1.1rem;
-    min-height: 270px;
-    flex: 0 0 380px;
-    scroll-snap-align: start;
-    transition: background-color 0.25s var(--ease), color 0.25s var(--ease);
   }
 
-  a.work-card {
-    cursor: pointer;
-  }
-
-  a.work-card:hover,
-  a.work-card:focus-visible {
-    background: var(--local-ink);
-    color: var(--local-bg);
+  .card-back {
+    transform: rotateY(180deg);
+    justify-content: space-between;
   }
 
   .work-card-top {
@@ -428,21 +442,23 @@
     opacity: 0.55;
   }
 
-  .work-desc {
-    opacity: 0.8;
-    font-size: 0.88rem;
-    flex-grow: 1;
+  .card-back-desc {
+    font-family: var(--font-body);
+    font-size: 0.92rem;
+    line-height: 1.65;
+    opacity: 0.85;
   }
 
   .brand-geoepic {
     font-family: 'Playfair Display', serif;
-    font-weight: 500;
+    font-weight: 400;
+    font-size: 1.4rem;
   }
 
   .brand-geoepic .accent {
-    font-style: italic;
-    font-weight: 500;
-    color: #4f7ea8;
+    font-style: normal;
+    font-weight: 400;
+    color: #5b87b3;
   }
 
   .brand-sauti {
@@ -464,15 +480,46 @@
     color: #a49660;
   }
 
-  .work-card-foot {
-    font-family: var(--font-body);
-    font-size: 0.78rem;
-    font-weight: 500;
-    text-transform: none;
-    letter-spacing: 0.01em;
-    opacity: 0.65;
+  .card-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     margin-top: auto;
     padding-top: 0.4rem;
+  }
+
+  .card-actions-back {
+    justify-content: flex-end;
+  }
+
+  .card-flip-btn,
+  .card-visit-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 999px;
+    border: 1px solid color-mix(in srgb, var(--local-ink) 30%, transparent);
+    background: transparent;
+    color: var(--local-ink);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: background-color 0.2s var(--ease), color 0.2s var(--ease);
+  }
+
+  .card-flip-btn:hover,
+  .card-visit-btn:hover {
+    background: var(--local-ink);
+    color: var(--local-bg);
+  }
+
+  .card-visit-btn svg {
+    width: 15px;
+    height: 15px;
   }
 
   .carousel-nav {
@@ -564,37 +611,79 @@
     opacity: 0.6;
   }
 
-  .contact-form select {
-    appearance: none;
-    -webkit-appearance: none;
+  .custom-select {
+    position: relative;
     width: 100%;
-    padding: 1.1rem 1.8rem 1.1rem 0.5rem;
+  }
+
+  .custom-select-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 100%;
+    padding: 1.05rem 1.3rem;
     font-family: var(--font-body);
     font-size: 1rem;
     font-weight: 500;
-    line-height: 1.6;
     color: var(--local-ink);
-    background-color: transparent;
+    background: transparent;
     border: none;
     border-bottom: 1.5px solid color-mix(in srgb, var(--local-ink) 35%, transparent);
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23808080' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right center;
-    background-size: 14px;
     cursor: pointer;
     transition: border-color 0.2s var(--ease);
   }
 
-  .contact-form select:hover,
-  .contact-form select:focus-visible {
+  .custom-select-trigger:hover,
+  .custom-select.open .custom-select-trigger {
     border-color: var(--local-ink);
   }
 
-  .contact-form select option {
-    padding: 0.9rem 1.4rem;
-    line-height: 2;
-    color: #0b0b0a;
-    background: #faf9f5;
+  .custom-select-trigger svg {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    opacity: 0.6;
+    transition: transform 0.2s var(--ease);
+  }
+
+  .custom-select.open .custom-select-trigger svg {
+    transform: rotate(180deg);
+  }
+
+  .custom-select-options {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: calc(100% + 8px);
+    z-index: 30;
+    list-style: none;
+    margin: 0;
+    padding: 0.6rem 0;
+    max-height: 320px;
+    overflow-y: auto;
+    background: var(--local-bg);
+    border: 1px solid color-mix(in srgb, var(--local-ink) 18%, transparent);
+    box-shadow: 0 16px 34px rgba(0, 0, 0, 0.16);
+    display: none;
+  }
+
+  .custom-select.open .custom-select-options {
+    display: block;
+  }
+
+  .custom-select-options li {
+    padding: 0.95rem 1.5rem;
+    font-family: var(--font-body);
+    font-size: 0.96rem;
+    color: var(--local-ink);
+    cursor: pointer;
+    transition: background-color 0.15s var(--ease);
+  }
+
+  .custom-select-options li:hover,
+  .custom-select-options li.selected {
+    background: color-mix(in srgb, var(--local-ink) 8%, transparent);
   }
 
   .btn-whatsapp {
@@ -676,7 +765,6 @@
 
   .footer-mark {
     font-family: var(--font-display);
-    font-size: 0.85rem;
     font-weight: 700;
     letter-spacing: -0.005em;
     text-transform: lowercase;
@@ -702,13 +790,15 @@
     }
     .work-card {
       flex-basis: 300px;
+      height: 300px;
+    }
+    .card-face {
       padding: 2rem 1.7rem;
-      min-height: 0;
     }
     .work-title {
       font-size: 1.1rem;
     }
-    .work-desc {
+    .card-back-desc {
       font-size: 0.88rem;
     }
     .contact-inner h2 {
@@ -724,13 +814,10 @@
     }
     .footer-bottom {
       flex-direction: column;
-      align-items: center;
-      text-align: center;
+      align-items: flex-start;
     }
     .footer-links {
       gap: 1.1rem;
-      justify-content: center;
-      width: 100%;
     }
     .icon-btn svg {
       width: 22px;
@@ -740,7 +827,6 @@
       width: 100%;
       margin-left: 0;
       margin-top: 0.4rem;
-      text-align: center;
     }
   }
   @media (max-width: 420px) {
@@ -827,7 +913,7 @@
 
       <div class="hero-grid">
         <div>
-          <h1 class="headline">Geospatial &amp; Software<br/>Solutions</h1>
+          <h1 class="headline">GIS · Remote Sensing<br/>Web · Mapping</h1>
         </div>
 
         <p class="lede">
@@ -923,75 +1009,208 @@
         <div class="work-grid" id="work-grid">
 
           <div class="work-card">
-            <div class="work-card-top">
-              <p class="work-title"><span style="color:#c2483d">Climate</span> Risk Assessment</p>
+            <div class="card-flip-inner">
+              <div class="card-face card-front">
+                <div class="work-card-top">
+                  <p class="work-title"><span style="color:#c2483d">Climate</span> Risk Assessment</p>
+                </div>
+                <p class="work-tag">Climate Risk Analysis</p>
+                <div class="card-actions">
+                  <button type="button" class="card-flip-btn" aria-label="Show description">?</button>
+                </div>
+              </div>
+              <div class="card-face card-back">
+                <p class="card-back-desc">This analysis layers drought, flood, extreme-heat, and water-security indicators to map where climate hazards overlap most. It draws on historical climate records and terrain data to flag vulnerable zones. The output is designed to guide resilience planning and risk-informed investment decisions.</p>
+                <div class="card-actions card-actions-back">
+                  <button type="button" class="card-flip-btn" aria-label="Back to details">×</button>
+                </div>
+              </div>
             </div>
-            <p class="work-tag">Climate Risk Analysis</p>
           </div>
 
-          <a href="https://pangakazi.simonmapper.co.ke/" target="_blank" rel="noreferrer" class="work-card">
-            <div class="work-card-top">
-              <p class="work-title brand-pangakazi">panga <span class="accent">kazi</span></p>
+          <div class="work-card">
+            <div class="card-flip-inner">
+              <div class="card-face card-front">
+                <div class="work-card-top">
+                  <p class="work-title brand-pangakazi">panga <span class="accent">kazi</span></p>
+                </div>
+                <p class="work-tag">Productivity Tool</p>
+                <div class="card-actions">
+                  <button type="button" class="card-flip-btn" aria-label="Show description">?</button>
+                  <a href="https://pangakazi.simonmapper.co.ke/" target="_blank" rel="noreferrer" class="card-visit-btn" aria-label="Visit Pangakazi">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+                  </a>
+                </div>
+              </div>
+              <div class="card-face card-back">
+                <p class="card-back-desc">Pangakazi turns scattered WhatsApp and SMS job requests into clean, timestamped records automatically. It extracts the client, task, and schedule from informal messages so nothing gets lost in a chat thread. The tool is built for freelancers and small crews who manage jobs mostly through messaging apps.</p>
+                <div class="card-actions card-actions-back">
+                  <button type="button" class="card-flip-btn" aria-label="Back to details">×</button>
+                </div>
+              </div>
             </div>
-            <p class="work-tag">Productivity Tool</p>
-            <span class="work-card-foot">Open Pangakazi →</span>
-          </a>
+          </div>
 
-          <a href="https://zoryn.simonmapper.co.ke/" target="_blank" rel="noreferrer" class="work-card">
-            <div class="work-card-top">
-              <p class="work-title"><span style="color:#0891b2">Zoryn</span></p>
+          <div class="work-card">
+            <div class="card-flip-inner">
+              <div class="card-face card-front">
+                <div class="work-card-top">
+                  <p class="work-title"><span style="color:#0891b2">Zoryn</span></p>
+                </div>
+                <p class="work-tag">Climate Intelligence Tool</p>
+                <div class="card-actions">
+                  <button type="button" class="card-flip-btn" aria-label="Show description">?</button>
+                  <a href="https://zoryn.simonmapper.co.ke/" target="_blank" rel="noreferrer" class="card-visit-btn" aria-label="Visit Zoryn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+                  </a>
+                </div>
+              </div>
+              <div class="card-face card-back">
+                <p class="card-back-desc">Zoryn is a climate intelligence platform for exploring hazard and environmental risk across a region. It combines interactive maps, historical timelines, and geospatial layers into one browsing experience. Users can drill into a location to see how climate exposure has shifted over time.</p>
+                <div class="card-actions card-actions-back">
+                  <button type="button" class="card-flip-btn" aria-label="Back to details">×</button>
+                </div>
+              </div>
             </div>
-            <p class="work-tag">Climate Intelligence Tool</p>
-            <span class="work-card-foot">Live site →</span>
-          </a>
+          </div>
 
-          <a href="/demos/properties/" class="work-card">
-            <div class="work-card-top">
-              <p class="work-title"><span style="color:#b8860b">Property</span> Sales</p>
+          <div class="work-card">
+            <div class="card-flip-inner">
+              <div class="card-face card-front">
+                <div class="work-card-top">
+                  <p class="work-title"><span style="color:#b8860b">Property</span> Sales</p>
+                </div>
+                <p class="work-tag">Geospatial Web Application</p>
+                <div class="card-actions">
+                  <button type="button" class="card-flip-btn" aria-label="Show description">?</button>
+                  <a href="/demos/properties/" class="card-visit-btn" aria-label="View live demo">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+                  </a>
+                </div>
+              </div>
+              <div class="card-face card-back">
+                <p class="card-back-desc">This geospatial web app plots available parcels on an interactive map with live availability status. Buyers can search by location, size, and price, then open a parcel to see full property details. It's built to make property discovery visual instead of spreadsheet-based.</p>
+                <div class="card-actions card-actions-back">
+                  <button type="button" class="card-flip-btn" aria-label="Back to details">×</button>
+                </div>
+              </div>
             </div>
-            <p class="work-tag">Geospatial Web Application</p>
-            <span class="work-card-foot">View live demo →</span>
-          </a>
+          </div>
 
-          <a href="https://sarateal-frontend.vercel.app/" target="_blank" rel="noreferrer" class="work-card">
-            <div class="work-card-top">
-              <p class="work-title" style="color:#4CAF50">Sarateal</p>
+          <div class="work-card">
+            <div class="card-flip-inner">
+              <div class="card-face card-front">
+                <div class="work-card-top">
+                  <p class="work-title"><span style="color:#16a34a">Sara</span>teal</p>
+                </div>
+                <p class="work-tag">Agricultural Data Platform</p>
+                <div class="card-actions">
+                  <button type="button" class="card-flip-btn" aria-label="Show description">?</button>
+                  <a href="https://github.com/Issimonmutunga/sarateal" target="_blank" rel="noreferrer" class="card-visit-btn" aria-label="View on GitHub">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+                  </a>
+                </div>
+              </div>
+              <div class="card-face card-back">
+                <p class="card-back-desc">Sarateal brings together market prices, weather forecasts, and geospatial data into one agricultural intelligence dashboard. Farmers and traders can track price trends alongside local weather to time sales and planting better. The platform is aimed at closing the information gap in Kenya's agricultural supply chains.</p>
+                <div class="card-actions card-actions-back">
+                  <button type="button" class="card-flip-btn" aria-label="Back to details">×</button>
+                </div>
+              </div>
             </div>
-            <p class="work-tag">Agricultural Data Platform</p>
-            <span class="work-card-foot">In development</span>
-          </a>
+          </div>
 
-          <a href="https://geoepic.co.ke/" target="_blank" rel="noreferrer" class="work-card">
-            <div class="work-card-top">
-              <p class="work-title brand-geoepic">Geoepic <span class="accent">Surveys</span></p>
+          <div class="work-card">
+            <div class="card-flip-inner">
+              <div class="card-face card-front">
+                <div class="work-card-top">
+                  <p class="work-title brand-geoepic">Geoepic <span class="accent">Surveys</span></p>
+                </div>
+                <p class="work-tag">Web Development</p>
+                <div class="card-actions">
+                  <button type="button" class="card-flip-btn" aria-label="Show description">?</button>
+                  <a href="https://geoepic.co.ke/" target="_blank" rel="noreferrer" class="card-visit-btn" aria-label="Visit site">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+                  </a>
+                </div>
+              </div>
+              <div class="card-face card-back">
+                <p class="card-back-desc">This is the public website for Geoepic Surveys, a geospatial and land-surveying consultancy. It presents their surveying, GIS, and engineering-survey services with a clean, professional layout. The site is built to convert visiting clients into service enquiries.</p>
+                <div class="card-actions card-actions-back">
+                  <button type="button" class="card-flip-btn" aria-label="Back to details">×</button>
+                </div>
+              </div>
             </div>
-            <p class="work-tag">Web Development</p>
-            <span class="work-card-foot">Visit site →</span>
-          </a>
+          </div>
 
-          <a href="https://github.com/Issimonmutunga/floodske" target="_blank" rel="noreferrer" class="work-card">
-            <div class="work-card-top">
-              <p class="work-title">Kenya <span style="color:#2563eb">Flood</span> Susceptibility Assessment</p>
+          <div class="work-card">
+            <div class="card-flip-inner">
+              <div class="card-face card-front">
+                <div class="work-card-top">
+                  <p class="work-title">Susceptibility Mapping</p>
+                </div>
+                <p class="work-tag">Flood Risk Analysis</p>
+                <div class="card-actions">
+                  <button type="button" class="card-flip-btn" aria-label="Show description">?</button>
+                  <a href="https://github.com/Issimonmutunga/floodske" target="_blank" rel="noreferrer" class="card-visit-btn" aria-label="View on GitHub">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+                  </a>
+                </div>
+              </div>
+              <div class="card-face card-back">
+                <p class="card-back-desc">The Kenya Flood Susceptibility Map identifies areas most at risk of flooding using terrain, rainfall, and land-use data. It combines these factors into a single susceptibility index rather than relying on any one variable alone. The output is intended to support disaster preparedness and land-use planning decisions.</p>
+                <div class="card-actions card-actions-back">
+                  <button type="button" class="card-flip-btn" aria-label="Back to details">×</button>
+                </div>
+              </div>
             </div>
-            <p class="work-tag">Flood Risk Analysis</p>
-            <span class="work-card-foot">View on GitHub →</span>
-          </a>
+          </div>
 
-          <a href="https://github.com/Issimonmutunga/AHP-Project" target="_blank" rel="noreferrer" class="work-card">
-            <div class="work-card-top">
-              <p class="work-title"><span style="color:#65a30d">Crop</span> Suitability Analysis</p>
+          <div class="work-card">
+            <div class="card-flip-inner">
+              <div class="card-face card-front">
+                <div class="work-card-top">
+                  <p class="work-title">Crop Suitability Analysis</p>
+                </div>
+                <p class="work-tag">Agricultural GIS Analysis</p>
+                <div class="card-actions">
+                  <button type="button" class="card-flip-btn" aria-label="Show description">?</button>
+                  <a href="https://github.com/Issimonmutunga/AHP-Project" target="_blank" rel="noreferrer" class="card-visit-btn" aria-label="View on GitHub">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+                  </a>
+                </div>
+              </div>
+              <div class="card-face card-back">
+                <p class="card-back-desc">This spatial analysis evaluates soil, rainfall, temperature, and elevation to map where Duma wheat can be grown successfully. It uses a multi-criteria weighting method (AHP) to combine these factors into a single suitability score. The result highlights zones best suited for cultivation before any investment is made on the ground.</p>
+                <div class="card-actions card-actions-back">
+                  <button type="button" class="card-flip-btn" aria-label="Back to details">×</button>
+                </div>
+              </div>
             </div>
-            <p class="work-tag">Agricultural GIS Analysis</p>
-            <span class="work-card-foot">View on GitHub →</span>
-          </a>
+          </div>
 
-          <a href="https://fuzzy-waddle-nu.vercel.app/" target="_blank" rel="noreferrer" class="work-card">
-            <div class="work-card-top">
-              <p class="work-title brand-sauti">Sauti Kwa Ukuta</p>
+          <div class="work-card">
+            <div class="card-flip-inner">
+              <div class="card-face card-front">
+                <div class="work-card-top">
+                  <p class="work-title brand-sauti">Sauti Kwa Ukuta</p>
+                </div>
+                <p class="work-tag">Web Development</p>
+                <div class="card-actions">
+                  <button type="button" class="card-flip-btn" aria-label="Show description">?</button>
+                  <a href="https://fuzzy-waddle-nu.vercel.app/" target="_blank" rel="noreferrer" class="card-visit-btn" aria-label="Visit site">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+                  </a>
+                </div>
+              </div>
+              <div class="card-face card-back">
+                <p class="card-back-desc">Sauti Kwa Ukuta is a lived-narratives and resource hub built for young women, gender-diverse people, and students in Kenya. It hosts personal stories alongside harm-reduction and human-rights information in one accessible space. The design centers the voices of the community it serves.</p>
+                <div class="card-actions card-actions-back">
+                  <button type="button" class="card-flip-btn" aria-label="Back to details">×</button>
+                </div>
+              </div>
             </div>
-            <p class="work-tag">Web Development</p>
-            <span class="work-card-foot">Visit site →</span>
-          </a>
+          </div>
 
         </div>
 
@@ -1019,16 +1238,25 @@
       </div>
 
       <form class="contact-form" id="contact-form">
-        <label for="service-select">What do you need help with?</label>
-        <select id="service-select" name="service">
-          <option value="GIS &amp; Spatial Analysis">GIS &amp; Spatial Analysis</option>
-          <option value="Geospatial Data Engineering">Geospatial Data Engineering</option>
-          <option value="Remote Sensing &amp; Earth Observation">Remote Sensing &amp; Earth Observation</option>
-          <option value="Climate &amp; Environmental Risk">Climate &amp; Environmental Risk</option>
-          <option value="AI &amp; Data Automation">AI &amp; Data Automation</option>
-          <option value="Maps &amp; Data Visualization">Maps &amp; Data Visualization</option>
-          <option value="Web Design &amp; Development">Web Design &amp; Development</option>
-        </select>
+        <label id="service-label">What do you need help with?</label>
+
+        <div class="custom-select" id="service-dropdown">
+          <button type="button" class="custom-select-trigger" id="service-trigger" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="service-label">
+            <span id="service-trigger-label">GIS &amp; Spatial Analysis</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+
+          <ul class="custom-select-options" id="service-options" role="listbox" tabindex="-1">
+            <li role="option" aria-selected="true" class="selected" data-value="GIS &amp; Spatial Analysis">GIS &amp; Spatial Analysis</li>
+            <li role="option" aria-selected="false" data-value="Geospatial Data Engineering">Geospatial Data Engineering</li>
+            <li role="option" aria-selected="false" data-value="Remote Sensing &amp; Earth Observation">Remote Sensing &amp; Earth Observation</li>
+            <li role="option" aria-selected="false" data-value="Climate &amp; Environmental Risk">Climate &amp; Environmental Risk</li>
+            <li role="option" aria-selected="false" data-value="AI &amp; Data Automation">AI &amp; Data Automation</li>
+            <li role="option" aria-selected="false" data-value="Maps &amp; Data Visualization">Maps &amp; Data Visualization</li>
+            <li role="option" aria-selected="false" data-value="Web Design &amp; Development">Web Design &amp; Development</li>
+          </ul>
+        </div>
+
         <button type="submit" class="btn-whatsapp">
           <svg viewBox="0 0 24 24" fill="currentColor">
             <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 1.67c2.19 0 4.25.85 5.79 2.4a8.2 8.2 0 0 1 2.4 5.79c0 4.53-3.69 8.22-8.23 8.22a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.19-.31a8.18 8.18 0 0 1-1.26-4.38c0-4.53 3.69-8.17 8.27-8.17zm-4.5 4.75c-.16 0-.42.06-.64.31-.22.25-.85.83-.85 2.02 0 1.19.87 2.34 1 2.5.12.16 1.7 2.6 4.13 3.64.58.25 1.03.4 1.38.51.58.19 1.11.16 1.53.1.47-.07 1.43-.58 1.63-1.15.2-.56.2-1.04.14-1.15-.06-.1-.22-.16-.47-.28-.25-.13-1.43-.71-1.65-.79-.22-.08-.38-.13-.55.12-.16.25-.63.79-.77.95-.14.16-.28.18-.53.06-.25-.13-1.04-.38-1.98-1.22-.73-.65-1.23-1.46-1.37-1.71-.14-.25-.02-.38.11-.51.11-.11.25-.28.38-.42.12-.14.16-.25.25-.41.08-.16.04-.31-.02-.44-.06-.13-.55-1.36-.76-1.86-.2-.48-.4-.41-.55-.42a10 10 0 0 0-.44-.01z"/>
@@ -1066,7 +1294,7 @@
         </a>
       </div>
 
-      <p class="loc-tag"><span class="footer-mark">simon <span class="mark-light">maps</span></span> · Geospatial and Software</p>
+      <p class="loc-tag"><span class="footer-mark">simon <span class="mark-light">maps</span></span> · Geospatial and Software · Nairobi, Kenya</p>
     </div>
   </div>
 </footer>
@@ -1173,16 +1401,73 @@
   })();
 
   (function () {
+    const dropdown = document.getElementById('service-dropdown');
+    const trigger = document.getElementById('service-trigger');
+    const triggerLabel = document.getElementById('service-trigger-label');
+    const options = document.getElementById('service-options');
+    if (!dropdown || !trigger || !options) return;
+
+    function closeDropdown() {
+      dropdown.classList.remove('open');
+      trigger.setAttribute('aria-expanded', 'false');
+    }
+
+    function openDropdown() {
+      dropdown.classList.add('open');
+      trigger.setAttribute('aria-expanded', 'true');
+    }
+
+    trigger.addEventListener('click', function (e) {
+      e.stopPropagation();
+      dropdown.classList.contains('open') ? closeDropdown() : openDropdown();
+    });
+
+    options.querySelectorAll('li').forEach(function (li) {
+      li.addEventListener('click', function () {
+        options.querySelectorAll('li').forEach(function (other) {
+          other.classList.remove('selected');
+          other.setAttribute('aria-selected', 'false');
+        });
+        li.classList.add('selected');
+        li.setAttribute('aria-selected', 'true');
+        triggerLabel.textContent = li.getAttribute('data-value');
+        dropdown.dataset.value = li.getAttribute('data-value');
+        closeDropdown();
+      });
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!dropdown.contains(e.target)) closeDropdown();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeDropdown();
+    });
+
+    dropdown.dataset.value = 'GIS & Spatial Analysis';
+  })();
+
+  (function () {
     const form = document.getElementById('contact-form');
-    const select = document.getElementById('service-select');
-    if (!form || !select) return;
+    const dropdown = document.getElementById('service-dropdown');
+    if (!form || !dropdown) return;
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      const service = select.value;
+      const service = dropdown.dataset.value || 'a project';
       const message = 'Hello Simon, I would like to enquire about ' + service + '. Could we discuss further?';
       const url = 'https://wa.me/254706085240?text=' + encodeURIComponent(message);
       window.open(url, '_blank');
+    });
+  })();
+
+  (function () {
+    document.querySelectorAll('.card-flip-btn').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        const card = btn.closest('.work-card');
+        if (card) card.classList.toggle('flipped');
+      });
     });
   })();
 </script>
