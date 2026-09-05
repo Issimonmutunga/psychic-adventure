@@ -3,31 +3,31 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>Simon Mutunga | GIS, Geospatial & Remote Sensing Services in Kenya</title>
+<title>Simon | GIS, Geospatial & Remote Sensing Services in Kenya</title>
 
 <link rel="icon" href="/favicon.ico" />
 
-<meta name="description" content="Simon Mutunga provides GIS, geospatial data engineering, remote sensing, climate and environmental analysis, web mapping, AI automation, and spatial intelligence services in Kenya." />
-<meta name="author" content="Simon Mutunga" />
+<meta name="description" content="Simon provides GIS, geospatial data engineering, remote sensing, climate and environmental analysis, web mapping, AI automation, and spatial intelligence services in Kenya." />
+<meta name="author" content="Simon" />
 <meta name="robots" content="index, follow" />
 <link rel="canonical" href="https://www.simonmapper.co.ke/" />
 
-<meta property="og:title" content="Simon Mutunga | GIS, Geospatial & Remote Sensing Services in Kenya" />
-<meta property="og:description" content="Simon Mutunga provides GIS, geospatial data engineering, remote sensing, climate and environmental analysis, web mapping, AI automation, and spatial intelligence services in Kenya." />
+<meta property="og:title" content="Simon | GIS, Geospatial & Remote Sensing Services in Kenya" />
+<meta property="og:description" content="Simon provides GIS, geospatial data engineering, remote sensing, climate and environmental analysis, web mapping, AI automation, and spatial intelligence services in Kenya." />
 <meta property="og:url" content="https://www.simonmapper.co.ke/" />
 <meta property="og:site_name" content="Simon Maps" />
 <meta property="og:image" content="https://www.simonmapper.co.ke/og-image.png" />
 <meta property="og:type" content="website" />
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Simon Mutunga | GIS, Geospatial & Remote Sensing Services in Kenya" />
-<meta name="twitter:description" content="Simon Mutunga provides GIS, geospatial data engineering, remote sensing, climate and environmental analysis, web mapping, AI automation, and spatial intelligence services in Kenya." />
+<meta name="twitter:title" content="Simon | GIS, Geospatial & Remote Sensing Services in Kenya" />
+<meta name="twitter:description" content="Simon provides GIS, geospatial data engineering, remote sensing, climate and environmental analysis, web mapping, AI automation, and spatial intelligence services in Kenya." />
 <meta name="twitter:url" content="https://www.simonmapper.co.ke/" />
 <meta name="twitter:image" content="https://www.simonmapper.co.ke/og-image.png" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&family=Playfair+Display:ital,wght@0,500;0,700;1,500;1,700;1,900&display=swap" rel="stylesheet" />
 
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -357,13 +357,23 @@
     max-width: 52ch;
   }
 
-  /* ---- Selected work: clickable grid ---- */
+  /* ---- Selected work: horizontal carousel ---- */
+
+  .work-carousel-wrap {
+    position: relative;
+  }
 
   .work-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 0;
+    display: flex;
+    gap: 1px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding-bottom: 0.4rem;
   }
+
+  .work-grid::-webkit-scrollbar { display: none; }
 
   .work-card {
     background: var(--local-bg);
@@ -373,7 +383,15 @@
     flex-direction: column;
     gap: 0.85rem;
     min-height: 230px;
+    flex: 0 0 300px;
+    scroll-snap-align: start;
+    border-top: 1px solid color-mix(in srgb, var(--local-ink) 20%, transparent);
+    border-right: 1px solid color-mix(in srgb, var(--local-ink) 20%, transparent);
     transition: background-color 0.25s var(--ease), color 0.25s var(--ease);
+  }
+
+  .work-grid .work-card:first-child {
+    border-left: 1px solid color-mix(in srgb, var(--local-ink) 20%, transparent);
   }
 
   a.work-card {
@@ -404,20 +422,6 @@
     gap: 0.5rem;
   }
 
-  .work-card-arrow {
-    width: 16px;
-    height: 16px;
-    flex-shrink: 0;
-    opacity: 0.55;
-    margin-top: 0.2rem;
-    transition: transform 0.25s var(--ease), opacity 0.25s var(--ease);
-  }
-
-  a.work-card:hover .work-card-arrow {
-    opacity: 1;
-    transform: translate(2px, -2px);
-  }
-
   .work-tag {
     font-family: var(--font-body);
     font-size: 0.72rem;
@@ -433,6 +437,36 @@
     flex-grow: 1;
   }
 
+  .brand-geoepic {
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+  }
+
+  .brand-geoepic .accent {
+    font-style: italic;
+    font-weight: 500;
+    color: #4f7ea8;
+  }
+
+  .brand-sauti {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-style: italic;
+    letter-spacing: -0.01em;
+  }
+
+  .brand-pangakazi {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    text-transform: lowercase;
+  }
+
+  .brand-pangakazi .accent {
+    font-style: italic;
+    font-weight: 500;
+    color: #a49660;
+  }
+
   .work-card-foot {
     font-family: var(--font-body);
     font-size: 0.78rem;
@@ -442,6 +476,36 @@
     opacity: 0.65;
     margin-top: auto;
     padding-top: 0.4rem;
+  }
+
+  .carousel-nav {
+    display: flex;
+    gap: 0.6rem;
+    margin-top: 1.4rem;
+    justify-content: flex-end;
+  }
+
+  .carousel-nav button {
+    width: 42px;
+    height: 42px;
+    border: 1.5px solid var(--local-ink);
+    background: transparent;
+    color: var(--local-ink);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s var(--ease), color 0.2s var(--ease);
+  }
+
+  .carousel-nav button:hover {
+    background: var(--local-ink);
+    color: var(--local-bg);
+  }
+
+  .carousel-nav button svg {
+    width: 18px;
+    height: 18px;
   }
 
   .contact-inner {
@@ -463,41 +527,35 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 0.8rem;
+    gap: 1.4rem;
   }
 
   .icon-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 50px;
-    height: 50px;
-    border: 1.5px solid var(--local-ink);
+    padding: 0.2rem;
+    border: none;
+    background: transparent;
     color: var(--local-ink);
-    transition: background-color 0.2s var(--ease), color 0.2s var(--ease);
+    transition: transform 0.2s var(--ease), opacity 0.2s var(--ease);
   }
 
   .icon-btn:hover {
-    background: var(--local-ink);
-    color: var(--local-bg);
+    transform: translateY(-3px);
+    opacity: 0.82;
   }
 
   .icon-btn svg {
-    width: 19px;
-    height: 19px;
+    width: 27px;
+    height: 27px;
   }
 
   .icon-btn.icon-whatsapp { color: #25D366; }
-  .icon-btn.icon-whatsapp:hover { color: #25D366; }
-
   .icon-btn.icon-email { color: #EA4335; }
-  .icon-btn.icon-email:hover { color: #EA4335; }
-
-  .icon-btn.icon-phone { color: #0EA5E9; }
-  .icon-btn.icon-phone:hover { color: #0EA5E9; }
-
+  .icon-btn.icon-phone { color: #34C759; }
   .icon-btn.icon-linkedin { color: #0A66C2; }
-  .icon-btn.icon-linkedin:hover { color: #0A66C2; }
+  .icon-btn.icon-github { color: var(--local-ink); }
 
   .loc-tag {
     font-family: var(--font-mono);
@@ -536,10 +594,8 @@
     .point-desc {
       font-size: 0.88rem;
     }
-    .work-grid {
-      grid-template-columns: 1fr;
-    }
     .work-card {
+      flex-basis: 250px;
       padding: 1.7rem 1.4rem;
       min-height: 0;
     }
@@ -553,11 +609,11 @@
       font-size: clamp(2rem, 9vw, 3rem);
     }
     .contact-icon-row {
-      gap: 0.6rem;
+      gap: 1.1rem;
     }
-    .icon-btn {
-      width: 46px;
-      height: 46px;
+    .icon-btn svg {
+      width: 24px;
+      height: 24px;
     }
     .loc-tag {
       width: 100%;
@@ -587,6 +643,12 @@
     .point-id {
       font-size: 0.68rem;
     }
+    .work-card {
+      flex-basis: 78vw;
+    }
+    .carousel-nav {
+      justify-content: center;
+    }
   }
 </style>
 
@@ -594,7 +656,7 @@
 {
   "@context": "https://schema.org",
   "@type": "Person",
-  "name": "Simon Mutunga",
+  "name": "Simon",
   "url": "https://www.simonmapper.co.ke/",
   "jobTitle": "Geospatial Engineer",
   "worksFor": {
@@ -730,112 +792,90 @@
         </div>
       </div>
 
-      <div class="work-grid">
+      <div class="work-carousel-wrap">
+        <div class="work-grid" id="work-grid">
 
-        <div class="work-card">
-          <div class="work-card-top">
-            <p class="work-title">Climate Risk Assessment</p>
+          <div class="work-card">
+            <div class="work-card-top">
+              <p class="work-title"><span style="color:#c2483d">Climate</span> Risk Assessment</p>
+            </div>
+            <p class="work-tag">Climate Risk Analysis</p>
           </div>
-          <p class="work-tag">Climate Risk Analysis</p>
-          <p class="work-desc">Multi-hazard climate risk analysis covering drought, flooding, extreme heat, and water security to support climate resilience and risk planning.</p>
+
+          <a href="https://pangakazi.simonmapper.co.ke/" target="_blank" rel="noreferrer" class="work-card">
+            <div class="work-card-top">
+              <p class="work-title brand-pangakazi">panga <span class="accent">kazi</span></p>
+            </div>
+            <p class="work-tag">Productivity Tool</p>
+            <span class="work-card-foot">Open Pangakazi →</span>
+          </a>
+
+          <a href="https://zoryn.simonmapper.co.ke/" target="_blank" rel="noreferrer" class="work-card">
+            <div class="work-card-top">
+              <p class="work-title"><span style="color:#0891b2">Zoryn</span></p>
+            </div>
+            <p class="work-tag">Climate Intelligence Tool</p>
+            <span class="work-card-foot">Live site →</span>
+          </a>
+
+          <a href="/demos/properties/" class="work-card">
+            <div class="work-card-top">
+              <p class="work-title"><span style="color:#b8860b">Property</span> Sales</p>
+            </div>
+            <p class="work-tag">Geospatial Web Application</p>
+            <span class="work-card-foot">View live demo →</span>
+          </a>
+
+          <a href="https://github.com/Issimonmutunga/sarateal" target="_blank" rel="noreferrer" class="work-card">
+            <div class="work-card-top">
+              <p class="work-title"><span style="color:#16a34a">Sara</span>teal</p>
+            </div>
+            <p class="work-tag">Agricultural Data Platform</p>
+            <span class="work-card-foot">View on GitHub →</span>
+          </a>
+
+          <a href="https://geoepic.co.ke/" target="_blank" rel="noreferrer" class="work-card">
+            <div class="work-card-top">
+              <p class="work-title brand-geoepic">Geoepic <span class="accent">Surveys</span></p>
+            </div>
+            <p class="work-tag">Web Development</p>
+            <span class="work-card-foot">Visit site →</span>
+          </a>
+
+          <a href="https://github.com/Issimonmutunga/floodske" target="_blank" rel="noreferrer" class="work-card">
+            <div class="work-card-top">
+              <p class="work-title">Kenya <span style="color:#2563eb">Flood</span> Susceptibility Assessment</p>
+            </div>
+            <p class="work-tag">Flood Risk Analysis</p>
+            <span class="work-card-foot">View on GitHub →</span>
+          </a>
+
+          <a href="https://github.com/Issimonmutunga/AHP-Project" target="_blank" rel="noreferrer" class="work-card">
+            <div class="work-card-top">
+              <p class="work-title"><span style="color:#65a30d">Crop</span> Suitability Analysis</p>
+            </div>
+            <p class="work-tag">Agricultural GIS Analysis</p>
+            <span class="work-card-foot">View on GitHub →</span>
+          </a>
+
+          <a href="https://fuzzy-waddle-nu.vercel.app/" target="_blank" rel="noreferrer" class="work-card">
+            <div class="work-card-top">
+              <p class="work-title brand-sauti">Sauti Kwa Ukuta</p>
+            </div>
+            <p class="work-tag">Web Development</p>
+            <span class="work-card-foot">Visit site →</span>
+          </a>
+
         </div>
 
-        <a href="https://pangakazi.simonmapper.co.ke/" target="_blank" rel="noreferrer" class="work-card">
-          <div class="work-card-top">
-            <p class="work-title">Pangakazi</p>
-            <svg class="work-card-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M7 17L17 7M7 7h10v10"/>
-            </svg>
-          </div>
-          <p class="work-tag">Productivity Tool</p>
-          <p class="work-desc">A lightweight job-recording tool for turning message threads and informal work communications into organized, timestamped job records that are easier to track and manage.</p>
-          <span class="work-card-foot">Open Pangakazi →</span>
-        </a>
-
-        <a href="https://zoryn.simonmapper.co.ke/" target="_blank" rel="noreferrer" class="work-card">
-          <div class="work-card-top">
-            <p class="work-title">Zoryn</p>
-            <svg class="work-card-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M7 17L17 7M7 7h10v10"/>
-            </svg>
-          </div>
-          <p class="work-tag">Climate Intelligence Tool</p>
-          <p class="work-desc">Climate intelligence platform for exploring climate and environmental risk through interactive maps, timelines, and geospatial analysis.</p>
-          <span class="work-card-foot">Live site →</span>
-        </a>
-
-        <a href="/demos/properties/" class="work-card">
-          <div class="work-card-top">
-            <p class="work-title">Property Sales</p>
-            <svg class="work-card-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M7 17L17 7M7 7h10v10"/>
-            </svg>
-          </div>
-          <p class="work-tag">Geospatial Web Application</p>
-          <p class="work-desc">Interactive property-sales platform using parcel mapping, property data, availability status, search, and property-level information.</p>
-          <span class="work-card-foot">View live demo →</span>
-        </a>
-
-        <a href="https://github.com/Issimonmutunga/sarateal" target="_blank" rel="noreferrer" class="work-card">
-          <div class="work-card-top">
-            <p class="work-title">Sarateal</p>
-            <svg class="work-card-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M7 17L17 7M7 7h10v10"/>
-            </svg>
-          </div>
-          <p class="work-tag">Agricultural Data Platform</p>
-          <p class="work-desc">Agricultural intelligence platform combining market prices, weather, and geospatial data to support better market and supply-chain decisions.</p>
-          <span class="work-card-foot">View on GitHub →</span>
-        </a>
-
-        <a href="https://geoepic.co.ke/" target="_blank" rel="noreferrer" class="work-card">
-          <div class="work-card-top">
-            <p class="work-title">Geoepic Surveys</p>
-            <svg class="work-card-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M7 17L17 7M7 7h10v10"/>
-            </svg>
-          </div>
-          <p class="work-tag">Web Development</p>
-          <p class="work-desc">Professional website for a geospatial consultancy, presenting surveying, mapping, and geospatial services through a clear digital presence.</p>
-          <span class="work-card-foot">Visit site →</span>
-        </a>
-
-        <a href="https://github.com/Issimonmutunga/floodske" target="_blank" rel="noreferrer" class="work-card">
-          <div class="work-card-top">
-            <p class="work-title">Kenya Flood Susceptibility Assessment</p>
-            <svg class="work-card-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M7 17L17 7M7 7h10v10"/>
-            </svg>
-          </div>
-          <p class="work-tag">Flood Risk Analysis</p>
-          <p class="work-desc">Geospatial flood-risk assessment identifying areas susceptible to flooding through terrain, rainfall, and environmental analysis.</p>
-          <span class="work-card-foot">View on GitHub →</span>
-        </a>
-
-        <a href="https://github.com/Issimonmutunga/AHP-Project" target="_blank" rel="noreferrer" class="work-card">
-          <div class="work-card-top">
-            <p class="work-title">Crop Suitability Analysis</p>
-            <svg class="work-card-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M7 17L17 7M7 7h10v10"/>
-            </svg>
-          </div>
-          <p class="work-tag">Agricultural GIS Analysis</p>
-          <p class="work-desc">Spatial crop suitability assessment evaluating soil, rainfall, temperature, and elevation to identify areas suitable for Duma wheat cultivation.</p>
-          <span class="work-card-foot">View on GitHub →</span>
-        </a>
-
-        <a href="https://fuzzy-waddle-nu.vercel.app/" target="_blank" rel="noreferrer" class="work-card">
-          <div class="work-card-top">
-            <p class="work-title">Sauti Kwa Ukuta</p>
-            <svg class="work-card-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M7 17L17 7M7 7h10v10"/>
-            </svg>
-          </div>
-          <p class="work-tag">Web Development</p>
-          <p class="work-desc">Website design and build for a gender-sensitive lived-narratives and resources hub, connecting young women, gender-diverse people, and students in Kenya with harm-reduction and human-rights information.</p>
-          <span class="work-card-foot">Visit site →</span>
-        </a>
-
+        <div class="carousel-nav" aria-hidden="false">
+          <button type="button" id="work-prev" aria-label="Scroll previous">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button type="button" id="work-next" aria-label="Scroll next">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
       </div>
     </div>
   </section>
@@ -963,6 +1003,22 @@
 
     applyTheme(resolvedTheme());
     updateLabel();
+  })();
+
+  (function () {
+    const grid = document.getElementById('work-grid');
+    const prev = document.getElementById('work-prev');
+    const next = document.getElementById('work-next');
+    if (!grid || !prev || !next) return;
+
+    function scrollByCard(dir) {
+      const card = grid.querySelector('.work-card');
+      const amount = card ? card.getBoundingClientRect().width + 1 : 300;
+      grid.scrollBy({ left: dir * amount, behavior: 'smooth' });
+    }
+
+    prev.addEventListener('click', () => scrollByCard(-1));
+    next.addEventListener('click', () => scrollByCard(1));
   })();
 </script>
 
