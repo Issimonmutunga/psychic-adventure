@@ -146,9 +146,9 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 84px;
+    width: 32px;
     height: 32px;
-    padding: 0 1.2rem;
+    padding: 0;
     border: 1px solid color-mix(in srgb, var(--ink0) 30%, transparent);
     border-radius: 999px;
     background: transparent;
@@ -944,7 +944,7 @@
     }
 
     function updateLabel() {
-      btn.textContent = choice.charAt(0).toUpperCase() + choice.slice(1);
+      btn.textContent = choice.charAt(0).toUpperCase();
     }
 
     function applyTheme(theme) {
