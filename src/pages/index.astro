@@ -329,16 +329,19 @@
     color: var(--local-bg);
   }
 
+  #about .wrap {
+    padding: clamp(2.4rem, 5vw, 3.4rem) 0 clamp(2.2rem, 4.5vw, 3rem);
+  }
+
   .about-grid {
     display: grid;
-    grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
-    gap: clamp(2rem, 5vw, 4rem);
+    grid-template-columns: 152px minmax(0, 1fr);
+    gap: clamp(1.3rem, 3vw, 2rem);
     align-items: start;
   }
 
   .about-figure {
     margin: 0;
-    max-width: 420px;
   }
 
   .about-figure img {
@@ -350,20 +353,28 @@
     box-shadow:
       0 1px 0 color-mix(in srgb, var(--mark-face-3) 60%, transparent),
       0 2px 0 color-mix(in srgb, var(--mark-ex-2) 50%, transparent),
-      0 16px 34px -14px rgba(20, 10, 2, 0.55);
+      0 10px 20px -12px rgba(20, 10, 2, 0.5);
+  }
+
+  .about-name {
+    font-family: var(--font-display);
+    font-style: normal;
+    font-weight: 800;
+    font-size: clamp(1.25rem, 2.2vw, 1.55rem);
+    letter-spacing: -0.015em;
+    margin: 0.3rem 0 0;
   }
 
   .about-body .role-line {
-    margin-top: 0;
-    margin-bottom: 1.2rem;
+    margin: 0.5rem 0 0.9rem;
   }
 
   .about-body p {
-    margin: 0 0 1rem;
-    max-width: 58ch;
-    font-size: 1.02rem;
-    line-height: 1.65;
-    opacity: 0.85;
+    margin: 0 0 0.75rem;
+    max-width: 76ch;
+    font-size: 0.9rem;
+    line-height: 1.62;
+    opacity: 0.78;
   }
 
   .about-body p:last-child {
@@ -973,11 +984,8 @@
 
   @media (max-width: 780px) {
     .about-grid {
-      grid-template-columns: 1fr;
-      gap: 2.2rem;
-    }
-    .about-figure {
-      max-width: 300px;
+      grid-template-columns: 104px minmax(0, 1fr);
+      gap: 1rem;
     }
     .point {
       grid-template-columns: 52px 1fr;
@@ -1246,38 +1254,6 @@
         <div class="cta-row">
           <a href="#contact" class="btn">Request a Service</a>
           <a href="#services" class="btn">View Services →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="about" data-polarity="normal">
-    <div class="wrap">
-      <div class="section-head">
-        <div>
-          <span class="eyebrow">About</span>
-          <h2>Simon Mutunga</h2>
-        </div>
-      </div>
-
-      <div class="about-grid">
-        <figure class="about-figure">
-          <img
-            src="/profile.jpg"
-            width="1254"
-            height="1254"
-            alt="Portrait of Simon Mutunga, geospatial engineer"
-            loading="lazy"
-            decoding="async"
-          />
-        </figure>
-
-        <div class="about-body">
-          <span class="role-line">Geospatial Engineer</span>
-          <p>I'm a geospatial engineer with over three years of experience supporting climate and environmental initiatives through geospatial analysis, data management, and Python-based workflows.</p>
-          <p>I analyze spatial and environmental data, produce maps and analytical reports, and build decision-support tools for climate risk and sustainable land management.</p>
-          <p>I'm comfortable working in multidisciplinary teams, managing geographical datasets, and communicating technical findings to a range of audiences.</p>
-          <p>I'm passionate about using geospatial science and technology to support nature-based solutions, climate resilience, and evidence-based environmental planning.</p>
         </div>
       </div>
     </div>
@@ -1748,6 +1724,31 @@
     </div>
   </div>
 </footer>
+
+<section id="about" data-polarity="normal">
+  <div class="wrap">
+    <div class="about-grid">
+      <figure class="about-figure">
+        <img
+          src="/profile.jpg"
+          width="1254"
+          height="1254"
+          alt="Portrait of Simon Mutunga, geospatial engineer"
+          loading="lazy"
+          decoding="async"
+        />
+      </figure>
+
+      <div class="about-body">
+        <span class="eyebrow">About</span>
+        <h2 class="about-name">Simon Mutunga</h2>
+        <span class="role-line">Geospatial Engineer</span>
+        <p>I'm a geospatial engineer with over three years of experience supporting climate and environmental initiatives through geospatial analysis, data management, and Python-based workflows. I analyze spatial and environmental data, produce maps and analytical reports, and build decision-support tools for climate risk and sustainable land management.</p>
+        <p>I'm comfortable working in multidisciplinary teams, managing geographical datasets, and communicating technical findings to a range of audiences. I'm passionate about using geospatial science and technology to support nature-based solutions, climate resilience, and evidence-based environmental planning.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <script>
   (function () {
