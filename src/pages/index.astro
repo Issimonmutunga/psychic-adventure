@@ -609,8 +609,7 @@
     justify-content: flex-end;
   }
 
-  .card-flip-btn,
-  .card-visit-btn {
+  .card-flip-btn {
     width: 36px;
     height: 36px;
     border-radius: 999px;
@@ -620,23 +619,45 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 1rem;
-    line-height: 1;
+    position: relative;
+    z-index: 3;
     cursor: pointer;
     transition: background-color 0.2s var(--ease), color 0.2s var(--ease);
   }
 
-  .card-flip-btn:hover,
-  .card-visit-btn:hover {
+  .card-flip-btn:hover {
     background: var(--local-ink);
     color: var(--local-bg);
   }
 
+  .card-flip-btn svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  .card-visit-btn {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding: 2.8rem 2.4rem;
+    color: var(--local-ink);
+  }
+
   .card-visit-btn svg {
-    width: 15px;
-    height: 15px;
+    width: 38px;
+    height: 38px;
+    stroke-width: 1.6;
+    opacity: 0.5;
+    transition: transform 0.3s var(--ease), opacity 0.25s var(--ease);
+  }
+
+  .work-card:hover .card-visit-btn svg,
+  .card-visit-btn:hover svg {
+    transform: translateX(5px);
+    opacity: 1;
   }
 
   .carousel-nav {
@@ -877,12 +898,20 @@
   .loc-tag {
     font-family: var(--font-body);
     font-size: 0.85rem;
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .loc-tag-text {
     opacity: 0.7;
   }
 
   .footer-mark {
     font-family: var(--font-display);
     font-weight: 700;
+    font-size: clamp(1.5rem, 3vw, 2.3rem);
     letter-spacing: -0.005em;
     text-transform: lowercase;
     opacity: 1;
@@ -940,7 +969,7 @@
     .loc-tag {
       width: 100%;
       margin: 0.4rem 0 0;
-      text-align: center;
+      justify-content: center;
     }
   }
   @media (max-width: 420px) {
@@ -1248,7 +1277,7 @@
                 </div>
                 <p class="work-tag">Climate Risk Analysis</p>
                 <div class="card-actions">
-                  <button type="button" class="card-flip-btn" aria-label="Show description">?</button>
+                  <button type="button" class="card-flip-btn" aria-label="Show description"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11.2v5"/><path d="M12 7.9h.01"/></svg></button>
                 </div>
               </div>
               <div class="card-face card-back">
@@ -1273,9 +1302,9 @@
                 </div>
                 <p class="work-tag">Productivity Tool</p>
                 <div class="card-actions">
-                  <button type="button" class="card-flip-btn" aria-label="Show description">?</button>
+                  <button type="button" class="card-flip-btn" aria-label="Show description"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11.2v5"/><path d="M12 7.9h.01"/></svg></button>
                   <a href="https://pangakazi.simonmapper.co.ke/" target="_blank" rel="noopener noreferrer" class="card-visit-btn" aria-label="Visit Pangakazi">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M15 6l6 6-6 6"/></svg>
                   </a>
                 </div>
               </div>
@@ -1300,9 +1329,9 @@
                 </div>
                 <p class="work-tag">Climate Intelligence Tool</p>
                 <div class="card-actions">
-                  <button type="button" class="card-flip-btn" aria-label="Show description">?</button>
+                  <button type="button" class="card-flip-btn" aria-label="Show description"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11.2v5"/><path d="M12 7.9h.01"/></svg></button>
                   <a href="https://zoryn.simonmapper.co.ke/" target="_blank" rel="noopener noreferrer" class="card-visit-btn" aria-label="Visit Zoryn">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M15 6l6 6-6 6"/></svg>
                   </a>
                 </div>
               </div>
@@ -1327,9 +1356,9 @@
                 </div>
                 <p class="work-tag">Geospatial Web Application</p>
                 <div class="card-actions">
-                  <button type="button" class="card-flip-btn" aria-label="Show description">?</button>
+                  <button type="button" class="card-flip-btn" aria-label="Show description"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11.2v5"/><path d="M12 7.9h.01"/></svg></button>
                   <a href="/demos/properties/" class="card-visit-btn" aria-label="View live demo">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M15 6l6 6-6 6"/></svg>
                   </a>
                 </div>
               </div>
@@ -1354,9 +1383,9 @@
                 </div>
                 <p class="work-tag">Agricultural Data Platform</p>
                 <div class="card-actions">
-                  <button type="button" class="card-flip-btn" aria-label="Show description">?</button>
+                  <button type="button" class="card-flip-btn" aria-label="Show description"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11.2v5"/><path d="M12 7.9h.01"/></svg></button>
                   <a href="https://sarateal-frontend.vercel.app/" target="_blank" rel="noopener noreferrer" class="card-visit-btn" aria-label="Visit Sarateal">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M15 6l6 6-6 6"/></svg>
                   </a>
                 </div>
               </div>
@@ -1381,9 +1410,9 @@
                 </div>
                 <p class="work-tag">Web Development</p>
                 <div class="card-actions">
-                  <button type="button" class="card-flip-btn" aria-label="Show description">?</button>
+                  <button type="button" class="card-flip-btn" aria-label="Show description"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11.2v5"/><path d="M12 7.9h.01"/></svg></button>
                   <a href="https://geoepic.co.ke/" target="_blank" rel="noopener noreferrer" class="card-visit-btn" aria-label="Visit site">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M15 6l6 6-6 6"/></svg>
                   </a>
                 </div>
               </div>
@@ -1408,9 +1437,9 @@
                 </div>
                 <p class="work-tag">Flood Risk Analysis</p>
                 <div class="card-actions">
-                  <button type="button" class="card-flip-btn" aria-label="Show description">?</button>
+                  <button type="button" class="card-flip-btn" aria-label="Show description"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11.2v5"/><path d="M12 7.9h.01"/></svg></button>
                   <a href="https://github.com/Issimonmutunga/floodske" target="_blank" rel="noopener noreferrer" class="card-visit-btn" aria-label="View on GitHub">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M15 6l6 6-6 6"/></svg>
                   </a>
                 </div>
               </div>
@@ -1435,9 +1464,9 @@
                 </div>
                 <p class="work-tag">Agricultural GIS Analysis</p>
                 <div class="card-actions">
-                  <button type="button" class="card-flip-btn" aria-label="Show description">?</button>
+                  <button type="button" class="card-flip-btn" aria-label="Show description"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11.2v5"/><path d="M12 7.9h.01"/></svg></button>
                   <a href="https://github.com/Issimonmutunga/AHP-Project" target="_blank" rel="noopener noreferrer" class="card-visit-btn" aria-label="View on GitHub">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M15 6l6 6-6 6"/></svg>
                   </a>
                 </div>
               </div>
@@ -1462,9 +1491,9 @@
                 </div>
                 <p class="work-tag">Web Development</p>
                 <div class="card-actions">
-                  <button type="button" class="card-flip-btn" aria-label="Show description">?</button>
+                  <button type="button" class="card-flip-btn" aria-label="Show description"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11.2v5"/><path d="M12 7.9h.01"/></svg></button>
                   <a href="https://fuzzy-waddle-nu.vercel.app/" target="_blank" rel="noopener noreferrer" class="card-visit-btn" aria-label="Visit site">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M15 6l6 6-6 6"/></svg>
                   </a>
                 </div>
               </div>
@@ -1489,9 +1518,9 @@
                 </div>
                 <p class="work-tag">Ongoing Project</p>
                 <div class="card-actions">
-                  <button type="button" class="card-flip-btn" aria-label="Show description">?</button>
+                  <button type="button" class="card-flip-btn" aria-label="Show description"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11.2v5"/><path d="M12 7.9h.01"/></svg></button>
                   <a href="https://latent-earth.vercel.app/" target="_blank" rel="noopener noreferrer" class="card-visit-btn" aria-label="Visit Latent Earth">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M15 6l6 6-6 6"/></svg>
                   </a>
                 </div>
               </div>
@@ -1516,9 +1545,9 @@
                 </div>
                 <p class="work-tag">Hobby Project</p>
                 <div class="card-actions">
-                  <button type="button" class="card-flip-btn" aria-label="Show description">?</button>
+                  <button type="button" class="card-flip-btn" aria-label="Show description"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11.2v5"/><path d="M12 7.9h.01"/></svg></button>
                   <a href="https://tesseract-explorer.vercel.app/" target="_blank" rel="noopener noreferrer" class="card-visit-btn" aria-label="Visit Tesseract Explorer">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M15 6l6 6-6 6"/></svg>
                   </a>
                 </div>
               </div>
@@ -1621,7 +1650,7 @@
         </a>
       </div>
 
-      <p class="loc-tag"><span class="footer-mark"><span class="mark-pale">simon</span> <span class="mark-deep">maps</span></span> · Geospatial and Software</p>
+      <p class="loc-tag"><span class="footer-mark"><span class="mark-pale">simon</span> <span class="mark-deep">maps</span></span><span class="loc-tag-text">· Geospatial and Software</span></p>
     </div>
   </div>
 </footer>
