@@ -523,6 +523,17 @@
     justify-content: space-between;
   }
 
+  /* The info button's z-index promotes it to its own layer, which can escape the
+     front face's backface culling, so hide it explicitly while flipped. */
+  .work-card.flipped .card-front {
+    pointer-events: none;
+  }
+
+  .work-card.flipped .card-front .card-flip-btn {
+    opacity: 0;
+    visibility: hidden;
+  }
+
   .work-card-top {
     display: flex;
     align-items: center;
@@ -700,7 +711,8 @@
     position: relative;
     z-index: 3;
     cursor: pointer;
-    transition: background-color 0.2s var(--ease), color 0.2s var(--ease);
+    transition: background-color 0.2s var(--ease), color 0.2s var(--ease),
+      opacity 0.2s var(--ease), visibility 0.2s var(--ease);
   }
 
   .card-flip-btn:hover {
