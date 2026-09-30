@@ -480,6 +480,11 @@
 
   .work-grid::-webkit-scrollbar { display: none; }
 
+  .work-grid:focus-visible {
+    outline: 2px solid color-mix(in srgb, var(--local-ink) 45%, transparent);
+    outline-offset: 4px;
+  }
+
   .work-card {
     flex: 0 0 380px;
     height: 360px;
@@ -1004,17 +1009,24 @@
       font-size: 0.88rem;
     }
     .work-card {
-      flex-basis: 300px;
-      height: 340px;
+      flex: 0 0 min(78vw, 320px);
+      height: 300px;
     }
     .card-face {
-      padding: 2rem 1.7rem;
+      padding: 1.7rem 1.5rem;
     }
     .work-title {
       font-size: 1.1rem;
     }
     .card-back-list li {
       font-size: 0.84rem;
+    }
+    .card-flip-btn {
+      width: 44px;
+      height: 44px;
+    }
+    .carousel-nav {
+      display: none;
     }
     .contact-inner h2 {
       font-size: clamp(2rem, 9vw, 3rem);
@@ -1069,15 +1081,11 @@
       font-size: 0.68rem;
     }
     .work-card {
-      flex-basis: 82vw;
+      flex: 0 0 76vw;
+      height: 272px;
     }
-    .carousel-nav {
-      opacity: 1;
-      padding: 0 0.2rem;
-    }
-    .carousel-nav button {
-      width: 38px;
-      height: 38px;
+    .card-face {
+      padding: 1.5rem 1.3rem;
     }
   }
 </style>
@@ -1342,7 +1350,7 @@
       </div>
 
       <div class="work-carousel-wrap">
-        <div class="work-grid" id="work-grid">
+        <div class="work-grid" id="work-grid" tabindex="0" role="region" aria-label="Selected work, scrollable">
 
           <div class="work-card">
             <div class="card-flip-inner">
