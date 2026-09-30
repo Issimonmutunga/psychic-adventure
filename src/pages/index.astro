@@ -525,9 +525,9 @@
 
   .work-card-top {
     display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 0.8rem;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.6rem;
   }
 
   .work-title {
@@ -539,26 +539,34 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    transition: transform 0.28s var(--ease);
+  }
+
+  .work-card:hover .work-title,
+  .work-card.flipped .work-title,
+  .work-card-top:focus-within .work-title {
+    transform: translateY(-3px);
   }
 
   .work-tag {
-    font-family: var(--font-body);
-    font-size: 0.72rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    opacity: 0.55;
+    font-family: var(--font-display);
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: -0.005em;
+    line-height: 1.25;
+    margin: 0 0 0.45rem;
+    opacity: 0.92;
   }
 
-  .work-meta {
-    display: flex;
-    align-items: center;
-    gap: 0.7rem;
-    margin-top: auto;
+  .card-flip-btn.card-flip-btn-sm {
+    width: 26px;
+    height: 26px;
   }
 
-  .work-meta .work-tag {
-    margin: 0;
+  .card-flip-btn.card-flip-btn-sm svg {
+    width: 13px;
+    height: 13px;
   }
 
   .card-back-list {
@@ -569,6 +577,7 @@
     gap: 0.5rem;
     margin: 0;
     padding: 0;
+    min-height: 0;
     overflow-y: auto;
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -1025,6 +1034,17 @@
       width: 44px;
       height: 44px;
     }
+    .card-flip-btn.card-flip-btn-sm {
+      width: 30px;
+      height: 30px;
+    }
+    .card-flip-btn.card-flip-btn-sm svg {
+      width: 15px;
+      height: 15px;
+    }
+    .work-tag {
+      font-size: 0.95rem;
+    }
     .carousel-nav {
       display: none;
     }
@@ -1357,16 +1377,14 @@
               <div class="card-face card-front">
                 <div class="work-card-top">
                   <p class="work-title brand-sarateal">Sarateal</p>
-                </div>
-                <div class="work-meta">
-                  <p class="work-tag">Agricultural Data Platform</p>
-                  <button type="button" class="card-flip-btn" aria-label="Show description"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11.2v5"/><path d="M12 7.9h.01"/></svg></button>
+                  <button type="button" class="card-flip-btn card-flip-btn-sm" aria-label="Show description"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11.2v5"/><path d="M12 7.9h.01"/></svg></button>
                 </div>
                 <a href="https://sarateal-frontend.vercel.app/" target="_blank" rel="noopener noreferrer" class="card-visit-btn" aria-label="Visit Sarateal">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M15 6l6 6-6 6"/></svg>
                 </a>
               </div>
               <div class="card-face card-back">
+                <span class="work-tag">Agricultural Data Platform</span>
                 <ol class="card-back-list">
                   <li>Market prices, weather, and geospatial data combined into one dashboard</li>
                   <li>Trend tracking to help time sales and planting decisions</li>
@@ -1384,16 +1402,14 @@
               <div class="card-face card-front">
                 <div class="work-card-top">
                   <p class="work-title"><span style="color:#0891b2">Zoryn</span></p>
-                </div>
-                <div class="work-meta">
-                  <p class="work-tag">Climate Intelligence Tool</p>
-                  <button type="button" class="card-flip-btn" aria-label="Show description"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11.2v5"/><path d="M12 7.9h.01"/></svg></button>
+                  <button type="button" class="card-flip-btn card-flip-btn-sm" aria-label="Show description"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11.2v5"/><path d="M12 7.9h.01"/></svg></button>
                 </div>
                 <a href="https://zoryn.simonmapper.co.ke/" target="_blank" rel="noopener noreferrer" class="card-visit-btn" aria-label="Visit Zoryn">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M15 6l6 6-6 6"/></svg>
                 </a>
               </div>
               <div class="card-face card-back">
+                <span class="work-tag">Climate Intelligence Tool</span>
                 <ol class="card-back-list">
                   <li>Interactive maps and timelines for exploring climate and environmental risk</li>
                   <li>Geospatial layers that reveal how hazard exposure shifts over time</li>
@@ -1411,16 +1427,14 @@
               <div class="card-face card-front">
                 <div class="work-card-top">
                   <p class="work-title brand-geoepic">Geoepic <span class="accent">Surveys</span></p>
-                </div>
-                <div class="work-meta">
-                  <p class="work-tag">Web Development</p>
-                  <button type="button" class="card-flip-btn" aria-label="Show description"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11.2v5"/><path d="M12 7.9h.01"/></svg></button>
+                  <button type="button" class="card-flip-btn card-flip-btn-sm" aria-label="Show description"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11.2v5"/><path d="M12 7.9h.01"/></svg></button>
                 </div>
                 <a href="https://geoepic.co.ke/" target="_blank" rel="noopener noreferrer" class="card-visit-btn" aria-label="Visit Geoepic Surveys">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M15 6l6 6-6 6"/></svg>
                 </a>
               </div>
               <div class="card-face card-back">
+                <span class="work-tag">Web Development</span>
                 <ol class="card-back-list">
                   <li>Professional web presence for a geospatial and land-surveying consultancy</li>
                   <li>Clear presentation of surveying, GIS, and engineering-survey services</li>
@@ -1438,16 +1452,14 @@
               <div class="card-face card-front">
                 <div class="work-card-top">
                   <p class="work-title brand-latent">Latent <span class="accent">Earth</span></p>
-                </div>
-                <div class="work-meta">
-                  <p class="work-tag">Ongoing Project</p>
-                  <button type="button" class="card-flip-btn" aria-label="Show description"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11.2v5"/><path d="M12 7.9h.01"/></svg></button>
+                  <button type="button" class="card-flip-btn card-flip-btn-sm" aria-label="Show description"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11.2v5"/><path d="M12 7.9h.01"/></svg></button>
                 </div>
                 <a href="https://latent-earth.vercel.app/" target="_blank" rel="noopener noreferrer" class="card-visit-btn" aria-label="Visit Latent Earth">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M15 6l6 6-6 6"/></svg>
                 </a>
               </div>
               <div class="card-face card-back">
+                <span class="work-tag">Ongoing Project</span>
                 <ol class="card-back-list">
                   <li>A browser laboratory for discovering signals hidden inside Earth-observation embeddings</li>
                   <li>Side-by-side comparison of imagery, embeddings, clusters, and ranked signals in one view</li>
@@ -1465,13 +1477,11 @@
               <div class="card-face card-front">
                 <div class="work-card-top">
                   <p class="work-title"><span style="color:#c2483d">Climate</span> Risk Assessment</p>
-                </div>
-                <div class="work-meta">
-                  <p class="work-tag">Climate Risk Analysis</p>
-                  <button type="button" class="card-flip-btn" aria-label="Show description"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11.2v5"/><path d="M12 7.9h.01"/></svg></button>
+                  <button type="button" class="card-flip-btn card-flip-btn-sm" aria-label="Show description"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11.2v5"/><path d="M12 7.9h.01"/></svg></button>
                 </div>
               </div>
               <div class="card-face card-back">
+                <span class="work-tag">Climate Risk Analysis</span>
                 <ol class="card-back-list">
                   <li>Climate-risk and spatial analysis covering drought, flood, heat, and water-security hazards</li>
                   <li>Python workflows for collecting, processing, and validating environmental datasets</li>
@@ -1490,16 +1500,14 @@
               <div class="card-face card-front">
                 <div class="work-card-top">
                   <p class="work-title brand-pangakazi">panga <span class="accent">kazi</span></p>
-                </div>
-                <div class="work-meta">
-                  <p class="work-tag">Productivity Tool</p>
-                  <button type="button" class="card-flip-btn" aria-label="Show description"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11.2v5"/><path d="M12 7.9h.01"/></svg></button>
+                  <button type="button" class="card-flip-btn card-flip-btn-sm" aria-label="Show description"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11.2v5"/><path d="M12 7.9h.01"/></svg></button>
                 </div>
                 <a href="https://pangakazi.simonmapper.co.ke/" target="_blank" rel="noopener noreferrer" class="card-visit-btn" aria-label="Visit Pangakazi">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M15 6l6 6-6 6"/></svg>
                 </a>
               </div>
               <div class="card-face card-back">
+                <span class="work-tag">Productivity Tool</span>
                 <ol class="card-back-list">
                   <li>Turning informal WhatsApp and SMS messages into clean, timestamped job records</li>
                   <li>Automatic extraction of client, task, and schedule details from chat threads</li>
@@ -1517,16 +1525,14 @@
               <div class="card-face card-front">
                 <div class="work-card-top">
                   <p class="work-title"><span style="color:#b8860b">Property</span> Sales</p>
-                </div>
-                <div class="work-meta">
-                  <p class="work-tag">Geospatial Web Application</p>
-                  <button type="button" class="card-flip-btn" aria-label="Show description"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11.2v5"/><path d="M12 7.9h.01"/></svg></button>
+                  <button type="button" class="card-flip-btn card-flip-btn-sm" aria-label="Show description"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11.2v5"/><path d="M12 7.9h.01"/></svg></button>
                 </div>
                 <a href="/demos/properties/" class="card-visit-btn" aria-label="View live demo">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M15 6l6 6-6 6"/></svg>
                 </a>
               </div>
               <div class="card-face card-back">
+                <span class="work-tag">Geospatial Web Application</span>
                 <ol class="card-back-list">
                   <li>Interactive parcel mapping with live availability status</li>
                   <li>Search by location, size, and price across listed properties</li>
@@ -1544,16 +1550,14 @@
               <div class="card-face card-front">
                 <div class="work-card-top">
                   <p class="work-title">Susceptibility Mapping</p>
-                </div>
-                <div class="work-meta">
-                  <p class="work-tag">Flood Risk Analysis</p>
-                  <button type="button" class="card-flip-btn" aria-label="Show description"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11.2v5"/><path d="M12 7.9h.01"/></svg></button>
+                  <button type="button" class="card-flip-btn card-flip-btn-sm" aria-label="Show description"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11.2v5"/><path d="M12 7.9h.01"/></svg></button>
                 </div>
                 <a href="https://github.com/Issimonmutunga/floodske" target="_blank" rel="noopener noreferrer" class="card-visit-btn" aria-label="View on GitHub">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M15 6l6 6-6 6"/></svg>
                 </a>
               </div>
               <div class="card-face card-back">
+                <span class="work-tag">Flood Risk Analysis</span>
                 <ol class="card-back-list">
                   <li>Flood-risk mapping using terrain, rainfall, and land-use data</li>
                   <li>A single susceptibility index built from multiple risk factors</li>
@@ -1571,16 +1575,14 @@
               <div class="card-face card-front">
                 <div class="work-card-top">
                   <p class="work-title">Crop Suitability Analysis</p>
-                </div>
-                <div class="work-meta">
-                  <p class="work-tag">Agricultural GIS Analysis</p>
-                  <button type="button" class="card-flip-btn" aria-label="Show description"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11.2v5"/><path d="M12 7.9h.01"/></svg></button>
+                  <button type="button" class="card-flip-btn card-flip-btn-sm" aria-label="Show description"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11.2v5"/><path d="M12 7.9h.01"/></svg></button>
                 </div>
                 <a href="https://github.com/Issimonmutunga/AHP-Project" target="_blank" rel="noopener noreferrer" class="card-visit-btn" aria-label="View on GitHub">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M15 6l6 6-6 6"/></svg>
                 </a>
               </div>
               <div class="card-face card-back">
+                <span class="work-tag">Agricultural GIS Analysis</span>
                 <ol class="card-back-list">
                   <li>Multi-criteria (AHP) suitability mapping using soil, rainfall, temperature, and elevation</li>
                   <li>A single suitability score per zone instead of judging factors separately</li>
@@ -1598,16 +1600,14 @@
               <div class="card-face card-front">
                 <div class="work-card-top">
                   <p class="work-title brand-sauti">Sauti Kwa Ukuta</p>
-                </div>
-                <div class="work-meta">
-                  <p class="work-tag">Web Development</p>
-                  <button type="button" class="card-flip-btn" aria-label="Show description"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11.2v5"/><path d="M12 7.9h.01"/></svg></button>
+                  <button type="button" class="card-flip-btn card-flip-btn-sm" aria-label="Show description"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11.2v5"/><path d="M12 7.9h.01"/></svg></button>
                 </div>
                 <a href="https://fuzzy-waddle-nu.vercel.app/" target="_blank" rel="noopener noreferrer" class="card-visit-btn" aria-label="Visit Sauti Kwa Ukuta">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M15 6l6 6-6 6"/></svg>
                 </a>
               </div>
               <div class="card-face card-back">
+                <span class="work-tag">Web Development</span>
                 <ol class="card-back-list">
                   <li>A resource hub for lived narratives, harm-reduction, and human-rights information</li>
                   <li>A safe, accessible space centered on the voices of the community it serves</li>
@@ -1625,16 +1625,14 @@
               <div class="card-face card-front">
                 <div class="work-card-top">
                   <p class="work-title brand-tesseract">Tesseract <span class="accent">Explorer</span></p>
-                </div>
-                <div class="work-meta">
-                  <p class="work-tag">Hobby Project</p>
-                  <button type="button" class="card-flip-btn" aria-label="Show description"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11.2v5"/><path d="M12 7.9h.01"/></svg></button>
+                  <button type="button" class="card-flip-btn card-flip-btn-sm" aria-label="Show description"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11.2v5"/><path d="M12 7.9h.01"/></svg></button>
                 </div>
                 <a href="https://tesseract-explorer.vercel.app/" target="_blank" rel="noopener noreferrer" class="card-visit-btn" aria-label="Visit Tesseract Explorer">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M15 6l6 6-6 6"/></svg>
                 </a>
               </div>
               <div class="card-face card-back">
+                <span class="work-tag">Hobby Project</span>
                 <ol class="card-back-list">
                   <li>A mathematically true 4D hypercube: 16 vertices and 32 edges, rotating in the XW, YW, and ZW planes</li>
                   <li>Perspective projection from four dimensions down into a real-time Three.js scene</li>
