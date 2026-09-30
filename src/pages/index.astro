@@ -68,7 +68,6 @@
     --mark-face-3: #4d2c11;
     --mark-ex-1: #6d4319;
     --mark-ex-2: #55320f;
-    --mark-ex-3: #3c220a;
     --mark-pale: #8f7458;
   }
 
@@ -80,7 +79,6 @@
     --mark-face-3: #9a6526;
     --mark-ex-1: #6f4718;
     --mark-ex-2: #4e300f;
-    --mark-ex-3: #2e1b08;
     --mark-pale: #b9a68f;
   }
 
@@ -241,6 +239,7 @@
     font-weight: 700;
     font-size: clamp(1.5rem, 3vw, 2.3rem);
     letter-spacing: -0.005em;
+    line-height: 1.05;
     text-transform: lowercase;
     margin-bottom: 1.8rem;
   }
@@ -248,10 +247,14 @@
   .mark-pale {
     font-weight: 400;
     color: var(--mark-pale);
+    line-height: 1.05;
   }
 
   .mark-deep {
     font-weight: 800;
+    line-height: 1.05;
+    position: relative;
+    top: -1px;
     background-image: linear-gradient(165deg, var(--mark-face-1) 0%, var(--mark-face-2) 52%, var(--mark-face-3) 100%);
     -webkit-background-clip: text;
     background-clip: text;
@@ -259,10 +262,8 @@
     -webkit-text-fill-color: transparent;
     filter:
       drop-shadow(0 1px 0 var(--mark-ex-1))
-      drop-shadow(0 2px 0 var(--mark-ex-2))
-      drop-shadow(0 3px 0 var(--mark-ex-3))
-      drop-shadow(0 4px 0 color-mix(in srgb, var(--mark-ex-3) 55%, transparent))
-      drop-shadow(0 7px 3px rgba(20, 10, 2, 0.32));
+      drop-shadow(0 2px 0 color-mix(in srgb, var(--mark-ex-2) 80%, transparent))
+      drop-shadow(0 4px 2px rgba(20, 10, 2, 0.22));
   }
 
   .hero-grid {
@@ -922,8 +923,9 @@
   .footer-mark {
     font-family: var(--font-display);
     font-weight: 700;
-    font-size: clamp(1.5rem, 3vw, 2.3rem);
+    font-size: clamp(1.05rem, 1.7vw, 1.35rem);
     letter-spacing: -0.005em;
+    line-height: 1.05;
     text-transform: lowercase;
     opacity: 1;
   }
