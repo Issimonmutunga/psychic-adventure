@@ -329,6 +329,47 @@
     color: var(--local-bg);
   }
 
+  .about-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: start;
+  }
+
+  .about-figure {
+    margin: 0;
+    max-width: 420px;
+  }
+
+  .about-figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    box-shadow:
+      0 1px 0 color-mix(in srgb, var(--mark-face-3) 60%, transparent),
+      0 2px 0 color-mix(in srgb, var(--mark-ex-2) 50%, transparent),
+      0 16px 34px -14px rgba(20, 10, 2, 0.55);
+  }
+
+  .about-body .role-line {
+    margin-top: 0;
+    margin-bottom: 1.2rem;
+  }
+
+  .about-body p {
+    margin: 0 0 1rem;
+    max-width: 58ch;
+    font-size: 1.02rem;
+    line-height: 1.65;
+    opacity: 0.85;
+  }
+
+  .about-body p:last-child {
+    margin-bottom: 0;
+  }
+
   .section-head {
     display: flex;
     align-items: baseline;
@@ -931,6 +972,13 @@
   }
 
   @media (max-width: 780px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+      gap: 2.2rem;
+    }
+    .about-figure {
+      max-width: 300px;
+    }
     .point {
       grid-template-columns: 52px 1fr;
       gap: 0.9rem;
@@ -1039,6 +1087,7 @@
       "name": "Simon Mutunga",
       "url": "https://www.simonmapper.co.ke/",
       "jobTitle": "Geospatial Engineer",
+      "image": "https://www.simonmapper.co.ke/profile.jpg",
       "description": "Geospatial engineer in Nairobi, Kenya, working across GIS and spatial analysis, geospatial data engineering, remote sensing, climate and environmental risk, AI and data automation, cartography, and web development.",
       "worksFor": { "@id": "https://www.simonmapper.co.ke/#organization" },
       "knowsAbout": [
@@ -1197,6 +1246,38 @@
         <div class="cta-row">
           <a href="#contact" class="btn">Request a Service</a>
           <a href="#services" class="btn">View Services →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" data-polarity="normal">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">About</span>
+          <h2>Simon Mutunga</h2>
+        </div>
+      </div>
+
+      <div class="about-grid">
+        <figure class="about-figure">
+          <img
+            src="/profile.jpg"
+            width="1254"
+            height="1254"
+            alt="Portrait of Simon Mutunga, geospatial engineer"
+            loading="lazy"
+            decoding="async"
+          />
+        </figure>
+
+        <div class="about-body">
+          <span class="role-line">Geospatial Engineer</span>
+          <p>I'm a geospatial engineer with over three years of experience supporting climate and environmental initiatives through geospatial analysis, data management, and Python-based workflows.</p>
+          <p>I analyze spatial and environmental data, produce maps and analytical reports, and build decision-support tools for climate risk and sustainable land management.</p>
+          <p>I'm comfortable working in multidisciplinary teams, managing geographical datasets, and communicating technical findings to a range of audiences.</p>
+          <p>I'm passionate about using geospatial science and technology to support nature-based solutions, climate resilience, and evidence-based environmental planning.</p>
         </div>
       </div>
     </div>
