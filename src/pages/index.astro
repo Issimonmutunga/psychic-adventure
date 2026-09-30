@@ -793,7 +793,6 @@
     grid-template-columns: 1.2fr 1fr;
     gap: 3rem;
     align-items: end;
-    padding-bottom: clamp(2.5rem, 6vw, 4rem);
   }
 
   .contact-form {
@@ -917,14 +916,20 @@
     height: 18px;
   }
 
+  footer[data-polarity] {
+    border-top: 1px solid color-mix(in srgb, var(--local-ink) 18%, transparent);
+  }
+
+  footer[data-polarity] .wrap {
+    padding: clamp(2rem, 4.5vw, 3rem) 0 clamp(1.8rem, 4vw, 2.4rem);
+  }
+
   .footer-bottom {
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 1.2rem;
-    padding-top: 1.8rem;
-    border-top: 1px solid color-mix(in srgb, var(--local-ink) 20%, transparent);
   }
 
   .footer-links {
@@ -1675,7 +1680,7 @@
 
 </main>
 
-<footer id="contact" data-polarity="invert">
+<section id="contact" data-polarity="invert">
   <div class="wrap">
     <div class="footer-top">
       <div class="contact-inner">
@@ -1712,7 +1717,11 @@
         </button>
       </form>
     </div>
+  </div>
+</section>
 
+<footer data-polarity="invert">
+  <div class="wrap">
     <div class="footer-bottom">
       <div class="footer-links">
         <a href="mailto:besimonmutunga@gmail.com" class="icon-btn icon-email" aria-label="Send an email" title="Gmail">
