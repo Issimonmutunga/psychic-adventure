@@ -6,6 +6,8 @@
 <title>Simon | GIS, Geospatial & Remote Sensing Services in Kenya</title>
 
 <link rel="icon" href="/favicon.ico" />
+<meta name="theme-color" content="#f0dcc7" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#0f0904" media="(prefers-color-scheme: dark)" />
 
 <meta name="description" content="Geospatial engineer with 3+ years in climate and environmental work. I build GIS analyses, maps, and decision-support tools with Python in Nairobi, Kenya." />
 <meta name="author" content="Simon Mutunga" />
@@ -39,7 +41,7 @@
 
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; scroll-padding-top: 70px; }
+  html { scroll-behavior: smooth; scroll-padding-top: 76px; }
 
   .sr-only {
     position: absolute;
@@ -58,28 +60,40 @@
     --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     --font-playful: 'Baloo 2', 'Manrope', cursive, sans-serif;
     --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --radius: 28px;
+    --radius-tile: 16px;
+    --gap: 0.9rem;
   }
 
+  /*
+    Figure-ground palette
+    --bg0      the ground the cards sit on
+    --surface  the main card colour
+    --accent   the orange theme colour
+    --deep     the dark card
+  */
   html[data-theme="light"] {
-    --bg0: #f4ece0;
-    --ink0: #2a1c12;
-    --mark-face-1: #b9813c;
-    --mark-face-2: #8a5a26;
-    --mark-face-3: #4d2c11;
-    --mark-ex-1: #6d4319;
-    --mark-ex-2: #55320f;
-    --mark-pale: #8f7458;
+    --bg0: #f0dcc7;
+    --surface: #fff7ee;
+    --ink0: #2a1608;
+    --accent: #f4801f;
+    --on-accent: #2a1608;
+    --deep: #2a1608;
+    --on-deep: #fbeedd;
+    --mark: #d9560a;
+    --mark-pale: #b08a6c;
   }
 
   html[data-theme="dark"] {
-    --bg0: #16100b;
-    --ink0: #ecdfcd;
-    --mark-face-1: #f0d2a6;
-    --mark-face-2: #cd9a5c;
-    --mark-face-3: #9a6526;
-    --mark-ex-1: #6f4718;
-    --mark-ex-2: #4e300f;
-    --mark-pale: #b9a68f;
+    --bg0: #0f0904;
+    --surface: #1c110a;
+    --ink0: #f6e6d3;
+    --accent: #ff8f3a;
+    --on-accent: #1b0e05;
+    --deep: #2e1b0e;
+    --on-deep: #fbeedd;
+    --mark: #ff9140;
+    --mark-pale: #b9a08a;
   }
 
   body {
@@ -93,23 +107,16 @@
     position: relative;
   }
 
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    z-index: 999;
-    pointer-events: none;
-    opacity: 0.05;
-    mix-blend-mode: overlay;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  ::selection {
+    background: var(--accent);
+    color: var(--on-accent);
   }
 
   a { color: inherit; text-decoration: none; }
   ul { list-style: none; }
   img { max-width: 100%; display: block; }
 
-  .wrap { width: min(1120px, 90%); margin: 0 auto; }
-
+  /* Keyboard focus ring is kept for accessibility */
   :focus-visible {
     outline: 2px solid currentColor;
     outline-offset: 4px;
@@ -133,17 +140,73 @@
     }
   }
 
-  /* ---- Nav ---- */
+  /* ---- Layout: every section is one continuous card on the ground ---- */
+
+  section[data-polarity],
+  footer[data-polarity] {
+    --local-bg: var(--surface);
+    --local-ink: var(--ink0);
+    --local-tile: color-mix(in srgb, var(--accent) 12%, var(--local-bg));
+    --local-tile-hover: color-mix(in srgb, var(--accent) 24%, var(--local-bg));
+    width: min(1240px, calc(100% - 1.5rem));
+    margin: 0 auto var(--gap);
+    border-radius: var(--radius);
+    background: var(--local-bg);
+    color: var(--local-ink);
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.3s var(--ease), color 0.3s var(--ease);
+  }
+
+  section[data-polarity="accent"] {
+    --local-bg: var(--accent);
+    --local-ink: var(--on-accent);
+    --local-tile: color-mix(in srgb, var(--on-accent) 9%, var(--accent));
+    --local-tile-hover: color-mix(in srgb, var(--on-accent) 15%, var(--accent));
+  }
+
+  section[data-polarity="deep"] {
+    --local-bg: var(--deep);
+    --local-ink: var(--on-deep);
+    --local-tile: color-mix(in srgb, var(--on-deep) 10%, var(--deep));
+    --local-tile-hover: color-mix(in srgb, var(--on-deep) 16%, var(--deep));
+  }
+
+  section[data-polarity="ground"],
+  footer[data-polarity="ground"] {
+    --local-bg: transparent;
+    --local-ink: var(--ink0);
+    border-radius: 0;
+    overflow: visible;
+  }
+
+  section[data-polarity] .wrap,
+  footer[data-polarity] .wrap {
+    position: relative;
+    z-index: 2;
+    width: 88%;
+    margin: 0 auto;
+    padding: clamp(2.5rem, 6vw, 4.5rem) 0;
+  }
+
+  .nav .wrap {
+    width: calc(min(1240px, 100% - 1.5rem) * 0.88);
+    margin: 0 auto;
+  }
+
+  footer[data-polarity] .wrap {
+    width: calc(min(1240px, 100% - 1.5rem) * 0.88);
+    padding: clamp(1.5rem, 3vw, 2rem) 0 clamp(2rem, 4vw, 3rem);
+  }
+
+  /* ---- Nav: solid ground colour, no line ---- */
 
   .nav {
     position: sticky;
     top: 0;
     z-index: 50;
     padding: 1.1rem 0;
-    background: color-mix(in srgb, var(--bg0) 88%, transparent);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-bottom: 1px solid color-mix(in srgb, var(--ink0) 16%, transparent);
+    background: var(--bg0);
   }
 
   .nav .wrap {
@@ -182,37 +245,32 @@
     font-family: var(--font-body);
     font-size: 0.92rem;
     font-weight: 500;
-    text-transform: none;
-    letter-spacing: 0;
-    padding-bottom: 3px;
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.2s var(--ease), opacity 0.2s var(--ease);
-    opacity: 0.7;
+    opacity: 0.65;
+    transition: opacity 0.2s var(--ease);
   }
 
   .nav-links a:hover {
     opacity: 1;
-    border-bottom-color: currentColor;
   }
 
   .theme-toggle-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 32px;
-    height: 32px;
+    width: 34px;
+    height: 34px;
     padding: 0;
-    border: 1px solid color-mix(in srgb, var(--ink0) 30%, transparent);
+    border: none;
     border-radius: 999px;
-    background: transparent;
+    background: color-mix(in srgb, var(--ink0) 9%, transparent);
     color: var(--ink0);
     cursor: pointer;
-    transition: background-color 0.2s var(--ease), color 0.2s var(--ease), border-color 0.2s var(--ease);
+    transition: background-color 0.2s var(--ease), color 0.2s var(--ease);
   }
 
   .theme-toggle-btn:hover {
-    background: var(--ink0);
-    color: var(--bg0);
+    background: var(--accent);
+    color: var(--on-accent);
   }
 
   .theme-toggle-btn svg {
@@ -227,49 +285,11 @@
     display: block;
   }
 
-  /* ---- Section polarity ---- */
-
-  section[data-polarity],
-  footer[data-polarity] {
-    --local-bg: var(--bg0);
-    --local-ink: var(--ink0);
-    background: var(--local-bg);
-    color: var(--local-ink);
-    position: relative;
-    overflow: hidden;
-  }
-
-  section[data-polarity="invert"],
-  footer[data-polarity="invert"] {
-    --local-bg: var(--ink0);
-    --local-ink: var(--bg0);
-  }
-
-  section[data-polarity] .wrap,
-  footer[data-polarity] .wrap {
-    position: relative;
-    z-index: 2;
-    padding: clamp(3.5rem, 9vw, 7.5rem) 0 clamp(2rem, 5vw, 3rem);
-  }
-
-  /* Tighter vertical rhythm so the page flows hero -> work without a big gap */
-  section.hero[data-polarity] .wrap {
-    padding: clamp(2.5rem, 6vw, 4.5rem) 0 clamp(1.2rem, 3vw, 2rem);
-  }
-
-  #work .wrap {
-    padding: clamp(1.2rem, 3vw, 2rem) 0 clamp(2.5rem, 6vw, 4.5rem);
-  }
-
-  #services .wrap {
-    padding: clamp(2.5rem, 6vw, 4.5rem) 0;
-  }
-
-  #contact .wrap {
-    padding: clamp(2.5rem, 6vw, 4.5rem) 0 clamp(1.5rem, 4vw, 2.5rem);
-  }
-
   /* ---- Hero ---- */
+
+  section.hero[data-polarity] .wrap {
+    padding: clamp(3rem, 7vw, 5.5rem) 0 clamp(2.5rem, 5vw, 4rem);
+  }
 
   .hero-mark {
     font-family: var(--font-display);
@@ -278,7 +298,7 @@
     letter-spacing: -0.005em;
     line-height: 1.05;
     text-transform: lowercase;
-    margin-bottom: 1.8rem;
+    margin-bottom: 2rem;
   }
 
   .mark-pale {
@@ -290,17 +310,7 @@
   .mark-deep {
     font-weight: 800;
     line-height: 1.05;
-    position: relative;
-    top: -1px;
-    background-image: linear-gradient(165deg, var(--mark-face-1) 0%, var(--mark-face-2) 52%, var(--mark-face-3) 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    -webkit-text-fill-color: transparent;
-    filter:
-      drop-shadow(0 1px 0 var(--mark-ex-1))
-      drop-shadow(0 2px 0 color-mix(in srgb, var(--mark-ex-2) 80%, transparent))
-      drop-shadow(0 4px 2px rgba(20, 10, 2, 0.22));
+    color: var(--mark);
   }
 
   .hero-grid {
@@ -330,11 +340,12 @@
   .cta-row {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.9rem;
-    margin-top: 1.6rem;
+    gap: 0.7rem;
+    margin-top: 1.8rem;
     grid-column: 1 / -1;
   }
 
+  /* Buttons are filled shapes, no borders */
   .btn {
     display: inline-flex;
     align-items: center;
@@ -344,12 +355,18 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    padding: 0.9rem 1.5rem;
-    border: 1.5px solid var(--local-ink);
-    background: transparent;
+    padding: 1rem 1.6rem;
+    border: none;
+    border-radius: 999px;
+    background: var(--local-tile);
     color: var(--local-ink);
     cursor: pointer;
     transition: background-color 0.2s var(--ease), color 0.2s var(--ease);
+  }
+
+  .btn-solid {
+    background: var(--accent);
+    color: var(--on-accent);
   }
 
   .btn:hover {
@@ -364,7 +381,7 @@
     align-items: baseline;
     justify-content: space-between;
     gap: 1rem;
-    margin-bottom: 1.6rem;
+    margin-bottom: 2rem;
     flex-wrap: wrap;
   }
 
@@ -391,94 +408,51 @@
     opacity: 0.65;
   }
 
-  /* ---- Selected work: compact tile grid, no outlines ---- */
+  /* ---- Selected work: small tonal tiles inside one card ---- */
 
   .work-grid {
-    --tile-h: 244px;
+    --tile-h: 152px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
-    gap: 0.9rem;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 0.6rem;
   }
 
   .work-card {
-    height: var(--tile-h);
-    perspective: 1600px;
-  }
-
-  .card-flip-inner {
     position: relative;
-    width: 100%;
-    height: 100%;
-    transition: transform 0.6s var(--ease);
-    transform-style: preserve-3d;
-  }
-
-  .work-card.flipped .card-flip-inner {
-    transform: rotateY(180deg);
-  }
-
-  .card-face {
-    position: absolute;
-    inset: 0;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    /* A soft tint gives each tile its shape; there is no border or outline */
-    background: color-mix(in srgb, var(--local-ink) 6%, var(--local-bg));
+    height: var(--tile-h);
+    padding: 0.95rem 1rem;
+    border-radius: var(--radius-tile);
+    background: var(--local-tile);
     color: var(--local-ink);
-    box-sizing: border-box;
-    padding: 1.15rem 1.2rem;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.35rem;
     transition: background-color 0.25s var(--ease);
   }
 
-  .work-card:hover .card-face {
-    background: color-mix(in srgb, var(--local-ink) 10%, var(--local-bg));
-  }
-
-  .card-back {
-    transform: rotateY(180deg);
-    justify-content: flex-start;
-    cursor: pointer;
-  }
-
-  /* The info button's z-index promotes it to its own layer, which can escape the
-     front face's backface culling, so hide it explicitly while flipped. */
-  .work-card.flipped .card-front {
-    pointer-events: none;
-  }
-
-  .work-card.flipped .card-front .card-flip-btn {
-    opacity: 0;
-    visibility: hidden;
-  }
-
-  .work-card-top {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 0.6rem;
+  .work-card:hover,
+  .work-card.is-active {
+    background: var(--local-tile-hover);
   }
 
   .work-title {
     font-family: var(--font-display);
     font-style: normal;
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: 1rem;
     line-height: 1.2;
     letter-spacing: -0.01em;
     display: block;
-    flex: 1;
-    min-width: 0;
+    overflow-wrap: break-word;
+    hyphens: auto;
   }
 
-  /* Category line on the front so the grid can be scanned without flipping */
+  /* Category line on the tile so the grid can be scanned at a glance */
   .work-tag-front {
     font-family: var(--font-body);
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: 500;
-    line-height: 1.4;
+    line-height: 1.35;
     margin: 0;
     opacity: 0.6;
   }
@@ -487,58 +461,76 @@
     font-family: var(--font-display);
     font-style: normal;
     font-weight: 700;
-    font-size: 0.92rem;
+    font-size: 0.9rem;
     letter-spacing: -0.005em;
     line-height: 1.25;
-    margin: 0 0 0.1rem;
-    padding-right: 1.8rem;
+    margin: 0;
     opacity: 0.92;
   }
 
-  .card-back-list {
-    list-style: none;
-    counter-reset: card-list;
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-    margin: 0;
+  /* Info button bottom-left, link arrow bottom-right: titles keep the full tile width */
+  .work-info-btn {
+    position: absolute;
+    left: 0.7rem;
+    bottom: 0.7rem;
+    z-index: 3;
+    width: 26px;
+    height: 26px;
     padding: 0;
-    min-height: 0;
-    overflow-y: auto;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+    border: none;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--local-ink) 10%, transparent);
+    color: var(--local-ink);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s var(--ease), color 0.2s var(--ease);
   }
 
-  .card-back-list::-webkit-scrollbar {
-    display: none;
+  .work-info-btn svg {
+    width: 16px;
+    height: 16px;
   }
 
-  .card-back-list li {
-    counter-increment: card-list;
+  .work-info-btn:hover,
+  .work-info-btn[aria-expanded="true"] {
+    background: var(--local-ink);
+    color: var(--local-bg);
+  }
+
+  .card-visit-btn {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
     display: flex;
-    align-items: baseline;
-    gap: 0.4rem;
-    font-family: var(--font-playful);
-    font-weight: 500;
-    font-size: 0.78rem;
-    line-height: 1.35;
-    opacity: 0.9;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding: 0.8rem 0.9rem;
+    border-radius: var(--radius-tile);
+    color: var(--local-ink);
   }
 
-  .card-back-list li::before {
-    content: counter(card-list) '.';
-    font-family: var(--font-playful);
-    font-weight: 700;
-    opacity: 0.55;
-    flex-shrink: 0;
+  .card-visit-btn svg {
+    width: 20px;
+    height: 20px;
+    stroke-width: 1.6;
+    opacity: 0.5;
+    transition: transform 0.3s var(--ease), opacity 0.25s var(--ease);
   }
 
-  /* Brand treatments: same families and colours, scaled to the smaller tile */
+  .work-card:hover .card-visit-btn svg,
+  .card-visit-btn:hover svg {
+    transform: translateX(3px);
+    opacity: 1;
+  }
+
+  /* Brand treatments: same families and colours, scaled to the small tile */
 
   .brand-geoepic {
     font-family: 'EB Garamond', serif;
     font-weight: 500;
-    font-size: 1.35rem;
+    font-size: 1.25rem;
     letter-spacing: 0.005em;
   }
 
@@ -570,7 +562,7 @@
   .brand-sarateal {
     font-family: 'Shantell Sans', 'Baloo 2', cursive, sans-serif;
     font-weight: 800;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     letter-spacing: -0.005em;
     color: #1e4a3d;
   }
@@ -582,9 +574,9 @@
   .brand-tesseract {
     font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
     font-weight: 500;
-    font-size: 0.88rem;
+    font-size: 0.8rem;
     text-transform: uppercase;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.1em;
   }
 
   .brand-tesseract .accent {
@@ -595,7 +587,7 @@
   .brand-latent {
     font-family: var(--font-body);
     font-weight: 500;
-    font-size: 1.15rem;
+    font-size: 1.05rem;
     letter-spacing: 0.015em;
   }
 
@@ -607,138 +599,165 @@
     color: #7fd6e0;
   }
 
-  .card-flip-btn {
-    width: 36px;
-    height: 36px;
-    border-radius: 999px;
-    border: 1px solid color-mix(in srgb, var(--local-ink) 30%, transparent);
-    background: transparent;
-    color: var(--local-ink);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    z-index: 3;
-    cursor: pointer;
-    transition: background-color 0.2s var(--ease), color 0.2s var(--ease),
-      opacity 0.2s var(--ease), visibility 0.2s var(--ease);
+  /* Inline brand colours on a few titles need a lift on the dark ground */
+  html[data-theme="dark"] .work-title span[style] {
+    filter: brightness(1.35);
   }
 
-  .card-flip-btn:hover {
+  /* Last tile: solid orange, the one deliberate accent in the grid */
+  .work-more {
+    justify-content: flex-start;
+    background: var(--accent);
+    color: var(--on-accent);
+    transition: filter 0.25s var(--ease);
+  }
+
+  .work-more:hover {
+    background: var(--accent);
+    filter: brightness(1.08);
+  }
+
+  .work-more .work-tag-front {
+    opacity: 0.75;
+  }
+
+  .work-more svg {
+    position: absolute;
+    right: 0.9rem;
+    bottom: 0.8rem;
+    width: 20px;
+    height: 20px;
+    stroke-width: 1.6;
+    transition: transform 0.3s var(--ease);
+  }
+
+  .work-more:hover svg {
+    transform: translateX(3px);
+  }
+
+  /* Details panel: opens as a full-width row under the tile that was tapped */
+  .work-detail {
+    grid-column: 1 / -1;
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.7fr);
+    gap: 1.2rem 2.5rem;
+    padding: 1.6rem 1.8rem;
+    border-radius: var(--radius-tile);
+    background: var(--local-tile-hover);
+    animation: panel-in 0.35s var(--ease);
+  }
+
+  .work-detail[hidden] {
+    display: none;
+  }
+
+  @keyframes panel-in {
+    from { opacity: 0; transform: translateY(-6px); }
+    to { opacity: 1; transform: none; }
+  }
+
+  .work-detail-head {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.45rem;
+  }
+
+  .work-detail-visit {
+    margin-top: 0.7rem;
+    padding: 0.7rem 1.2rem;
+    border-radius: 999px;
+    background: var(--accent);
+    color: var(--on-accent);
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    transition: filter 0.2s var(--ease);
+  }
+
+  .work-detail-visit:hover {
+    filter: brightness(1.1);
+  }
+
+  .work-detail-close {
+    position: absolute;
+    top: 0.8rem;
+    right: 0.8rem;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    border: none;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--local-ink) 10%, transparent);
+    color: var(--local-ink);
+    font-size: 1.05rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: background-color 0.2s var(--ease), color 0.2s var(--ease);
+  }
+
+  .work-detail-close:hover {
     background: var(--local-ink);
     color: var(--local-bg);
   }
 
-  .card-flip-btn.card-flip-btn-sm {
-    width: 24px;
-    height: 24px;
-    flex: none;
-    border: none;
-    opacity: 0.65;
-  }
-
-  .card-flip-btn.card-flip-btn-sm:hover {
-    opacity: 1;
-  }
-
-  .card-flip-btn.card-flip-btn-sm svg {
-    width: 16px;
-    height: 16px;
-  }
-
-  /* Back face: the close button sits in the corner so the text gets the room */
-  .card-actions-back {
-    position: absolute;
-    top: 0.7rem;
-    right: 0.7rem;
-    margin: 0;
-    padding: 0;
-  }
-
-  .card-actions-back .card-flip-btn {
-    width: 24px;
-    height: 24px;
-    font-size: 0.95rem;
-    line-height: 1;
-  }
-
-  .card-visit-btn {
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-end;
-    padding: 1.15rem 1.2rem;
-    color: var(--local-ink);
-  }
-
-  .card-visit-btn svg {
-    width: 24px;
-    height: 24px;
-    stroke-width: 1.6;
-    opacity: 0.5;
-    transition: transform 0.3s var(--ease), opacity 0.25s var(--ease);
-  }
-
-  .work-card:hover .card-visit-btn svg,
-  .card-visit-btn:hover svg {
-    transform: translateX(4px);
-    opacity: 1;
-  }
-
-  /* Last tile: link out to the rest of the work (no flip, no tint) */
-  .work-more {
-    perspective: none;
+  .card-back-list {
+    list-style: none;
+    counter-reset: card-list;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    padding: 1.15rem 1.2rem;
-    color: var(--local-ink);
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0 2rem 0 0;
   }
 
-  .work-more .work-title {
-    flex: none;
+  .card-back-list li {
+    counter-increment: card-list;
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    font-family: var(--font-playful);
+    font-weight: 500;
+    font-size: 0.92rem;
+    line-height: 1.45;
+    opacity: 0.9;
   }
 
-  .work-more svg {
-    width: 24px;
-    height: 24px;
-    stroke-width: 1.6;
-    align-self: flex-end;
-    opacity: 0.5;
-    transition: transform 0.3s var(--ease), opacity 0.25s var(--ease);
+  .card-back-list li::before {
+    content: counter(card-list) '.';
+    font-family: var(--font-playful);
+    font-weight: 700;
+    opacity: 0.55;
+    flex-shrink: 0;
   }
 
-  .work-more:hover svg {
-    transform: translateX(4px);
-    opacity: 1;
-  }
-
-  /* ---- Services: two-column grid ---- */
+  /* ---- Services: tonal blocks on the orange card ---- */
 
   .points {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    column-gap: 3rem;
-    border-bottom: 1px solid color-mix(in srgb, var(--local-ink) 20%, transparent);
+    gap: 0.7rem;
   }
 
   .point {
     display: block;
-    padding: 1.3rem 0;
-    border-top: 1px solid color-mix(in srgb, var(--local-ink) 20%, transparent);
+    padding: 1.5rem 1.6rem;
+    border-radius: var(--radius-tile);
+    background: var(--local-tile);
   }
 
   .point-body {
     display: flex;
     flex-direction: column;
-    gap: 0.35rem;
+    gap: 0.4rem;
   }
 
   .point-title {
     font-family: var(--font-display);
-    font-size: clamp(1.1rem, 1.8vw, 1.35rem);
+    font-size: clamp(1.1rem, 1.8vw, 1.3rem);
     font-weight: 700;
     letter-spacing: -0.01em;
   }
@@ -746,43 +765,56 @@
   .point-desc {
     font-family: var(--font-body);
     font-size: 0.9rem;
-    opacity: 0.78;
-    max-width: 48ch;
+    opacity: 0.8;
+    max-width: 46ch;
+  }
+
+  /* The closing cell is the dark figure on the orange ground */
+  .point-cta {
+    background: var(--on-accent);
+    color: var(--accent);
+    transition: filter 0.25s var(--ease);
+  }
+
+  .point-cta:hover {
+    filter: brightness(1.25);
   }
 
   .point-cta .point-title::after {
     content: ' →';
   }
 
-  .point-cta:hover .point-title {
-    text-decoration: underline;
-    text-underline-offset: 5px;
-  }
-
-  /* ---- About: a single small line ---- */
+  /* ---- About: one small pill sitting on the ground ---- */
 
   #about .wrap {
-    padding: 1.4rem 0;
+    padding: 0.2rem 0 0.6rem;
+    display: flex;
+    justify-content: center;
   }
 
   .about-strip {
     display: flex;
     align-items: center;
-    gap: 0.9rem;
+    gap: 0.8rem;
+    max-width: 100%;
+    padding: 0.5rem 1.4rem 0.5rem 0.5rem;
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--ink0);
+    transition: background-color 0.3s var(--ease);
   }
 
   .about-strip img {
     flex: none;
-    width: 44px;
-    height: 44px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     object-fit: cover;
   }
 
   .about-strip p {
-    font-size: 0.88rem;
-    line-height: 1.5;
-    max-width: 62ch;
+    font-size: 0.85rem;
+    line-height: 1.45;
     opacity: 0.85;
   }
 
@@ -793,6 +825,11 @@
   }
 
   /* ---- Contact ---- */
+
+  #contact .eyebrow {
+    color: var(--accent);
+    opacity: 1;
+  }
 
   .contact-inner {
     text-align: left;
@@ -819,7 +856,7 @@
   .contact-form {
     display: flex;
     flex-direction: column;
-    gap: 1.1rem;
+    gap: 1rem;
     width: 100%;
     max-width: 360px;
     justify-self: end;
@@ -833,7 +870,7 @@
     opacity: 0.6;
   }
 
-  /* Native select: keyboard and screen-reader friendly, styled to match */
+  /* Native select, drawn as a filled field */
   .select-wrap {
     position: relative;
     width: 100%;
@@ -849,17 +886,16 @@
     font-size: 1rem;
     font-weight: 500;
     color: var(--local-ink);
-    background: transparent;
+    background: var(--local-tile);
     border: none;
-    border-bottom: 1.5px solid color-mix(in srgb, var(--local-ink) 35%, transparent);
-    border-radius: 0;
+    border-radius: var(--radius-tile);
     cursor: pointer;
-    transition: border-color 0.2s var(--ease);
+    transition: background-color 0.2s var(--ease);
   }
 
   .select-wrap select:hover,
   .select-wrap select:focus {
-    border-color: var(--local-ink);
+    background: var(--local-tile-hover);
   }
 
   .select-wrap select option {
@@ -912,27 +948,20 @@
     font-family: var(--font-body);
     font-size: 0.85rem;
     font-weight: 500;
-    opacity: 0.8;
-    padding-bottom: 0.15rem;
-    border-bottom: 1px solid color-mix(in srgb, currentColor 32%, transparent);
-    transition: opacity 0.2s var(--ease), border-color 0.2s var(--ease);
+    opacity: 0.7;
+    transition: opacity 0.2s var(--ease);
+  }
+
+  .alt-contact::after {
+    content: ' →';
   }
 
   .alt-contact:hover,
   .alt-contact:focus-visible {
     opacity: 1;
-    border-bottom-color: currentColor;
   }
 
-  /* ---- Footer ---- */
-
-  footer[data-polarity] {
-    border-top: 1px solid color-mix(in srgb, var(--local-ink) 18%, transparent);
-  }
-
-  footer[data-polarity] .wrap {
-    padding: clamp(2rem, 4.5vw, 3rem) 0 clamp(1.8rem, 4vw, 2.4rem);
-  }
+  /* ---- Footer: sits on the ground, no divider ---- */
 
   .footer-bottom {
     display: flex;
@@ -999,7 +1028,22 @@
 
   /* ---- Responsive ---- */
 
+  /* 12 tiles divide evenly into 6, 4, 3 and 2 columns, so no orphan rows */
+  @media (max-width: 1000px) {
+    .work-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
   @media (max-width: 780px) {
+    :root {
+      --radius: 22px;
+      --radius-tile: 14px;
+      --gap: 0.6rem;
+    }
+    #work .wrap {
+      width: 94%;
+    }
     .hero-grid {
       grid-template-columns: 1fr;
       gap: 1.4rem;
@@ -1008,10 +1052,14 @@
       grid-template-columns: 1fr;
     }
     .point {
-      padding: 1.1rem 0;
+      padding: 1.25rem 1.3rem;
     }
-    .work-grid {
-      --tile-h: 224px;
+    .work-detail {
+      grid-template-columns: 1fr;
+      padding: 1.3rem 1.2rem;
+    }
+    .card-back-list {
+      padding-right: 0;
     }
     .contact-inner h2 {
       font-size: clamp(2rem, 9vw, 3rem);
@@ -1040,10 +1088,23 @@
     }
   }
 
-  @media (max-width: 420px) {
-    .wrap {
-      width: min(100% - 1.5rem, 680px);
+  @media (max-width: 700px) {
+    .work-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
+  }
+
+  @media (max-width: 520px) {
+    .work-grid {
+      --tile-h: 160px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .work-card {
+      padding: 0.85rem 0.85rem;
+    }
+  }
+
+  @media (max-width: 420px) {
     .nav-links {
       gap: 1.2rem;
     }
@@ -1058,7 +1119,7 @@
       font-size: 2.1rem;
     }
     .about-strip p {
-      font-size: 0.84rem;
+      font-size: 0.82rem;
     }
   }
 </style>
@@ -1245,7 +1306,7 @@
         </p>
 
         <div class="cta-row">
-          <a href="#work" class="btn">See Selected Work →</a>
+          <a href="#work" class="btn btn-solid">See Selected Work →</a>
           <a href="#contact" class="btn">Request a Service</a>
         </div>
       </div>
@@ -1265,303 +1326,204 @@
       <div class="work-grid" id="work-grid">
 
         <div class="work-card">
-          <div class="card-flip-inner">
-            <div class="card-face card-front">
-              <div class="work-card-top">
-                <p class="work-title brand-sarateal">Sarateal</p>
-                <button type="button" class="card-flip-btn card-flip-btn-sm" aria-label="Show description"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11.2v5"/><path d="M12 7.9h.01"/></svg></button>
-              </div>
-              <p class="work-tag-front">Agricultural Data Platform</p>
-              <a href="https://sarateal-frontend.vercel.app/" target="_blank" rel="noopener noreferrer" class="card-visit-btn" aria-label="Visit Sarateal">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M15 6l6 6-6 6"/></svg>
-              </a>
-            </div>
-            <div class="card-face card-back">
-              <span class="work-tag">Agricultural Data Platform</span>
-              <ol class="card-back-list">
-                <li>Market prices, weather, and geospatial data combined into one dashboard</li>
-                <li>Trend tracking to help time sales and planting decisions</li>
-                <li>Tools aimed at closing the information gap in agricultural supply chains</li>
-              </ol>
-              <div class="card-actions card-actions-back">
-                <button type="button" class="card-flip-btn" aria-label="Back to details">×</button>
-              </div>
-            </div>
+          <p class="work-title brand-sarateal">Sarateal</p>
+          <p class="work-tag-front">Agricultural Data Platform</p>
+          <button type="button" class="work-info-btn" aria-label="Show details for Sarateal" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11.2v5"/><path d="M12 7.9h.01"/></svg></button>
+          <a href="https://sarateal-frontend.vercel.app/" target="_blank" rel="noopener noreferrer" class="card-visit-btn" aria-label="Visit Sarateal">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M15 6l6 6-6 6"/></svg>
+          </a>
+          <div class="work-info" hidden>
+            <span class="work-tag">Agricultural Data Platform</span>
+            <ol class="card-back-list">
+              <li>Market prices, weather, and geospatial data combined into one dashboard</li>
+              <li>Trend tracking to help time sales and planting decisions</li>
+              <li>Tools aimed at closing the information gap in agricultural supply chains</li>
+            </ol>
           </div>
         </div>
 
         <div class="work-card">
-          <div class="card-flip-inner">
-            <div class="card-face card-front">
-              <div class="work-card-top">
-                <p class="work-title"><span style="color:#0891b2">Zoryn</span></p>
-                <button type="button" class="card-flip-btn card-flip-btn-sm" aria-label="Show description"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11.2v5"/><path d="M12 7.9h.01"/></svg></button>
-              </div>
-              <p class="work-tag-front">Climate Intelligence Tool</p>
-              <a href="https://zoryn.simonmapper.co.ke/" target="_blank" rel="noopener noreferrer" class="card-visit-btn" aria-label="Visit Zoryn">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M15 6l6 6-6 6"/></svg>
-              </a>
-            </div>
-            <div class="card-face card-back">
-              <span class="work-tag">Climate Intelligence Tool</span>
-              <ol class="card-back-list">
-                <li>Interactive maps and timelines for exploring climate and environmental risk</li>
-                <li>Geospatial layers that reveal how hazard exposure shifts over time</li>
-                <li>A browsing experience built for understanding risk at any location</li>
-              </ol>
-              <div class="card-actions card-actions-back">
-                <button type="button" class="card-flip-btn" aria-label="Back to details">×</button>
-              </div>
-            </div>
+          <p class="work-title"><span style="color:#0891b2">Zoryn</span></p>
+          <p class="work-tag-front">Climate Intelligence Tool</p>
+          <button type="button" class="work-info-btn" aria-label="Show details for Zoryn" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11.2v5"/><path d="M12 7.9h.01"/></svg></button>
+          <a href="https://zoryn.simonmapper.co.ke/" target="_blank" rel="noopener noreferrer" class="card-visit-btn" aria-label="Visit Zoryn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M15 6l6 6-6 6"/></svg>
+          </a>
+          <div class="work-info" hidden>
+            <span class="work-tag">Climate Intelligence Tool</span>
+            <ol class="card-back-list">
+              <li>Interactive maps and timelines for exploring climate and environmental risk</li>
+              <li>Geospatial layers that reveal how hazard exposure shifts over time</li>
+              <li>A browsing experience built for understanding risk at any location</li>
+            </ol>
           </div>
         </div>
 
         <div class="work-card">
-          <div class="card-flip-inner">
-            <div class="card-face card-front">
-              <div class="work-card-top">
-                <p class="work-title brand-geoepic">Geoepic <span class="accent">Surveys</span></p>
-                <button type="button" class="card-flip-btn card-flip-btn-sm" aria-label="Show description"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11.2v5"/><path d="M12 7.9h.01"/></svg></button>
-              </div>
-              <p class="work-tag-front">Web Development</p>
-              <a href="https://geoepic.co.ke/" target="_blank" rel="noopener noreferrer" class="card-visit-btn" aria-label="Visit Geoepic Surveys">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M15 6l6 6-6 6"/></svg>
-              </a>
-            </div>
-            <div class="card-face card-back">
-              <span class="work-tag">Web Development</span>
-              <ol class="card-back-list">
-                <li>Professional web presence for a geospatial and land-surveying consultancy</li>
-                <li>Clear presentation of surveying, GIS, and engineering-survey services</li>
-                <li>Sites built to convert visitors into service enquiries</li>
-              </ol>
-              <div class="card-actions card-actions-back">
-                <button type="button" class="card-flip-btn" aria-label="Back to details">×</button>
-              </div>
-            </div>
+          <p class="work-title brand-geoepic">Geoepic <span class="accent">Surveys</span></p>
+          <p class="work-tag-front">Web Development</p>
+          <button type="button" class="work-info-btn" aria-label="Show details for Geoepic Surveys" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11.2v5"/><path d="M12 7.9h.01"/></svg></button>
+          <a href="https://geoepic.co.ke/" target="_blank" rel="noopener noreferrer" class="card-visit-btn" aria-label="Visit Geoepic Surveys">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M15 6l6 6-6 6"/></svg>
+          </a>
+          <div class="work-info" hidden>
+            <span class="work-tag">Web Development</span>
+            <ol class="card-back-list">
+              <li>Professional web presence for a geospatial and land-surveying consultancy</li>
+              <li>Clear presentation of surveying, GIS, and engineering-survey services</li>
+              <li>Sites built to convert visitors into service enquiries</li>
+            </ol>
           </div>
         </div>
 
         <div class="work-card">
-          <div class="card-flip-inner">
-            <div class="card-face card-front">
-              <div class="work-card-top">
-                <p class="work-title brand-latent">Latent <span class="accent">Earth</span></p>
-                <button type="button" class="card-flip-btn card-flip-btn-sm" aria-label="Show description"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11.2v5"/><path d="M12 7.9h.01"/></svg></button>
-              </div>
-              <p class="work-tag-front">Ongoing Project</p>
-              <a href="https://latent-earth.vercel.app/" target="_blank" rel="noopener noreferrer" class="card-visit-btn" aria-label="Visit Latent Earth">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M15 6l6 6-6 6"/></svg>
-              </a>
-            </div>
-            <div class="card-face card-back">
-              <span class="work-tag">Ongoing Project</span>
-              <ol class="card-back-list">
-                <li>A browser laboratory for discovering signals hidden inside Earth-observation embeddings</li>
-                <li>Side-by-side comparison of imagery, embeddings, clusters, and ranked signals in one view</li>
-                <li>Built for interrogating satellite data without writing code, still under active development</li>
-              </ol>
-              <div class="card-actions card-actions-back">
-                <button type="button" class="card-flip-btn" aria-label="Back to details">×</button>
-              </div>
-            </div>
+          <p class="work-title brand-latent">Latent <span class="accent">Earth</span></p>
+          <p class="work-tag-front">Ongoing Project</p>
+          <button type="button" class="work-info-btn" aria-label="Show details for Latent Earth" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11.2v5"/><path d="M12 7.9h.01"/></svg></button>
+          <a href="https://latent-earth.vercel.app/" target="_blank" rel="noopener noreferrer" class="card-visit-btn" aria-label="Visit Latent Earth">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M15 6l6 6-6 6"/></svg>
+          </a>
+          <div class="work-info" hidden>
+            <span class="work-tag">Ongoing Project</span>
+            <ol class="card-back-list">
+              <li>A browser laboratory for discovering signals hidden inside Earth-observation embeddings</li>
+              <li>Side-by-side comparison of imagery, embeddings, clusters, and ranked signals in one view</li>
+              <li>Built for interrogating satellite data without writing code, still under active development</li>
+            </ol>
           </div>
         </div>
 
         <div class="work-card">
-          <div class="card-flip-inner">
-            <div class="card-face card-front">
-              <div class="work-card-top">
-                <p class="work-title"><span style="color:#c2483d">Climate</span> Risk Assessment</p>
-                <button type="button" class="card-flip-btn card-flip-btn-sm" aria-label="Show description"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11.2v5"/><path d="M12 7.9h.01"/></svg></button>
-              </div>
-              <p class="work-tag-front">Climate Risk Analysis</p>
-            </div>
-            <div class="card-face card-back">
-              <span class="work-tag">Climate Risk Analysis</span>
-              <ol class="card-back-list">
-                <li>Climate-risk and spatial analysis covering drought, flood, heat, and water-security hazards</li>
-                <li>Python workflows for collecting, processing, and validating environmental datasets</li>
-                <li>Structured climate-risk reporting with automated, standards-aligned outputs</li>
-                <li>Clear technical documentation that communicates risk insights to any audience</li>
-              </ol>
-              <div class="card-actions card-actions-back">
-                <button type="button" class="card-flip-btn" aria-label="Back to details">×</button>
-              </div>
-            </div>
+          <p class="work-title"><span style="color:#c2483d">Climate</span> Risk Assessment</p>
+          <p class="work-tag-front">Climate Risk Analysis</p>
+          <button type="button" class="work-info-btn" aria-label="Show details for Climate Risk Assessment" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11.2v5"/><path d="M12 7.9h.01"/></svg></button>
+          <div class="work-info" hidden>
+            <span class="work-tag">Climate Risk Analysis</span>
+            <ol class="card-back-list">
+              <li>Climate-risk and spatial analysis covering drought, flood, heat, and water-security hazards</li>
+              <li>Python workflows for collecting, processing, and validating environmental datasets</li>
+              <li>Structured climate-risk reporting with automated, standards-aligned outputs</li>
+              <li>Clear technical documentation that communicates risk insights to any audience</li>
+            </ol>
           </div>
         </div>
 
         <div class="work-card">
-          <div class="card-flip-inner">
-            <div class="card-face card-front">
-              <div class="work-card-top">
-                <p class="work-title brand-pangakazi">panga <span class="accent">kazi</span></p>
-                <button type="button" class="card-flip-btn card-flip-btn-sm" aria-label="Show description"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11.2v5"/><path d="M12 7.9h.01"/></svg></button>
-              </div>
-              <p class="work-tag-front">Productivity Tool</p>
-              <a href="https://pangakazi.simonmapper.co.ke/" target="_blank" rel="noopener noreferrer" class="card-visit-btn" aria-label="Visit Pangakazi">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M15 6l6 6-6 6"/></svg>
-              </a>
-            </div>
-            <div class="card-face card-back">
-              <span class="work-tag">Productivity Tool</span>
-              <ol class="card-back-list">
-                <li>Turning informal WhatsApp and SMS messages into clean, timestamped job records</li>
-                <li>Automatic extraction of client, task, and schedule details from chat threads</li>
-                <li>Lightweight tools built for freelancers and small crews working over chat apps</li>
-              </ol>
-              <div class="card-actions card-actions-back">
-                <button type="button" class="card-flip-btn" aria-label="Back to details">×</button>
-              </div>
-            </div>
+          <p class="work-title brand-pangakazi">panga <span class="accent">kazi</span></p>
+          <p class="work-tag-front">Productivity Tool</p>
+          <button type="button" class="work-info-btn" aria-label="Show details for Pangakazi" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11.2v5"/><path d="M12 7.9h.01"/></svg></button>
+          <a href="https://pangakazi.simonmapper.co.ke/" target="_blank" rel="noopener noreferrer" class="card-visit-btn" aria-label="Visit Pangakazi">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M15 6l6 6-6 6"/></svg>
+          </a>
+          <div class="work-info" hidden>
+            <span class="work-tag">Productivity Tool</span>
+            <ol class="card-back-list">
+              <li>Turning informal WhatsApp and SMS messages into clean, timestamped job records</li>
+              <li>Automatic extraction of client, task, and schedule details from chat threads</li>
+              <li>Lightweight tools built for freelancers and small crews working over chat apps</li>
+            </ol>
           </div>
         </div>
 
         <div class="work-card">
-          <div class="card-flip-inner">
-            <div class="card-face card-front">
-              <div class="work-card-top">
-                <p class="work-title"><span style="color:#b8860b">Property</span> Sales</p>
-                <button type="button" class="card-flip-btn card-flip-btn-sm" aria-label="Show description"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11.2v5"/><path d="M12 7.9h.01"/></svg></button>
-              </div>
-              <p class="work-tag-front">Geospatial Web Application</p>
-              <a href="/demos/properties/" class="card-visit-btn" aria-label="View live demo">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M15 6l6 6-6 6"/></svg>
-              </a>
-            </div>
-            <div class="card-face card-back">
-              <span class="work-tag">Geospatial Web Application</span>
-              <ol class="card-back-list">
-                <li>Interactive parcel mapping with live availability status</li>
-                <li>Search by location, size, and price across listed properties</li>
-                <li>Visual, map-first property discovery instead of spreadsheets</li>
-              </ol>
-              <div class="card-actions card-actions-back">
-                <button type="button" class="card-flip-btn" aria-label="Back to details">×</button>
-              </div>
-            </div>
+          <p class="work-title"><span style="color:#b8860b">Property</span> Sales</p>
+          <p class="work-tag-front">Geospatial Web Application</p>
+          <button type="button" class="work-info-btn" aria-label="Show details for Property Sales" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11.2v5"/><path d="M12 7.9h.01"/></svg></button>
+          <a href="/demos/properties/" class="card-visit-btn" aria-label="View live demo">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M15 6l6 6-6 6"/></svg>
+          </a>
+          <div class="work-info" hidden>
+            <span class="work-tag">Geospatial Web Application</span>
+            <ol class="card-back-list">
+              <li>Interactive parcel mapping with live availability status</li>
+              <li>Search by location, size, and price across listed properties</li>
+              <li>Visual, map-first property discovery instead of spreadsheets</li>
+            </ol>
           </div>
         </div>
 
         <div class="work-card">
-          <div class="card-flip-inner">
-            <div class="card-face card-front">
-              <div class="work-card-top">
-                <p class="work-title">Susceptibility Mapping</p>
-                <button type="button" class="card-flip-btn card-flip-btn-sm" aria-label="Show description"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11.2v5"/><path d="M12 7.9h.01"/></svg></button>
-              </div>
-              <p class="work-tag-front">Flood Risk Analysis</p>
-              <a href="https://github.com/Issimonmutunga/floodske" target="_blank" rel="noopener noreferrer" class="card-visit-btn" aria-label="View on GitHub">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M15 6l6 6-6 6"/></svg>
-              </a>
-            </div>
-            <div class="card-face card-back">
-              <span class="work-tag">Flood Risk Analysis</span>
-              <ol class="card-back-list">
-                <li>Flood-risk mapping using terrain, rainfall, and land-use data</li>
-                <li>A single susceptibility index built from multiple risk factors</li>
-                <li>Outputs designed to support disaster preparedness and planning</li>
-              </ol>
-              <div class="card-actions card-actions-back">
-                <button type="button" class="card-flip-btn" aria-label="Back to details">×</button>
-              </div>
-            </div>
+          <p class="work-title">Susceptibility Mapping</p>
+          <p class="work-tag-front">Flood Risk Analysis</p>
+          <button type="button" class="work-info-btn" aria-label="Show details for Susceptibility Mapping" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11.2v5"/><path d="M12 7.9h.01"/></svg></button>
+          <a href="https://github.com/Issimonmutunga/floodske" target="_blank" rel="noopener noreferrer" class="card-visit-btn" aria-label="View on GitHub">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M15 6l6 6-6 6"/></svg>
+          </a>
+          <div class="work-info" hidden>
+            <span class="work-tag">Flood Risk Analysis</span>
+            <ol class="card-back-list">
+              <li>Flood-risk mapping using terrain, rainfall, and land-use data</li>
+              <li>A single susceptibility index built from multiple risk factors</li>
+              <li>Outputs designed to support disaster preparedness and planning</li>
+            </ol>
           </div>
         </div>
 
         <div class="work-card">
-          <div class="card-flip-inner">
-            <div class="card-face card-front">
-              <div class="work-card-top">
-                <p class="work-title">Crop Suitability Analysis</p>
-                <button type="button" class="card-flip-btn card-flip-btn-sm" aria-label="Show description"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11.2v5"/><path d="M12 7.9h.01"/></svg></button>
-              </div>
-              <p class="work-tag-front">Agricultural GIS Analysis</p>
-              <a href="https://github.com/Issimonmutunga/AHP-Project" target="_blank" rel="noopener noreferrer" class="card-visit-btn" aria-label="View on GitHub">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M15 6l6 6-6 6"/></svg>
-              </a>
-            </div>
-            <div class="card-face card-back">
-              <span class="work-tag">Agricultural GIS Analysis</span>
-              <ol class="card-back-list">
-                <li>Multi-criteria (AHP) suitability mapping using soil, rainfall, temperature, and elevation</li>
-                <li>A single suitability score per zone instead of judging factors separately</li>
-                <li>Insights that de-risk cultivation decisions before investment</li>
-              </ol>
-              <div class="card-actions card-actions-back">
-                <button type="button" class="card-flip-btn" aria-label="Back to details">×</button>
-              </div>
-            </div>
+          <p class="work-title">Crop Suitability Analysis</p>
+          <p class="work-tag-front">Agricultural GIS Analysis</p>
+          <button type="button" class="work-info-btn" aria-label="Show details for Crop Suitability Analysis" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11.2v5"/><path d="M12 7.9h.01"/></svg></button>
+          <a href="https://github.com/Issimonmutunga/AHP-Project" target="_blank" rel="noopener noreferrer" class="card-visit-btn" aria-label="View on GitHub">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M15 6l6 6-6 6"/></svg>
+          </a>
+          <div class="work-info" hidden>
+            <span class="work-tag">Agricultural GIS Analysis</span>
+            <ol class="card-back-list">
+              <li>Multi-criteria (AHP) suitability mapping using soil, rainfall, temperature, and elevation</li>
+              <li>A single suitability score per zone instead of judging factors separately</li>
+              <li>Insights that de-risk cultivation decisions before investment</li>
+            </ol>
           </div>
         </div>
 
         <div class="work-card">
-          <div class="card-flip-inner">
-            <div class="card-face card-front">
-              <div class="work-card-top">
-                <p class="work-title brand-sauti">Sauti Kwa Ukuta</p>
-                <button type="button" class="card-flip-btn card-flip-btn-sm" aria-label="Show description"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11.2v5"/><path d="M12 7.9h.01"/></svg></button>
-              </div>
-              <p class="work-tag-front">Web Development</p>
-              <a href="https://fuzzy-waddle-nu.vercel.app/" target="_blank" rel="noopener noreferrer" class="card-visit-btn" aria-label="Visit Sauti Kwa Ukuta">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M15 6l6 6-6 6"/></svg>
-              </a>
-            </div>
-            <div class="card-face card-back">
-              <span class="work-tag">Web Development</span>
-              <ol class="card-back-list">
-                <li>A resource hub for lived narratives, harm-reduction, and human-rights information</li>
-                <li>A safe, accessible space centered on the voices of the community it serves</li>
-                <li>Design built for young women, gender-diverse people, and students in Kenya</li>
-              </ol>
-              <div class="card-actions card-actions-back">
-                <button type="button" class="card-flip-btn" aria-label="Back to details">×</button>
-              </div>
-            </div>
+          <p class="work-title brand-sauti">Sauti Kwa Ukuta</p>
+          <p class="work-tag-front">Web Development</p>
+          <button type="button" class="work-info-btn" aria-label="Show details for Sauti Kwa Ukuta" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11.2v5"/><path d="M12 7.9h.01"/></svg></button>
+          <a href="https://fuzzy-waddle-nu.vercel.app/" target="_blank" rel="noopener noreferrer" class="card-visit-btn" aria-label="Visit Sauti Kwa Ukuta">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M15 6l6 6-6 6"/></svg>
+          </a>
+          <div class="work-info" hidden>
+            <span class="work-tag">Web Development</span>
+            <ol class="card-back-list">
+              <li>A resource hub for lived narratives, harm-reduction, and human-rights information</li>
+              <li>A safe, accessible space centered on the voices of the community it serves</li>
+              <li>Design built for young women, gender-diverse people, and students in Kenya</li>
+            </ol>
           </div>
         </div>
 
         <div class="work-card">
-          <div class="card-flip-inner">
-            <div class="card-face card-front">
-              <div class="work-card-top">
-                <p class="work-title brand-tesseract">Tesseract <span class="accent">Explorer</span></p>
-                <button type="button" class="card-flip-btn card-flip-btn-sm" aria-label="Show description"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11.2v5"/><path d="M12 7.9h.01"/></svg></button>
-              </div>
-              <p class="work-tag-front">Hobby Project</p>
-              <a href="https://tesseract-explorer.vercel.app/" target="_blank" rel="noopener noreferrer" class="card-visit-btn" aria-label="Visit Tesseract Explorer">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M15 6l6 6-6 6"/></svg>
-              </a>
-            </div>
-            <div class="card-face card-back">
-              <span class="work-tag">Hobby Project</span>
-              <ol class="card-back-list">
-                <li>A mathematically true 4D hypercube: 16 vertices and 32 edges, rotating in the XW, YW, and ZW planes</li>
-                <li>Perspective projection from four dimensions down into a real-time Three.js scene</li>
-                <li>A self-directed experiment in geometry, WebGL, and spatial reasoning built for the fun of it</li>
-              </ol>
-              <div class="card-actions card-actions-back">
-                <button type="button" class="card-flip-btn" aria-label="Back to details">×</button>
-              </div>
-            </div>
+          <p class="work-title brand-tesseract">Tesseract <span class="accent">Explorer</span></p>
+          <p class="work-tag-front">Hobby Project</p>
+          <button type="button" class="work-info-btn" aria-label="Show details for Tesseract Explorer" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11.2v5"/><path d="M12 7.9h.01"/></svg></button>
+          <a href="https://tesseract-explorer.vercel.app/" target="_blank" rel="noopener noreferrer" class="card-visit-btn" aria-label="Visit Tesseract Explorer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M15 6l6 6-6 6"/></svg>
+          </a>
+          <div class="work-info" hidden>
+            <span class="work-tag">Hobby Project</span>
+            <ol class="card-back-list">
+              <li>A mathematically true 4D hypercube: 16 vertices and 32 edges, rotating in the XW, YW, and ZW planes</li>
+              <li>Perspective projection from four dimensions down into a real-time Three.js scene</li>
+              <li>A self-directed experiment in geometry, WebGL, and spatial reasoning built for the fun of it</li>
+            </ol>
           </div>
         </div>
 
         <a class="work-card work-more" href="https://github.com/Issimonmutunga" target="_blank" rel="noopener noreferrer">
-          <span>
-            <span class="work-title">More on GitHub</span>
-            <span class="work-tag-front" style="display:block;margin-top:0.5rem">Source code and further projects</span>
-          </span>
+          <span class="work-title">More on GitHub</span>
+          <span class="work-tag-front">Source code and further projects</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12h18M15 6l6 6-6 6"/></svg>
         </a>
+
+        <div class="work-detail" id="work-detail" role="region" aria-label="Project details" hidden></div>
 
       </div>
     </div>
   </section>
 
   <!-- 3. Services -->
-  <section id="services" data-polarity="invert">
+  <section id="services" data-polarity="accent">
     <div class="wrap">
       <div class="section-head">
         <div>
@@ -1629,8 +1591,8 @@
     </div>
   </section>
 
-  <!-- 4. About: one small line -->
-  <section id="about" data-polarity="normal" aria-label="About">
+  <!-- 4. About: one small pill on the ground -->
+  <section id="about" data-polarity="ground" aria-label="About">
     <div class="wrap">
       <div class="about-strip">
         <img
@@ -1649,7 +1611,7 @@
 </main>
 
 <!-- 5. Contact -->
-<section id="contact" data-polarity="invert">
+<section id="contact" data-polarity="deep">
   <div class="wrap">
     <div class="footer-top">
       <div class="contact-inner">
@@ -1687,7 +1649,7 @@
   </div>
 </section>
 
-<footer data-polarity="invert">
+<footer data-polarity="ground">
   <div class="wrap">
     <div class="footer-bottom">
       <div class="footer-links">
@@ -1853,22 +1815,112 @@
     });
   })();
 
-  /* Work tiles: info button flips to details; tapping the back flips it again */
+  /* Work tiles: the info button opens one shared details row under the tapped tile */
   (function () {
-    document.querySelectorAll('.work-card').forEach(function (card) {
-      card.querySelectorAll('.card-flip-btn').forEach(function (btn) {
-        btn.addEventListener('click', function (e) {
-          e.preventDefault();
-          card.classList.toggle('flipped');
-        });
-      });
+    const grid = document.getElementById('work-grid');
+    const panel = document.getElementById('work-detail');
+    if (!grid || !panel) return;
 
-      const back = card.querySelector('.card-back');
-      if (back) {
-        back.addEventListener('click', function (e) {
-          if (e.target.closest('button')) return;
-          card.classList.remove('flipped');
-        });
+    let active = null;
+    let lastWidth = window.innerWidth;
+
+    function closePanel() {
+      if (active) {
+        active.classList.remove('is-active');
+        const btn = active.querySelector('.work-info-btn');
+        if (btn) btn.setAttribute('aria-expanded', 'false');
+      }
+      active = null;
+      panel.hidden = true;
+      panel.textContent = '';
+    }
+
+    function openPanel(card) {
+      closePanel();
+
+      const info = card.querySelector('.work-info');
+      const title = card.querySelector('.work-title');
+      if (!info || !title) return;
+
+      const head = document.createElement('div');
+      head.className = 'work-detail-head';
+      head.appendChild(title.cloneNode(true));
+
+      const tag = info.querySelector('.work-tag');
+      if (tag) head.appendChild(tag.cloneNode(true));
+
+      const visit = card.querySelector('.card-visit-btn');
+      if (visit) {
+        const href = visit.getAttribute('href');
+        const link = document.createElement('a');
+        link.className = 'work-detail-visit';
+        link.href = href;
+        link.textContent = (visit.getAttribute('aria-label') || 'Open') + ' →';
+        if (/^https?:/i.test(href)) {
+          link.target = '_blank';
+          link.rel = 'noopener noreferrer';
+        }
+        head.appendChild(link);
+      }
+
+      panel.appendChild(head);
+
+      const list = info.querySelector('.card-back-list');
+      if (list) panel.appendChild(list.cloneNode(true));
+
+      const close = document.createElement('button');
+      close.type = 'button';
+      close.className = 'work-detail-close';
+      close.setAttribute('aria-label', 'Close details');
+      close.textContent = '×';
+      close.addEventListener('click', function () {
+        const btn = active && active.querySelector('.work-info-btn');
+        closePanel();
+        if (btn) btn.focus();
+      });
+      panel.appendChild(close);
+
+      /* Place the panel after the last tile in the same row */
+      const tiles = Array.from(grid.querySelectorAll('.work-card'));
+      const top = card.offsetTop;
+      const row = tiles.filter(function (t) { return Math.abs(t.offsetTop - top) < 3; });
+      row[row.length - 1].after(panel);
+
+      active = card;
+      card.classList.add('is-active');
+      const infoBtn = card.querySelector('.work-info-btn');
+      if (infoBtn) infoBtn.setAttribute('aria-expanded', 'true');
+      panel.hidden = false;
+      panel.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    }
+
+    grid.querySelectorAll('.work-card').forEach(function (card) {
+      const btn = card.querySelector('.work-info-btn');
+      if (!btn) return;
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        if (active === card) {
+          closePanel();
+        } else {
+          openPanel(card);
+        }
+      });
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && active) {
+        const btn = active.querySelector('.work-info-btn');
+        closePanel();
+        if (btn) btn.focus();
+      }
+    });
+
+    /* Column count changes with width, so close the row rather than leave it misplaced */
+    window.addEventListener('resize', function () {
+      if (window.innerWidth !== lastWidth) {
+        lastWidth = window.innerWidth;
+        closePanel();
       }
     });
   })();
