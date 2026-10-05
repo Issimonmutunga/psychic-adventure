@@ -77,6 +77,7 @@
     --surface: #fff7ee;
     --ink0: #2a1608;
     --accent: #f4801f;
+    --accent-soft: #f8b987;
     --on-accent: #2a1608;
     --deep: #2a1608;
     --on-deep: #fbeedd;
@@ -89,6 +90,7 @@
     --surface: #1c110a;
     --ink0: #f6e6d3;
     --accent: #ff8f3a;
+    --accent-soft: #eeaa78;
     --on-accent: #1b0e05;
     --deep: #2e1b0e;
     --on-deep: #fbeedd;
@@ -159,10 +161,10 @@
   }
 
   section[data-polarity="accent"] {
-    --local-bg: var(--accent);
+    --local-bg: var(--accent-soft);
     --local-ink: var(--on-accent);
-    --local-tile: color-mix(in srgb, var(--on-accent) 9%, var(--accent));
-    --local-tile-hover: color-mix(in srgb, var(--on-accent) 15%, var(--accent));
+    --local-tile: color-mix(in srgb, var(--on-accent) 9%, var(--accent-soft));
+    --local-tile-hover: color-mix(in srgb, var(--on-accent) 15%, var(--accent-soft));
   }
 
   section[data-polarity="deep"] {
@@ -607,13 +609,13 @@
   /* Last tile: solid orange, the one deliberate accent in the grid */
   .work-more {
     justify-content: flex-start;
-    background: var(--accent);
+    background: var(--accent-soft);
     color: var(--on-accent);
     transition: filter 0.25s var(--ease);
   }
 
   .work-more:hover {
-    background: var(--accent);
+    background: var(--accent-soft);
     filter: brightness(1.08);
   }
 
