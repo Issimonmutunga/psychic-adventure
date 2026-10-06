@@ -637,14 +637,11 @@
     transform: translateX(3px);
   }
 
-  /* Details panel: opens as a full-width row under the tile that was tapped */
+  /* Details row: just the points, no heading and no link */
   .work-detail {
     grid-column: 1 / -1;
     position: relative;
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.7fr);
-    gap: 1.2rem 2.5rem;
-    padding: 1.6rem 1.8rem;
+    padding: 1.3rem 3.2rem 1.3rem 1.5rem;
     border-radius: var(--radius-tile);
     background: var(--local-tile-hover);
     animation: panel-in 0.35s var(--ease);
@@ -657,31 +654,6 @@
   @keyframes panel-in {
     from { opacity: 0; transform: translateY(-6px); }
     to { opacity: 1; transform: none; }
-  }
-
-  .work-detail-head {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.45rem;
-  }
-
-  .work-detail-visit {
-    margin-top: 0.7rem;
-    padding: 0.7rem 1.2rem;
-    border-radius: 999px;
-    background: var(--accent);
-    color: var(--on-accent);
-    font-family: var(--font-body);
-    font-size: 0.72rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    transition: filter 0.2s var(--ease);
-  }
-
-  .work-detail-visit:hover {
-    filter: brightness(1.1);
   }
 
   .work-detail-close {
@@ -713,7 +685,7 @@
     flex-direction: column;
     gap: 0.5rem;
     margin: 0;
-    padding: 0 2rem 0 0;
+    padding: 0;
   }
 
   .card-back-list li {
@@ -1057,11 +1029,7 @@
       padding: 1.25rem 1.3rem;
     }
     .work-detail {
-      grid-template-columns: 1fr;
-      padding: 1.3rem 1.2rem;
-    }
-    .card-back-list {
-      padding-right: 0;
+      padding: 1.2rem 3rem 1.2rem 1.2rem;
     }
     .contact-inner h2 {
       font-size: clamp(2rem, 9vw, 3rem);
@@ -1841,31 +1809,7 @@
       closePanel();
 
       const info = card.querySelector('.work-info');
-      const title = card.querySelector('.work-title');
-      if (!info || !title) return;
-
-      const head = document.createElement('div');
-      head.className = 'work-detail-head';
-      head.appendChild(title.cloneNode(true));
-
-      const tag = info.querySelector('.work-tag');
-      if (tag) head.appendChild(tag.cloneNode(true));
-
-      const visit = card.querySelector('.card-visit-btn');
-      if (visit) {
-        const href = visit.getAttribute('href');
-        const link = document.createElement('a');
-        link.className = 'work-detail-visit';
-        link.href = href;
-        link.textContent = (visit.getAttribute('aria-label') || 'Open') + ' →';
-        if (/^https?:/i.test(href)) {
-          link.target = '_blank';
-          link.rel = 'noopener noreferrer';
-        }
-        head.appendChild(link);
-      }
-
-      panel.appendChild(head);
+      if (!info) return;
 
       const list = info.querySelector('.card-back-list');
       if (list) panel.appendChild(list.cloneNode(true));
