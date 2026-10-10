@@ -1,0 +1,11 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "rewrites": [
+    { "source": "/demos/properties/seller", "destination": "/demos/properties/index.html" },
+    { "source": "/demos/properties/seller/", "destination": "/demos/properties/index.html" },
+    { "source": "/demos/properties/admin", "destination": "/demos/properties/index.html" },
+    { "source": "/demos/properties/admin/", "destination": "/demos/properties/index.html" },
+    { "source": "/demos/properties/plot", "destination": "/demos/properties/index.html" },
+    { "source": "/demos/properties/plot/:path*", "destination": "/demos/properties/index.html" }
+  ]
+}
