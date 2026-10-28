@@ -690,34 +690,6 @@
     opacity: 1;
   }
 
-  /* Last tile: solid ink, the one inverted block in the grid */
-  .work-more {
-    background: var(--ink);
-    color: var(--bg);
-  }
-
-  .work-more:hover {
-    background: var(--ink);
-  }
-
-  .work-more .work-tag-front {
-    color: color-mix(in srgb, var(--bg) 62%, var(--ink));
-  }
-
-  .work-more svg {
-    position: absolute;
-    right: 1rem;
-    bottom: 0.9rem;
-    width: 18px;
-    height: 18px;
-    stroke-width: 1.5;
-    transition: transform 0.3s var(--ease);
-  }
-
-  .work-more:hover svg {
-    transform: translateX(3px);
-  }
-
   /* Details row under the tapped tile */
   .work-detail {
     grid-column: 1 / -1;
@@ -1603,12 +1575,6 @@
             </ol>
           </div>
         </div>
-
-        <a class="work-card work-more" href="https://github.com/Issimonmutunga" target="_blank" rel="noopener noreferrer">
-          <span class="work-title">More on GitHub</span>
-          <span class="work-tag-front">Source code and further projects</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12h18M15 6l6 6-6 6"/></svg>
-        </a>
 
         <div class="work-detail" id="work-detail" role="region" aria-label="Project details" hidden></div>
 
