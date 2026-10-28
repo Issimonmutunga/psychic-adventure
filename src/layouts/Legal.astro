@@ -10,6 +10,10 @@ interface Props {
 
 const { title, description, path, updated } = Astro.props;
 ---
-<Page title={title} description={description} path={path} eyebrow={`Last updated ${updated}`}>
-  <slot />
+<Page title={title} description={description} path={path} eyebrow={`Last updated ${updated}`} related={false}>
+  <section class="block">
+    <div class="wrap prose">
+      <slot />
+    </div>
+  </section>
 </Page>

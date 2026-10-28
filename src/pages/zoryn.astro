@@ -6,18 +6,37 @@ import Page from '../layouts/Page.astro';
   description="Zoryn is a climate intelligence tool with interactive maps and timelines for exploring climate and environmental risk, built by Simon Maps in Nairobi, Kenya."
   path="/zoryn"
   eyebrow="Climate intelligence tool"
+  site={{ href: 'https://zoryn.simonmapper.co.ke/', label: 'zoryn.simonmapper.co.ke' }}
 >
-  <p class="lede">Interactive maps and timelines for exploring climate and environmental risk at any location.</p>
+  <Fragment slot="hero">
+    <p class="lede">Interactive maps and timelines for exploring climate and environmental risk at any location.</p>
+    <div class="actions">
+      <a href="https://zoryn.simonmapper.co.ke/" class="btn btn-solid">Open Zoryn</a>
+      <a href="/contact" class="btn">Discuss a project</a>
+    </div>
+  </Fragment>
 
-  <h2>What it does</h2>
-  <ul>
-    <li>Interactive maps and timelines for exploring climate and environmental risk</li>
-    <li>Geospatial layers that reveal how hazard exposure shifts over time</li>
-    <li>A browsing experience built for understanding risk at any location</li>
-  </ul>
-
-  <div class="actions">
-    <a href="https://zoryn.simonmapper.co.ke/" class="btn btn-solid">Open Zoryn</a>
-    <a href="/contact" class="btn">Discuss a project</a>
-  </div>
+  <section class="block">
+    <div class="wrap">
+      <h2>What it does</h2>
+      <p class="block-intro">Climate and environmental risk, explored on a map instead of in a report.</p>
+      <div class="features">
+        <article class="feature">
+          <span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/></svg></span>
+          <h3>Risk maps</h3>
+          <p>Interactive maps for exploring climate and environmental risk.</p>
+        </article>
+        <article class="feature">
+          <span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19h16"/><path d="m5 15 4-4 3 3 7-7"/></svg></span>
+          <h3>Timelines</h3>
+          <p>Geospatial layers that reveal how hazard exposure shifts over time.</p>
+        </article>
+        <article class="feature">
+          <span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+          <h3>Any location</h3>
+          <p>A browsing experience built for understanding risk wherever you look.</p>
+        </article>
+      </div>
+    </div>
+  </section>
 </Page>

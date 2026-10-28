@@ -7,17 +7,35 @@ import Page from '../layouts/Page.astro';
   path="/property-sales"
   eyebrow="Geospatial web application"
 >
-  <p class="lede">Visual, map-first property discovery instead of spreadsheets.</p>
+  <Fragment slot="hero">
+    <p class="lede">Visual, map-first property discovery instead of spreadsheets.</p>
+    <div class="actions">
+      <a href="/demos/properties/" class="btn btn-solid">View live demo</a>
+      <a href="/contact" class="btn">Get one for your listings</a>
+    </div>
+  </Fragment>
 
-  <h2>What it does</h2>
-  <ul>
-    <li>Interactive parcel mapping with live availability status</li>
-    <li>Search by location, size, and price across listed properties</li>
-    <li>Built for land sellers who want buyers to explore plots on a map</li>
-  </ul>
-
-  <div class="actions">
-    <a href="/demos/properties/" class="btn btn-solid">View live demo</a>
-    <a href="/contact" class="btn">Get one for your listings</a>
-  </div>
+  <section class="block">
+    <div class="wrap">
+      <h2>What it does</h2>
+      <p class="block-intro">Built for land sellers who want buyers to explore plots on a map.</p>
+      <div class="features">
+        <article class="feature">
+          <span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6.5 9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20z"/><path d="M9 4v13.5M15 6.5V20"/></svg></span>
+          <h3>Parcel mapping</h3>
+          <p>Interactive parcel maps with live availability status.</p>
+        </article>
+        <article class="feature">
+          <span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4-4"/></svg></span>
+          <h3>Search and filter</h3>
+          <p>Find plots by location, size, and price across every listing.</p>
+        </article>
+        <article class="feature">
+          <span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+          <h3>Map-first browsing</h3>
+          <p>Buyers see exactly where each plot sits before they get in touch.</p>
+        </article>
+      </div>
+    </div>
+  </section>
 </Page>
